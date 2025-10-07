@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"Trackify EU"</string>
+
+    <!-- Login & Authentication -->
+    <string name="login_username">Корисничко име</string>
+    <string name="login_password">Лозинка</string>
+    <string name="login_button">Најави се</string>
+    <string name="login_exit">Излез</string>
+    <string name="login_error_username_required">Ве молиме внесете корисничко име</string>
+    <string name="login_error_password_required">Ве молиме внесете лозинка</string>
+    <string name="login_error_invalid_credentials">Невалидни податоци, Ве молиме обидете се повторно</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Подесувања</string>
+    <string name="settings_subtitle">Алатки и Конфигурација</string>
+    <string name="settings_user_info_header">КОРИСНИЧКИ ИНФОРМАЦИИ</string>
+    <string name="settings_profile_picture">Профилна слика</string>
+    <string name="settings_tap_change_photo">Допрете за да ја промените сликата</string>
+    <string name="settings_change_photo">Промени слика</string>
+    <string name="settings_driver_account">Достава профил</string>
+    <string name="settings_select_profile_picture">Избери профилна слика</string>
+    <string name="settings_close">Затвори</string>
+
+    <!-- SMS Reply Monitoring -->
+    <string name="settings_sms_reply_header">СЛЕДЕЊЕ НА СМС ОДГОВОРИ</string>
+    <string name="settings_sms_monitor_label">Следи одговори од клиенти преку СМС</string>
+    <string name="settings_sms_status_disabled">Статус: Оневозможено</string>
+    <string name="settings_sms_status_enabled">Статус: Овозможено</string>
+    <string name="settings_sms_test_button">Тестирај проверка на СМС одговори</string>
+
+    <!-- Printer Settings -->
+    <string name="settings_printer_header">ПОСТАВКИ ЗА ПЕЧАТАЧ</string>
+    <string name="settings_printer_bluetooth">Bluetooth Печатач</string>
+    <string name="settings_printer_description">Печати потврди преку Bluetooth</string>
+    <string name="settings_printer_enabled">Печатачот е овозможен. Bluetooth ќе биде вклучен.</string>
+    <string name="settings_printer_disabled">Печатачот е оневозможен</string>
+    <string name="settings_printer_enable_first">Ве молиме прво овозможете печатач во поставките</string>
+
+    <!-- Language Selection -->
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_english_desc">Default language</string>
+    <string name="settings_language_macedonian">Македонски</string>
+    <string name="settings_language_macedonian_desc">Macedonian</string>
+    <string name="settings_language_albanian">Shqip</string>
+    <string name="settings_language_albanian_desc">Albanian</string>
+
+    <!-- Quick Actions -->
+    <string name="settings_quick_actions">БРЗИ АКЦИИ</string>
+    <string name="settings_change_password">Промени лозинка</string>
+    <string name="settings_change_password_desc">Ажурирај ја лозинката на твојот профил</string>
+    <string name="settings_check_updates">Провери за ажурирања</string>
+    <string name="settings_check_updates_desc">Земи ја најновата верзија на апликацијата</string>
+
+    <!-- App Version -->
+    <string name="settings_app_name">MEX Достава</string>
+    <string name="settings_version">Верзија %s</string>
+
+    <!-- Change Password Dialog -->
+    <string name="password_change_title">Промени лозинка</string>
+    <string name="password_current">Тековна лозинка</string>
+    <string name="password_current_hint">Внеси тековна лозинка</string>
+    <string name="password_new">Нова лозинка</string>
+    <string name="password_new_hint">Внеси нова лозинка</string>
+    <string name="password_confirm">Потврди нова лозинка</string>
+    <string name="password_confirm_hint">Потврди нова лозинка</string>
+    <string name="password_requirements_title">Барања за лозинка:</string>
+    <string name="password_requirement_length">• Најмалку 6 карактери</string>
+    <string name="password_requirement_complexity">• Содржи букви и бројки</string>
+    <string name="password_match_success">✓ Лозинките се совпаѓаат</string>
+    <string name="password_match_fail">✗ Лозинките не се совпаѓаат</string>
+    <string name="password_error_current_required">Ве молиме внесете ја тековната лозинка</string>
+    <string name="password_error_new_required">Ве молиме внесете нова лозинка</string>
+    <string name="password_error_min_length">Лозинката мора да има најмалку 6 карактери</string>
+    <string name="password_error_no_match">Лозинките не се совпаѓаат</string>
+    <string name="password_error_same_as_old">Новата лозинка мора да биде различна од тековната</string>
+    <string name="password_success">Лозинката е успешно променета</string>
+    <string name="password_error_failed">Неуспешна промена на лозинка. Ве молиме проверете ја тековната лозинка.</string>
+    <string name="password_button_cancel">Откажи</string>
+    <string name="password_button_submit">Промени лозинка</string>
+
+    <!-- Shipments List Screen -->
+    <string name="shipments_total">Вкупно</string>
+    <string name="shipments_pending">Во тек</string>
+    <string name="shipments_delivered">Доставени</string>
+    <string name="shipments_cod">Готовина</string>
+
+    <!-- Filter Tabs -->
+    <string name="filter_all">Сите</string>
+    <string name="filter_priority">Приоритет</string>
+    <string name="filter_cod">Готовина</string>
+    <string name="filter_nearby">Во близина</string>
+    <string name="filter_pending">Во тек</string>
+    <string name="filter_in_delivery">Во достава (%d)</string>
+    <string name="filter_picked_up">Подигнати (%d)</string>
+    <string name="filter_problematic">Проблематични (%d)</string>
+
+    <!-- Main Tab Titles -->
+    <string name="tab_title_todo">За достава</string>
+    <string name="tab_title_delivered">Доставени</string>
+    <string name="tab_title_todo_count">(%d) За достава</string>
+    <string name="tab_title_delivered_count">(%d) Доставени\n%s мкд</string>
+    <string name="delivered_count_label">Доставени: %d</string>
+
+    <!-- Search & Sort -->
+    <string name="search_hint">Барај по ID, име или адреса…</string>
+
+    <!-- Empty State -->
+    <string name="shipments_empty_title">Нема пронајдени испораки</string>
+    <string name="shipments_empty_subtitle">Повлечи надолу за освежување</string>
+
+    <!-- Multi-scan -->
+    <string name="multiscan_mode">Мулти-скен режим</string>
+    <string name="multiscan_selected">%d избрани</string>
+
+    <!-- Scan Buttons -->
+    <string name="scan_pickup">ПРЕВЗЕМАЊЕ</string>
+    <string name="scan_return_in_delivery">Врати во достава</string>
+    <string name="scan_delivery">ВО ДОСТАВА</string>
+    <string name="scan_deliver_returned">Достави вратени</string>
+
+    <!-- Shipment Detail Screen -->
+    <string name="shipment_id_label">ID на испратница: </string>
+    <string name="shipment_from">Од: </string>
+    <string name="shipment_sender_address">Адреса на испраќач: </string>
+
+    <!-- Receiver Section -->
+    <string name="shipment_deliver_to">ДОСТАВИ ДО</string>
+    <string name="shipment_cod_label">Готовина: </string>
+    <string name="shipment_instructions_header">ИНСТРУКЦИИ ЗА ДОСТАВА</string>
+
+    <!-- Contact Actions -->
+    <string name="action_call">Повикај</string>
+    <string name="action_sms">СМС</string>
+
+    <!-- Delivery Actions -->
+    <string name="shipment_actions_header">АКЦИИ ЗА ДОСТАВА</string>
+    <string name="action_in_delivery">Означи како во достава</string>
+    <string name="action_deliver">Достави</string>
+    <string name="action_problematic">Проблематично</string>
+
+    <!-- Additional Options -->
+    <string name="shipment_additional_options">ДОПОЛНИТЕЛНИ ОПЦИИ</string>
+    <string name="action_print">Печати</string>
+    <string name="action_return">Врати</string>
+    <string name="action_create_return">Креирај повратна испратница</string>
+    <string name="action_view_return">Прегледај повратна испратница %s</string>
+
+    <!-- Status -->
+    <string name="status_pending">Во тек</string>
+    <string name="status_in_delivery">Во достава</string>
+    <string name="status_delivered">Доставено</string>
+    <string name="status_problematic">Проблематично</string>
+    <string name="status_picked_up">Подигнато</string>
+    <string name="status_problem">Проблем</string>
+    <string name="status_return_shipment">Повратна испратница</string>
+
+    <!-- Notes Tab -->
+    <string name="notes_add_new">Додади нова забелешка</string>
+    <string name="notes_select_type">Избери тип на забелешка</string>
+    <string name="notes_history_header">ИСТОРИЈА НА ЗАБЕЛЕШКИ</string>
+    <string name="notes_count">%d забелешки</string>
+    <string name="notes_count_single">%d забелешка</string>
+
+    <!-- Note Types -->
+    <string name="note_type_not_answering">Не се јавува на телефон</string>
+    <string name="note_type_wrong_number">Погрешен телефонски број</string>
+    <string name="note_type_not_ordered">Не нарачал</string>
+    <string name="note_type_not_in_country">Не е во земјата</string>
+    <string name="note_type_rejecting">Одбива достава</string>
+    <string name="note_type_other">Друго (додади детали подолу)</string>
+
+    <!-- Note Input -->
+    <string name="note_custom_hint">Додади забелешка или дополнителни детали…</string>
+    <string name="note_submit">ПОДНЕСИ ЗАБЕЛЕШКА</string>
+
+    <!-- Empty State -->
+    <string name="notes_empty_title">Сè уште нема забелешки</string>
+    <string name="notes_empty_subtitle">Допри \'Додади нова забелешка\' за да додадеш прва забелешка</string>
+
+    <!-- Messages -->
+    <string name="note_error_more_info">Ве молиме внесете повеќе информации</string>
+    <string name="note_success">Забелешката е успешно испратена</string>
+    <string name="note_error_failed">Испраќањето на забелешката не успеа, Ве молиме обидете се повторно</string>
+
+    <!-- Pictures Tab -->
+    <string name="pictures_add_new">Додади нова слика</string>
+    <string name="pictures_uploaded_header">ПРИКАЧЕНИ СЛИКИ</string>
+    <string name="pictures_count">%d ставки</string>
+
+    <!-- Empty State -->
+    <string name="pictures_empty_title">Нема прикачени слики</string>
+    <string name="pictures_empty_subtitle">Допри на копчето горе за да додадеш слики</string>
+    <string name="pictures_empty_completed">Нема достапни слики за завршени испратки</string>
+
+    <!-- Upload Dialog -->
+    <string name="pictures_dialog_title">Додади слика</string>
+    <string name="pictures_choose_option">Избери опција:</string>
+    <string name="pictures_take_photo">Фотографирај</string>
+    <string name="pictures_from_gallery">Од галерија</string>
+    <string name="pictures_change">Промени</string>
+    <string name="pictures_description">Опис:</string>
+    <string name="pictures_description_hint">Опционално…</string>
+    <string name="pictures_upload">ПРИКАЧИ СЛИКА</string>
+    <string name="pictures_uploading">Се прикачува…</string>
+    <string name="pictures_size">Големина: %s</string>
+    <string name="pictures_dimensions">Димензии: %dx%d</string>
+
+    <!-- Messages -->
+    <string name="pictures_success">Сликата е успешно прикачена</string>
+    <string name="pictures_error_select">Неуспешно избирање на слика</string>
+    <string name="pictures_error_load">Неуспешно вчитување на преглед на слика</string>
+    <string name="pictures_error_no_image">Ве молиме прво изберете слика</string>
+
+    <!-- SMS History Tab -->
+    <string name="sms_empty">Нема достапна СМС историја</string>
+    <string name="sms_status_sent">ИСПРАТЕНО</string>
+    <string name="sms_type_auto_delivery">Автоматски (Достава)</string>
+    <string name="sms_pin_label">ПИН: %s</string>
+    <string name="sms_attempts">Обиди: %d</string>
+    <string name="sms_message_sent">Пораката е испратена</string>
+
+    <!-- Signature Screen -->
+    <string name="signature_title">ПОТВРДА НА ДОСТАВА</string>
+    <string name="signature_pin_header">БЕЗБЕДНОСЕН ПИН</string>
+    <string name="signature_pin_hint">Внеси 4-цифрен ПИН</string>
+    <string name="signature_fullname_header">ПОЛНО ИМЕ НА ПРИМАЧ</string>
+    <string name="signature_fullname_hint">Внеси полно име</string>
+    <string name="signature_section_header">ПОТПИС</string>
+    <string name="signature_hint">Потпиши се со прст тука</string>
+    <string name="signature_clear">Избриши</string>
+    <string name="signature_confirm">ПОТВРДИ ДОСТАВА</string>
+
+    <!-- Validation Messages -->
+    <string name="signature_error_pin_required">Ве молиме внесете ПИН</string>
+    <string name="signature_error_pin_length">ПИН мора да има 4 цифри</string>
+    <string name="signature_error_name_required">Ве молиме внесете полно име на примачот</string>
+    <string name="signature_error_signature_required">Ве молиме ставете потпис</string>
+
+    <!-- Problematic Reason Dialog -->
+    <string name="problematic_title">Означи како проблематично</string>
+    <string name="problematic_select_reason">Избери причина:</string>
+    <string name="problematic_other_hint">Додади повеќе детали кога избираш \'Друго\'…</string>
+    <string name="problematic_cancel">Откажи</string>
+    <string name="problematic_submit">Поднеси</string>
+    <string name="problematic_error_select_reason">Ве молиме изберете причина</string>
+    <string name="problematic_error_enter_reason">Ве молиме внесете причина</string>
+    <string name="problematic_success">Статусот е ажуриран на Проблематично</string>
+    <string name="problematic_partial_success">Статусот е ажуриран но забелешката не успеа да се зачува</string>
+    <string name="problematic_error_failed">Неуспешно ажурирање на статус</string>
+
+    <!-- Shipment Row (List Item) -->
+    <string name="shipment_customer_name">Име на клиент</string>
+    <string name="shipment_delivery_address">Адреса за достава</string>
+    <string name="shipment_cod_amount">%s МКД</string>
+    <string name="shipment_time_away">%s мин оддалечено</string>
+    <string name="shipment_button_deliver">Достави</string>
+    <string name="shipment_button_reject">Одбиј</string>
+    <string name="shipment_button_details">Детали</string>
+
+    <!-- Common Buttons -->
+    <string name="button_cancel">Откажи</string>
+    <string name="button_submit">Поднеси</string>
+    <string name="button_close">Затвори</string>
+    <string name="button_done">Готово</string>
+    <string name="button_retry">ОБИДИ СЕ ПОВТОРНО</string>
+    <string name="button_rescan">СКЕНИРАЈ ПОВТОРНО</string>
+    <string name="button_back">Назад</string>
+    <string name="button_back_to_shipments">Назад кон испратки</string>
+
+    <!-- General Errors -->
+    <string name="error_loading_failed">Вчитувањето не успеа, Ве молиме обидете се повторно</string>
+    <string name="error_no_record">Не е пронајден запис</string>
+    <string name="error_scan_first">Ве молиме прво скенирајте баркод</string>
+    <string name="error_scan_failed">Испраќањето на скенираниот код не успеа, Ве молиме обидете се повторно</string>
+    <string name="error_file_not_found">Датотеката не е пронајдена</string>
+    <string name="error_file_selection_failed">Изборот на датотека не успеа</string>
+    <string name="error_invalid_phone">Невалиден телефонски број</string>
+    <string name="error_phone_not_found">Телефонскиот број не е пронајден</string>
+    <string name="error_sender_phone_not_found">Телефонскиот број на испраќачот не е пронајден</string>
+    <string name="error_already_delivered">Оваа испратница веќе е доставена!</string>
+    <string name="error_signature_failed">Испраќањето на потписот не успеа, Ве молиме обидете се повторно</string>
+    <string name="error_create_return_failed">Креирањето на повратна испратница не успеа, Ве молиме обидете се повторно</string>
+    <string name="error_describe_problem">Ве молиме опишете го проблемот</string>
+
+    <!-- Camera & Permissions -->
+    <string name="error_camera_not_available">Камерата не е достапна. Ве молиме проверете ја камерата на уредот или обидете се да ја рестартирате апликацијата.</string>
+    <string name="error_image_capture_canceled">Фотографирањето е откажано</string>
+    <string name="error_permissions_required">MEX има потреба од пристап до камера и локација за скенирање на пакети и следење на достави. Ве молиме овозможете ги овие дозволи во Поставки.</string>
+    <string name="error_sms_permission_required">Потребна е дозвола за СМС за следење на одговорите од клиентите. Ве молиме овозможете ги СМС дозволите во Поставки.</string>
+
+    <!-- Printer Messages -->
+    <string name="printer_found">Пронајден печатач: %s</string>
+    <string name="printer_not_found">Не е пронајден поддржан печатач. Се бара: PT-210, GOOJPRT, или MTP-II</string>
+    <string name="printer_connected">Печатачот е поврзан: %s</string>
+    <string name="printer_not_connected">Печатачот не е поврзан</string>
+    <string name="printer_feature_disabled">Функцијата за печатач е оневозможена</string>
+    <string name="printer_bluetooth_not_supported">Bluetooth не е поддржан на овој уред</string>
+    <string name="printer_bluetooth_required">Bluetooth е потребен за печатење</string>
+    <string name="printer_searching">Скенирање на уреди…</string>
+    <string name="printer_looking_for">Се бара Goojprt PT-210…</string>
+    <string name="printer_pairing_mode">Осигурете се дека печатачот е вклучен и во режим за парирање</string>
+    <string name="printer_no_printers">Не се пронајдени печатачи</string>
+    <string name="printer_select">Избери печатач</string>
+
+    <!-- Location & Routing -->
+    <string name="location_service_disabled">Услугата за локација не е овозможена</string>
+    <string name="routing_recalculate">Пресметај ја рутата повторно</string>
+    <string name="routing_error">Не може да се пресмета рута, ве молиме обидете се повторно</string>
+
+    <!-- Network & Loading -->
+    <string name="loading_processing">Процесирање, Ве молиме почекајте…</string>
+    <string name="loading_default">Вчитување…</string>
+    <string name="error_no_internet">Нема интернет конекција</string>
+
+    <!-- Tab Titles & Navigation -->
+    <string name="tab_deliveries">Достави</string>
+    <string name="tab_details">Детали</string>
+    <string name="tab_notes">Забелешки</string>
+    <string name="tab_pictures">Слики</string>
+    <string name="tab_sms">СМС</string>
+    <string name="tab_cod">Готовина</string>
+    <string name="tab_returns">Повратни</string>
+
+</resources>

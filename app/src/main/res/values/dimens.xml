@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins (preserved for compatibility) -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- Material Design 3 Typography Sizes -->
+    <dimen name="text_display_large">57sp</dimen>
+    <dimen name="text_display_medium">45sp</dimen>
+    <dimen name="text_display_small">36sp</dimen>
+    
+    <dimen name="text_headline_large">32sp</dimen>
+    <dimen name="text_headline_medium">28sp</dimen>
+    <dimen name="text_headline_small">24sp</dimen>
+    
+    <dimen name="text_title_large">22sp</dimen>
+    <dimen name="text_title_medium">16sp</dimen>
+    <dimen name="text_title_small">14sp</dimen>
+    
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_body_medium">14sp</dimen>
+    <dimen name="text_body_small">12sp</dimen>
+    
+    <dimen name="text_label_large">14sp</dimen>
+    <dimen name="text_label_medium">12sp</dimen>
+    <dimen name="text_label_small">11sp</dimen>
+    
+    <!-- Material Design 3 Spacing (8dp Grid System) -->
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">48dp</dimen>
+    <dimen name="spacing_xxxl">64dp</dimen>
+    
+    <!-- Component Dimensions -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_min_width">64dp</dimen>
+    <dimen name="button_padding_horizontal">24dp</dimen>
+    <dimen name="button_padding_vertical">8dp</dimen>
+    <dimen name="button_corner_radius">24dp</dimen>
+    
+    <!-- Input Field Dimensions -->
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="input_padding_horizontal">16dp</dimen>
+    <dimen name="input_padding_vertical">12dp</dimen>
+    <dimen name="input_corner_radius">8dp</dimen>
+    
+    <!-- Card Dimensions -->
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    
+    <!-- App Bar Dimensions -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="app_bar_elevation">4dp</dimen>
+    
+    <!-- Bottom Navigation -->
+    <dimen name="bottom_navigation_height">56dp</dimen>
+    <dimen name="bottom_navigation_icon_size">24dp</dimen>
+    
+    <!-- FAB Dimensions -->
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    
+    <!-- List Item Dimensions -->
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_padding_horizontal">16dp</dimen>
+    <dimen name="list_item_padding_vertical">8dp</dimen>
+    <dimen name="list_item_icon_size">40dp</dimen>
+    
+    <!-- Dialog Dimensions -->
+    <dimen name="dialog_corner_radius">24dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_elevation">24dp</dimen>
+    
+    <!-- Touch Target Dimensions (Accessibility) -->
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="touch_target_recommended">56dp</dimen>
+    
+    <!-- Icon Sizes -->
+    <dimen name="icon_size_small">18dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="icon_size_large">36dp</dimen>
+    <dimen name="icon_size_xl">48dp</dimen>
+    
+    <!-- Divider -->
+    <dimen name="divider_height">1dp</dimen>
+    
+    <!-- Status Bar -->
+    <dimen name="status_bar_height">24dp</dimen>
+    
+    <!-- Progress Indicators -->
+    <dimen name="progress_bar_height">4dp</dimen>
+    <dimen name="circular_progress_size">48dp</dimen>
+    
+    <!-- Chip Dimensions -->
+    <dimen name="chip_height">32dp</dimen>
+    <dimen name="chip_corner_radius">16dp</dimen>
+    <dimen name="chip_padding_horizontal">12dp</dimen>
+    
+    <!-- Snackbar -->
+    <dimen name="snackbar_margin">8dp</dimen>
+    <dimen name="snackbar_padding">16dp</dimen>
+    <dimen name="snackbar_corner_radius">8dp</dimen>
+    
+    <!-- Empty State -->
+    <dimen name="empty_state_icon_size">120dp</dimen>
+    <dimen name="empty_state_spacing">24dp</dimen>
+</resources>

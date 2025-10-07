@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"Trackify EU"</string>
+
+    <!-- Login & Authentication -->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Log In</string>
+    <string name="login_exit">Exit</string>
+    <string name="login_error_username_required">Please enter Username</string>
+    <string name="login_error_password_required">Please enter Password</string>
+    <string name="login_error_invalid_credentials">Invalid Credentials, Please try again</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Tools and Configuration</string>
+    <string name="settings_user_info_header">USER INFORMATION</string>
+    <string name="settings_profile_picture">Profile Picture</string>
+    <string name="settings_tap_change_photo">Tap to change your photo</string>
+    <string name="settings_change_photo">Change Photo</string>
+    <string name="settings_driver_account">Driver Account</string>
+    <string name="settings_select_profile_picture">Select Profile Picture</string>
+    <string name="settings_close">Close</string>
+
+    <!-- SMS Reply Monitoring -->
+    <string name="settings_sms_reply_header">SMS REPLY MONITORING</string>
+    <string name="settings_sms_monitor_label">Monitor Customer SMS Replies</string>
+    <string name="settings_sms_status_disabled">Status: Disabled</string>
+    <string name="settings_sms_status_enabled">Status: Enabled</string>
+    <string name="settings_sms_test_button">Test SMS Reply Check</string>
+
+    <!-- Printer Settings -->
+    <string name="settings_printer_header">PRINTER SETTINGS</string>
+    <string name="settings_printer_bluetooth">Bluetooth Printer</string>
+    <string name="settings_printer_description">Print receipts via Bluetooth</string>
+    <string name="settings_printer_enabled">Printer enabled. Bluetooth will be turned on.</string>
+    <string name="settings_printer_disabled">Printer disabled</string>
+    <string name="settings_printer_enable_first">Please enable printer in settings first</string>
+
+    <!-- Language Selection -->
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_english_desc">Default language</string>
+    <string name="settings_language_macedonian">Македонски</string>
+    <string name="settings_language_macedonian_desc">Macedonian</string>
+    <string name="settings_language_albanian">Shqip</string>
+    <string name="settings_language_albanian_desc">Albanian</string>
+
+    <!-- Quick Actions -->
+    <string name="settings_quick_actions">QUICK ACTIONS</string>
+    <string name="settings_change_password">Change Password</string>
+    <string name="settings_change_password_desc">Update your account password</string>
+    <string name="settings_check_updates">Check for Updates</string>
+    <string name="settings_check_updates_desc">Get the latest app version</string>
+
+    <!-- App Version -->
+    <string name="settings_app_name">MEX Delivery</string>
+    <string name="settings_version">Version %s</string>
+
+    <!-- Change Password Dialog -->
+    <string name="password_change_title">Change Password</string>
+    <string name="password_current">Current Password</string>
+    <string name="password_current_hint">Enter current password</string>
+    <string name="password_new">New Password</string>
+    <string name="password_new_hint">Enter new password</string>
+    <string name="password_confirm">Confirm New Password</string>
+    <string name="password_confirm_hint">Confirm new password</string>
+    <string name="password_requirements_title">Password Requirements:</string>
+    <string name="password_requirement_length">• At least 6 characters</string>
+    <string name="password_requirement_complexity">• Contains both letters and numbers</string>
+    <string name="password_match_success">✓ Passwords match</string>
+    <string name="password_match_fail">✗ Passwords do not match</string>
+    <string name="password_error_current_required">Please enter your current password</string>
+    <string name="password_error_new_required">Please enter a new password</string>
+    <string name="password_error_min_length">Password must be at least 6 characters</string>
+    <string name="password_error_no_match">Passwords do not match</string>
+    <string name="password_error_same_as_old">New password must be different from current password</string>
+    <string name="password_success">Password changed successfully</string>
+    <string name="password_error_failed">Failed to change password. Please check your current password.</string>
+    <string name="password_button_cancel">Cancel</string>
+    <string name="password_button_submit">Change Password</string>
+
+    <!-- Shipments List Screen -->
+    <string name="shipments_total">Total</string>
+    <string name="shipments_pending">Pending</string>
+    <string name="shipments_delivered">Delivered</string>
+    <string name="shipments_cod">COD</string>
+
+    <!-- Filter Tabs -->
+    <string name="filter_all">All</string>
+    <string name="filter_priority">Priority</string>
+    <string name="filter_cod">COD</string>
+    <string name="filter_nearby">Nearby</string>
+    <string name="filter_pending">Pending</string>
+    <string name="filter_in_delivery">In Delivery (%d)</string>
+    <string name="filter_picked_up">Picked Up (%d)</string>
+    <string name="filter_problematic">Problematic (%d)</string>
+
+    <!-- Main Tab Titles -->
+    <string name="tab_title_todo">For Delivery</string>
+    <string name="tab_title_delivered">Delivered</string>
+    <string name="tab_title_todo_count">(%d) For Delivery</string>
+    <string name="tab_title_delivered_count">(%d) Delivered\n%s mkd</string>
+    <string name="delivered_count_label">Delivered: %d</string>
+
+    <!-- Search & Sort -->
+    <string name="search_hint">Search by tracking ID, name, or address…</string>
+
+    <!-- Empty State -->
+    <string name="shipments_empty_title">No deliveries found</string>
+    <string name="shipments_empty_subtitle">Pull down to refresh</string>
+
+    <!-- Multi-scan -->
+    <string name="multiscan_mode">Multi-scan mode</string>
+    <string name="multiscan_selected">%d selected</string>
+
+    <!-- Scan Buttons -->
+    <string name="scan_pickup">PICK UP</string>
+    <string name="scan_return_in_delivery">Return In Delivery</string>
+    <string name="scan_delivery">IN DELIVERY</string>
+    <string name="scan_deliver_returned">Deliver returned</string>
+
+    <!-- Shipment Detail Screen -->
+    <string name="shipment_id_label">Shipment ID: </string>
+    <string name="shipment_from">From: </string>
+    <string name="shipment_sender_address">Sender Address: </string>
+
+    <!-- Receiver Section -->
+    <string name="shipment_deliver_to">DELIVER TO</string>
+    <string name="shipment_cod_label">COD: </string>
+    <string name="shipment_instructions_header">DELIVERY INSTRUCTIONS</string>
+
+    <!-- Contact Actions -->
+    <string name="action_call">Call</string>
+    <string name="action_sms">SMS</string>
+
+    <!-- Delivery Actions -->
+    <string name="shipment_actions_header">DELIVERY ACTIONS</string>
+    <string name="action_in_delivery">Mark as In Delivery</string>
+    <string name="action_deliver">Deliver</string>
+    <string name="action_problematic">Problematic</string>
+
+    <!-- Additional Options -->
+    <string name="shipment_additional_options">ADDITIONAL OPTIONS</string>
+    <string name="action_print">Print</string>
+    <string name="action_return">Return</string>
+    <string name="action_create_return">Create Return Shipment</string>
+    <string name="action_view_return">View Return Shipment %s</string>
+
+    <!-- Status -->
+    <string name="status_pending">Pending</string>
+    <string name="status_in_delivery">In Delivery</string>
+    <string name="status_delivered">Delivered</string>
+    <string name="status_problematic">Problematic</string>
+    <string name="status_picked_up">Picked Up</string>
+    <string name="status_problem">Problem</string>
+    <string name="status_return_shipment">Return Shipment</string>
+
+    <!-- Notes Tab -->
+    <string name="notes_add_new">Add New Note</string>
+    <string name="notes_select_type">Select Note Type</string>
+    <string name="notes_history_header">NOTES HISTORY</string>
+    <string name="notes_count">%d notes</string>
+    <string name="notes_count_single">%d note</string>
+
+    <!-- Note Types -->
+    <string name="note_type_not_answering">Not answering calls</string>
+    <string name="note_type_wrong_number">Incorrect phone number</string>
+    <string name="note_type_not_ordered">Hasn\'t ordered</string>
+    <string name="note_type_not_in_country">Not in the country</string>
+    <string name="note_type_rejecting">Rejecting delivery</string>
+    <string name="note_type_other">Other (add details below)</string>
+
+    <!-- Note Input -->
+    <string name="note_custom_hint">Add custom note or additional details…</string>
+    <string name="note_submit">SUBMIT NOTE</string>
+
+    <!-- Empty State -->
+    <string name="notes_empty_title">No notes yet</string>
+    <string name="notes_empty_subtitle">Tap \'Add New Note\' to add the first note</string>
+
+    <!-- Messages -->
+    <string name="note_error_more_info">Please enter more info</string>
+    <string name="note_success">Note successfully sent</string>
+    <string name="note_error_failed">Note sending failed, Please try again</string>
+
+    <!-- Pictures Tab -->
+    <string name="pictures_add_new">Add New Picture</string>
+    <string name="pictures_uploaded_header">UPLOADED PICTURES</string>
+    <string name="pictures_count">%d items</string>
+
+    <!-- Empty State -->
+    <string name="pictures_empty_title">No pictures uploaded</string>
+    <string name="pictures_empty_subtitle">Tap the button above to add pictures</string>
+    <string name="pictures_empty_completed">No pictures available for completed shipments</string>
+
+    <!-- Upload Dialog -->
+    <string name="pictures_dialog_title">Add Picture</string>
+    <string name="pictures_choose_option">Choose an option:</string>
+    <string name="pictures_take_photo">Take Photo</string>
+    <string name="pictures_from_gallery">From Gallery</string>
+    <string name="pictures_change">Change</string>
+    <string name="pictures_description">Description:</string>
+    <string name="pictures_description_hint">Optional…</string>
+    <string name="pictures_upload">UPLOAD PICTURE</string>
+    <string name="pictures_uploading">Uploading…</string>
+    <string name="pictures_size">Size: %s</string>
+    <string name="pictures_dimensions">Dimensions: %dx%d</string>
+
+    <!-- Messages -->
+    <string name="pictures_success">Picture successfully uploaded</string>
+    <string name="pictures_error_select">Failed to select image</string>
+    <string name="pictures_error_load">Failed to load image preview</string>
+    <string name="pictures_error_no_image">Please select an image first</string>
+
+    <!-- SMS History Tab -->
+    <string name="sms_empty">No SMS history available</string>
+    <string name="sms_status_sent">SENT</string>
+    <string name="sms_type_auto_delivery">Auto (Delivery)</string>
+    <string name="sms_pin_label">PIN: %s</string>
+    <string name="sms_attempts">Attempts: %d</string>
+    <string name="sms_message_sent">Message Sent</string>
+
+    <!-- Signature Screen -->
+    <string name="signature_title">DELIVERY CONFIRMATION</string>
+    <string name="signature_pin_header">SECURITY PIN</string>
+    <string name="signature_pin_hint">Enter 4-digit PIN</string>
+    <string name="signature_fullname_header">RECEIVER\'S FULL NAME</string>
+    <string name="signature_fullname_hint">Enter full name</string>
+    <string name="signature_section_header">SIGNATURE</string>
+    <string name="signature_hint">Sign here with your finger</string>
+    <string name="signature_clear">Clear</string>
+    <string name="signature_confirm">CONFIRM DELIVERY</string>
+
+    <!-- Validation Messages -->
+    <string name="signature_error_pin_required">Please enter PIN</string>
+    <string name="signature_error_pin_length">PIN must be 4 digits</string>
+    <string name="signature_error_name_required">Please enter receiver\'s full name</string>
+    <string name="signature_error_signature_required">Please provide a signature</string>
+
+    <!-- Problematic Reason Dialog -->
+    <string name="problematic_title">Mark as Problematic</string>
+    <string name="problematic_select_reason">Select a reason:</string>
+    <string name="problematic_other_hint">Add more details when selecting \'Other\'…</string>
+    <string name="problematic_cancel">Cancel</string>
+    <string name="problematic_submit">Submit</string>
+    <string name="problematic_error_select_reason">Please select a reason</string>
+    <string name="problematic_error_enter_reason">Please enter a reason</string>
+    <string name="problematic_success">Status updated to Problematic</string>
+    <string name="problematic_partial_success">Status updated but note failed to save</string>
+    <string name="problematic_error_failed">Failed to update status</string>
+
+    <!-- Shipment Row (List Item) -->
+    <string name="shipment_customer_name">Customer Name</string>
+    <string name="shipment_delivery_address">Delivery Address</string>
+    <string name="shipment_cod_amount">%s MKD</string>
+    <string name="shipment_time_away">%s min away</string>
+    <string name="shipment_button_deliver">Deliver</string>
+    <string name="shipment_button_reject">Reject</string>
+    <string name="shipment_button_details">Details</string>
+
+    <!-- Common Buttons -->
+    <string name="button_cancel">Cancel</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_close">Close</string>
+    <string name="button_done">Done</string>
+    <string name="button_retry">RETRY</string>
+    <string name="button_rescan">RESCAN</string>
+    <string name="button_back">Back</string>
+    <string name="button_back_to_shipments">Back to Shipments</string>
+
+    <!-- General Errors -->
+    <string name="error_loading_failed">Loading failed, Please try again</string>
+    <string name="error_no_record">No record found</string>
+    <string name="error_scan_first">Please scan barcode first</string>
+    <string name="error_scan_failed">Scanned key sending failed, Please try again</string>
+    <string name="error_file_not_found">File not found</string>
+    <string name="error_file_selection_failed">File selection failed</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_phone_not_found">Phone number not found</string>
+    <string name="error_sender_phone_not_found">Sender phone number not found</string>
+    <string name="error_already_delivered">This shipment has already been delivered!</string>
+    <string name="error_signature_failed">Signature sending failed, Please try again</string>
+    <string name="error_create_return_failed">Create return shipment failed, Please try again</string>
+    <string name="error_describe_problem">Please describe the problem</string>
+
+    <!-- Camera & Permissions -->
+    <string name="error_camera_not_available">Camera not available. Please check device camera or try restarting the app.</string>
+    <string name="error_image_capture_canceled">Image capture canceled</string>
+    <string name="error_permissions_required">MEX needs camera and location access to scan packages and track deliveries. Please enable these permissions in Settings.</string>
+    <string name="error_sms_permission_required">SMS permission is required to monitor customer replies. Please enable SMS permissions in Settings.</string>
+
+    <!-- Printer Messages -->
+    <string name="printer_found">Found printer: %s</string>
+    <string name="printer_not_found">No supported printer found. Looking for: PT-210, GOOJPRT, or MTP-II</string>
+    <string name="printer_connected">Printer connected: %s</string>
+    <string name="printer_not_connected">Printer not connected</string>
+    <string name="printer_feature_disabled">Printer feature is disabled</string>
+    <string name="printer_bluetooth_not_supported">Bluetooth not supported on this device</string>
+    <string name="printer_bluetooth_required">Bluetooth is required for printing</string>
+    <string name="printer_searching">Scanning for devices…</string>
+    <string name="printer_looking_for">Looking for Goojprt PT-210…</string>
+    <string name="printer_pairing_mode">Make sure the printer is on and in pairing mode</string>
+    <string name="printer_no_printers">No printers found</string>
+    <string name="printer_select">Select Printer</string>
+
+    <!-- Location & Routing -->
+    <string name="location_service_disabled">Location service not enabled</string>
+    <string name="routing_recalculate">Recalculate Route</string>
+    <string name="routing_error">Unable to calculate route, please try again</string>
+
+    <!-- Network & Loading -->
+    <string name="loading_processing">Processing, Please wait…</string>
+    <string name="loading_default">Loading…</string>
+    <string name="error_no_internet">No Internet Connection</string>
+
+    <!-- Tab Titles & Navigation -->
+    <string name="tab_deliveries">Deliveries</string>
+    <string name="tab_details">Details</string>
+    <string name="tab_notes">Notes</string>
+    <string name="tab_pictures">Pictures</string>
+    <string name="tab_sms">SMS</string>
+    <string name="tab_cod">COD</string>
+    <string name="tab_returns">Returns</string>
+
+</resources>

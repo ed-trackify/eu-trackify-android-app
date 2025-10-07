@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <!-- Card Container -->
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:elevation="1dp">
+
+        <!-- Header Section with Status -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <!-- Priority Indicator -->
+            <View
+                android:id="@+id/priorityIndicator"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="@color/primary"
+                android:visibility="gone" />
+
+            <!-- Main Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/actionButtons"
+                android:layout_toRightOf="@id/priorityIndicator"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <!-- Top Row: ID, Phone and Status -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Tracking ID -->
+                    <TextView
+                        android:id="@+id/tvTrackingId"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="#MEX-123456"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+
+                    <!-- Receiver Phone -->
+                    <TextView
+                        android:id="@+id/tvReceiverPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="070123456"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:layout_marginRight="4dp"
+                        android:visibility="gone" />
+
+                    <!-- Status Badge -->
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/status_badge"
+                        android:text="@string/status_pending"
+                        android:textColor="@color/White"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:layout_marginLeft="4dp" />
+                </LinearLayout>
+
+                <!-- Customer Name -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_person"
+                        android:tint="@color/text_secondary"
+                        android:layout_marginRight="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvCustomerName"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shipment_customer_name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+                </LinearLayout>
+
+                <!-- Address -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_location"
+                        android:tint="@color/text_secondary"
+                        android:layout_marginRight="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shipment_delivery_address"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:maxLines="1"
+                        android:ellipsize="end" />
+                </LinearLayout>
+
+                <!-- Bottom Info Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp">
+
+                    <!-- COD Amount -->
+                    <LinearLayout
+                        android:id="@+id/llCod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/cod_background"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/success"
+                            android:layout_marginRight="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvCodAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 MKD"
+                            android:textColor="@color/success"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Time/Distance -->
+                    <TextView
+                        android:id="@+id/tvTimeDistance"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="5 min away"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="12sp"
+                        android:gravity="right"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:id="@+id/actionButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="2dp">
+
+                <!-- Sync Status -->
+                <ImageView
+                    android:id="@+id/ivSync"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/not_sync"
+                    android:layout_marginBottom="6dp" />
+
+                <!-- Call Button -->
+                <LinearLayout
+                    android:id="@+id/btnCall"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/circle_button_green"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:layout_marginBottom="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/tele"
+                        android:tint="@color/White" />
+                </LinearLayout>
+                
+                <!-- Badges Container (Horizontal) -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+                    
+                    <!-- Notes Count Badge -->
+                    <RelativeLayout
+                        android:id="@+id/notesIndicator"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="2dp"
+                        android:visibility="gone">
+                        
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_tab_notes"
+                            android:tint="@color/text_tertiary"
+                            android:alpha="0.7" />
+                        
+                        <TextView
+                            android:id="@+id/tvNoteCount"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/status_badge"
+                            android:backgroundTint="@color/primary"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/White"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                    
+                    <!-- Pictures Count Badge -->
+                    <RelativeLayout
+                        android:id="@+id/picturesIndicator"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:visibility="gone">
+                        
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_tab_pictures"
+                            android:tint="@color/text_tertiary"
+                            android:alpha="0.7" />
+                        
+                        <TextView
+                            android:id="@+id/tvPictureCount"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/status_badge"
+                            android:backgroundTint="@color/success"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/White"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- Navigate Button -->
+                <LinearLayout
+                    android:id="@+id/btnNavigate"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/circle_button_secondary"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_navigate"
+                        android:tint="@color/White" />
+                </LinearLayout>
+
+                <!-- Drag Handle -->
+                <ImageView
+                    android:id="@+id/ivHandler"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/move"
+                    android:padding="2dp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Quick Actions Bar (Initially Hidden) -->
+        <LinearLayout
+            android:id="@+id/quickActionsBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/White_Smoke"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnQuickDeliver"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="36dp"
+                android:text="@string/shipment_button_deliver"
+                android:textSize="12sp"
+                android:background="@drawable/button_rounded"
+                android:textColor="@color/White"
+                android:layout_marginRight="4dp" />
+
+            <Button
+                android:id="@+id/btnQuickReject"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="36dp"
+                android:text="@string/shipment_button_reject"
+                android:textSize="12sp"
+                android:background="@drawable/button_rounded_secondary"
+                android:textColor="@color/White"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp" />
+
+            <Button
+                android:id="@+id/btnQuickDetails"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="36dp"
+                android:text="@string/shipment_button_details"
+                android:textSize="12sp"
+                android:background="@drawable/button_rounded_outline"
+                android:textColor="@color/primary"
+                android:layout_marginLeft="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

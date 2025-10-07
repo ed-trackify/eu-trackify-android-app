@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"Trackify EU"</string>
+
+    <!-- Login & Authentication -->
+    <string name="login_username">Emri i përdoruesit</string>
+    <string name="login_password">Fjalëkalimi</string>
+    <string name="login_button">Hyr</string>
+    <string name="login_exit">Dil</string>
+    <string name="login_error_username_required">Ju lutemi shkruani emrin e përdoruesit</string>
+    <string name="login_error_password_required">Ju lutemi shkruani fjalëkalimin</string>
+    <string name="login_error_invalid_credentials">Kredenciale të pavlefshme, Ju lutemi provoni përsëri</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Cilësimet</string>
+    <string name="settings_subtitle">Mjete dhe Konfigurimi</string>
+    <string name="settings_user_info_header">INFORMACIONI I PËRDORUESIT</string>
+    <string name="settings_profile_picture">Fotografia e profilit</string>
+    <string name="settings_tap_change_photo">Prek për të ndryshuar foton tuaj</string>
+    <string name="settings_change_photo">Ndrysho foton</string>
+    <string name="settings_driver_account">Llogaria e shoferit</string>
+    <string name="settings_select_profile_picture">Zgjidh foton e profilit</string>
+    <string name="settings_close">Mbyll</string>
+
+    <!-- SMS Reply Monitoring -->
+    <string name="settings_sms_reply_header">MONITORIMI I PËRGJIGJEVE SMS</string>
+    <string name="settings_sms_monitor_label">Monitoroni përgjigjet SMS të klientëve</string>
+    <string name="settings_sms_status_disabled">Statusi: I çaktivizuar</string>
+    <string name="settings_sms_status_enabled">Statusi: I aktivizuar</string>
+    <string name="settings_sms_test_button">Testo kontrollin e përgjigjeve SMS</string>
+
+    <!-- Printer Settings -->
+    <string name="settings_printer_header">CILËSIMET E PRINTERIT</string>
+    <string name="settings_printer_bluetooth">Printer Bluetooth</string>
+    <string name="settings_printer_description">Printoni faturat përmes Bluetooth</string>
+    <string name="settings_printer_enabled">Printeri u aktivizua. Bluetooth-i do të ndizet.</string>
+    <string name="settings_printer_disabled">Printeri u çaktivizua</string>
+    <string name="settings_printer_enable_first">Ju lutemi aktivizoni printerin në cilësime së pari</string>
+
+    <!-- Language Selection -->
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_english_desc">Default language</string>
+    <string name="settings_language_macedonian">Македонски</string>
+    <string name="settings_language_macedonian_desc">Macedonian</string>
+    <string name="settings_language_albanian">Shqip</string>
+    <string name="settings_language_albanian_desc">Albanian</string>
+
+    <!-- Quick Actions -->
+    <string name="settings_quick_actions">VEPRIME TË SHPEJTA</string>
+    <string name="settings_change_password">Ndrysho fjalëkalimin</string>
+    <string name="settings_change_password_desc">Përditëso fjalëkalimin e llogarisë tuaj</string>
+    <string name="settings_check_updates">Kontrollo për përditësime</string>
+    <string name="settings_check_updates_desc">Merr versionin më të fundit të aplikacionit</string>
+
+    <!-- App Version -->
+    <string name="settings_app_name">MEX Delivery</string>
+    <string name="settings_version">Versioni %s</string>
+
+    <!-- Change Password Dialog -->
+    <string name="password_change_title">Ndrysho fjalëkalimin</string>
+    <string name="password_current">Fjalëkalimi aktual</string>
+    <string name="password_current_hint">Shkruani fjalëkalimin aktual</string>
+    <string name="password_new">Fjalëkalimi i ri</string>
+    <string name="password_new_hint">Shkruani fjalëkalimin e ri</string>
+    <string name="password_confirm">Konfirmo fjalëkalimin e ri</string>
+    <string name="password_confirm_hint">Konfirmo fjalëkalimin e ri</string>
+    <string name="password_requirements_title">Kërkesat për fjalëkalimin:</string>
+    <string name="password_requirement_length">• Të paktën 6 karaktere</string>
+    <string name="password_requirement_complexity">• Përmban shkronja dhe numra</string>
+    <string name="password_match_success">✓ Fjalëkalimet përputhen</string>
+    <string name="password_match_fail">✗ Fjalëkalimet nuk përputhen</string>
+    <string name="password_error_current_required">Ju lutemi shkruani fjalëkalimin aktual</string>
+    <string name="password_error_new_required">Ju lutemi shkruani një fjalëkalim të ri</string>
+    <string name="password_error_min_length">Fjalëkalimi duhet të ketë të paktën 6 karaktere</string>
+    <string name="password_error_no_match">Fjalëkalimet nuk përputhen</string>
+    <string name="password_error_same_as_old">Fjalëkalimi i ri duhet të jetë i ndryshëm nga ai aktual</string>
+    <string name="password_success">Fjalëkalimi u ndryshua me sukses</string>
+    <string name="password_error_failed">Dështoi ndryshimi i fjalëkalimit. Ju lutemi kontrolloni fjalëkalimin aktual.</string>
+    <string name="password_button_cancel">Anulo</string>
+    <string name="password_button_submit">Ndrysho fjalëkalimin</string>
+
+    <!-- Shipments List Screen -->
+    <string name="shipments_total">Gjithsej</string>
+    <string name="shipments_pending">Në pritje</string>
+    <string name="shipments_delivered">Dorëzuar</string>
+    <string name="shipments_cod">COD</string>
+
+    <!-- Filter Tabs -->
+    <string name="filter_all">Të gjitha</string>
+    <string name="filter_priority">Prioritet</string>
+    <string name="filter_cod">COD</string>
+    <string name="filter_nearby">Afër</string>
+    <string name="filter_pending">Në pritje</string>
+    <string name="filter_in_delivery">Në dorëzim (%d)</string>
+    <string name="filter_picked_up">Marrë (%d)</string>
+    <string name="filter_problematic">Problematike (%d)</string>
+
+    <!-- Main Tab Titles -->
+    <string name="tab_title_todo">Për dorëzim</string>
+    <string name="tab_title_delivered">Dorëzuar</string>
+    <string name="tab_title_todo_count">(%d) Për dorëzim</string>
+    <string name="tab_title_delivered_count">(%d) Dorëzuar\n%s mkd</string>
+    <string name="delivered_count_label">Dorëzuar: %d</string>
+
+    <!-- Search & Sort -->
+    <string name="search_hint">Kërko sipas ID, emrit ose adresës…</string>
+
+    <!-- Empty State -->
+    <string name="shipments_empty_title">Nuk u gjetën dërgesa</string>
+    <string name="shipments_empty_subtitle">Tërhiq poshtë për të rifreskuar</string>
+
+    <!-- Multi-scan -->
+    <string name="multiscan_mode">Mënyra shumë-skanime</string>
+    <string name="multiscan_selected">%d të zgjedhura</string>
+
+    <!-- Scan Buttons -->
+    <string name="scan_pickup">MARRJE</string>
+    <string name="scan_return_in_delivery">Ktheni në dorëzim</string>
+    <string name="scan_delivery">NË DORËZIM</string>
+    <string name="scan_deliver_returned">Dorëzo të kthyerat</string>
+
+    <!-- Shipment Detail Screen -->
+    <string name="shipment_id_label">ID e dërgesës: </string>
+    <string name="shipment_from">Nga: </string>
+    <string name="shipment_sender_address">Adresa e dërguesit: </string>
+
+    <!-- Receiver Section -->
+    <string name="shipment_deliver_to">DORËZO TEK</string>
+    <string name="shipment_cod_label">COD: </string>
+    <string name="shipment_instructions_header">UDHËZIME PËR DORËZIM</string>
+
+    <!-- Contact Actions -->
+    <string name="action_call">Telefono</string>
+    <string name="action_sms">SMS</string>
+
+    <!-- Delivery Actions -->
+    <string name="shipment_actions_header">VEPRIME DORËZIMI</string>
+    <string name="action_in_delivery">Shëno si në dorëzim</string>
+    <string name="action_deliver">Dorëzo</string>
+    <string name="action_problematic">Problematike</string>
+
+    <!-- Additional Options -->
+    <string name="shipment_additional_options">OPSIONE SHTESË</string>
+    <string name="action_print">Printo</string>
+    <string name="action_return">Kthehu</string>
+    <string name="action_create_return">Krijo dërgesë kthimi</string>
+    <string name="action_view_return">Shiko dërgese kthimi %s</string>
+
+    <!-- Status -->
+    <string name="status_pending">Në pritje</string>
+    <string name="status_in_delivery">Në dorëzim</string>
+    <string name="status_delivered">Dorëzuar</string>
+    <string name="status_problematic">Problematike</string>
+    <string name="status_picked_up">Marrë</string>
+    <string name="status_problem">Problem</string>
+    <string name="status_return_shipment">Dërgesa kthimi</string>
+
+    <!-- Notes Tab -->
+    <string name="notes_add_new">Shto shënim të ri</string>
+    <string name="notes_select_type">Zgjidh llojin e shënimit</string>
+    <string name="notes_history_header">HISTORIKU I SHËNIMEVE</string>
+    <string name="notes_count">%d shënime</string>
+    <string name="notes_count_single">%d shënim</string>
+
+    <!-- Note Types -->
+    <string name="note_type_not_answering">Nuk përgjigjet në telefon</string>
+    <string name="note_type_wrong_number">Numër i gabuar telefoni</string>
+    <string name="note_type_not_ordered">Nuk ka porositur</string>
+    <string name="note_type_not_in_country">Nuk është në vend</string>
+    <string name="note_type_rejecting">Po refuzon dorëzimin</string>
+    <string name="note_type_other">Tjetër (shto detaje më poshtë)</string>
+
+    <!-- Note Input -->
+    <string name="note_custom_hint">Shto shënim ose detaje shtesë…</string>
+    <string name="note_submit">DËRGO SHËNIMIN</string>
+
+    <!-- Empty State -->
+    <string name="notes_empty_title">Ende nuk ka shënime</string>
+    <string name="notes_empty_subtitle">Prek \'Shto shënim të ri\' për të shtuar shënimin e parë</string>
+
+    <!-- Messages -->
+    <string name="note_error_more_info">Ju lutemi shkruani më shumë informacione</string>
+    <string name="note_success">Shënimi u dërgua me sukses</string>
+    <string name="note_error_failed">Dërgimi i shënimit dështoi, Ju lutemi provoni përsëri</string>
+
+    <!-- Pictures Tab -->
+    <string name="pictures_add_new">Shto fotografi të re</string>
+    <string name="pictures_uploaded_header">FOTOGRAFI TË NGARKUARA</string>
+    <string name="pictures_count">%d artikuj</string>
+
+    <!-- Empty State -->
+    <string name="pictures_empty_title">Nuk ka fotografi të ngarkuara</string>
+    <string name="pictures_empty_subtitle">Prek butonin më sipër për të shtuar fotografi</string>
+    <string name="pictures_empty_completed">Nuk ka fotografi të disponueshme për dërgesa të përfunduara</string>
+
+    <!-- Upload Dialog -->
+    <string name="pictures_dialog_title">Shto fotografi</string>
+    <string name="pictures_choose_option">Zgjidh një opsion:</string>
+    <string name="pictures_take_photo">Bëj foto</string>
+    <string name="pictures_from_gallery">Nga Galeria</string>
+    <string name="pictures_change">Ndrysho</string>
+    <string name="pictures_description">Përshkrimi:</string>
+    <string name="pictures_description_hint">Opsionale…</string>
+    <string name="pictures_upload">NGARKO FOTOGRAFINË</string>
+    <string name="pictures_uploading">Duke u ngarkuar…</string>
+    <string name="pictures_size">Madhësia: %s</string>
+    <string name="pictures_dimensions">Dimensionet: %dx%d</string>
+
+    <!-- Messages -->
+    <string name="pictures_success">Fotografia u ngarkua me sukses</string>
+    <string name="pictures_error_select">Dështoi zgjedhja e fotografisë</string>
+    <string name="pictures_error_load">Dështoi ngarkimi i pamjes paraprake të fotografisë</string>
+    <string name="pictures_error_no_image">Ju lutemi zgjidhni një fotografi së pari</string>
+
+    <!-- SMS History Tab -->
+    <string name="sms_empty">Nuk ka histori SMS të disponueshme</string>
+    <string name="sms_status_sent">DËRGUAR</string>
+    <string name="sms_type_auto_delivery">Automatike (Dorëzim)</string>
+    <string name="sms_pin_label">PIN: %s</string>
+    <string name="sms_attempts">Përpjekje: %d</string>
+    <string name="sms_message_sent">Mesazhi u dërgua</string>
+
+    <!-- Signature Screen -->
+    <string name="signature_title">KONFIRMIMI I DORËZIMIT</string>
+    <string name="signature_pin_header">PIN I SIGURISË</string>
+    <string name="signature_pin_hint">Shkruani PIN 4-shifror</string>
+    <string name="signature_fullname_header">EMRI I PLOTË I MARRËSIT</string>
+    <string name="signature_fullname_hint">Shkruani emrin e plotë</string>
+    <string name="signature_section_header">NËNSHKRIMI</string>
+    <string name="signature_hint">Nënshkruani këtu me gishtin tuaj</string>
+    <string name="signature_clear">Fshi</string>
+    <string name="signature_confirm">KONFIRMO DORËZIMIN</string>
+
+    <!-- Validation Messages -->
+    <string name="signature_error_pin_required">Ju lutemi shkruani PIN</string>
+    <string name="signature_error_pin_length">PIN duhet të ketë 4 shifra</string>
+    <string name="signature_error_name_required">Ju lutemi shkruani emrin e plotë të marrësit</string>
+    <string name="signature_error_signature_required">Ju lutemi jepni një nënshkrim</string>
+
+    <!-- Problematic Reason Dialog -->
+    <string name="problematic_title">Shëno si problematike</string>
+    <string name="problematic_select_reason">Zgjidh një arsye:</string>
+    <string name="problematic_other_hint">Shto më shumë detaje kur zgjedh \'Tjetër\'…</string>
+    <string name="problematic_cancel">Anulo</string>
+    <string name="problematic_submit">Dërgo</string>
+    <string name="problematic_error_select_reason">Ju lutemi zgjidhni një arsye</string>
+    <string name="problematic_error_enter_reason">Ju lutemi shkruani një arsye</string>
+    <string name="problematic_success">Statusi u përditësua si Problematike</string>
+    <string name="problematic_partial_success">Statusi u përditësua por shënimi dështoi të ruhet</string>
+    <string name="problematic_error_failed">Dështoi përditësimi i statusit</string>
+
+    <!-- Shipment Row (List Item) -->
+    <string name="shipment_customer_name">Emri i klientit</string>
+    <string name="shipment_delivery_address">Adresa e dorëzimit</string>
+    <string name="shipment_cod_amount">%s MKD</string>
+    <string name="shipment_time_away">%s min larg</string>
+    <string name="shipment_button_deliver">Dorëzo</string>
+    <string name="shipment_button_reject">Refuzo</string>
+    <string name="shipment_button_details">Detaje</string>
+
+    <!-- Common Buttons -->
+    <string name="button_cancel">Anulo</string>
+    <string name="button_submit">Dërgo</string>
+    <string name="button_close">Mbyll</string>
+    <string name="button_done">Përfundo</string>
+    <string name="button_retry">PROVO PËRSËRI</string>
+    <string name="button_rescan">SKANONI PËRSËRI</string>
+    <string name="button_back">Prapa</string>
+    <string name="button_back_to_shipments">Kthehu te dërgesat</string>
+
+    <!-- General Errors -->
+    <string name="error_loading_failed">Ngarkimi dështoi, Ju lutemi provoni përsëri</string>
+    <string name="error_no_record">Nuk u gjet asnjë regjistrim</string>
+    <string name="error_scan_first">Ju lutemi skanoni barkod-in së pari</string>
+    <string name="error_scan_failed">Dërgimi i kodit të skanuar dështoi, Ju lutemi provoni përsëri</string>
+    <string name="error_file_not_found">Skedari nuk u gjet</string>
+    <string name="error_file_selection_failed">Zgjedhja e skedarit dështoi</string>
+    <string name="error_invalid_phone">Numër i pavlefshëm telefoni</string>
+    <string name="error_phone_not_found">Numri i telefonit nuk u gjet</string>
+    <string name="error_sender_phone_not_found">Numri i telefonit të dërguesit nuk u gjet</string>
+    <string name="error_already_delivered">Kjo dërgese tashmë është dorëzuar!</string>
+    <string name="error_signature_failed">Dërgimi i nënshkrimit dështoi, Ju lutemi provoni përsëri</string>
+    <string name="error_create_return_failed">Krijimi i dërgesës së kthimit dështoi, Ju lutemi provoni përsëri</string>
+    <string name="error_describe_problem">Ju lutemi përshkruani problemin</string>
+
+    <!-- Camera & Permissions -->
+    <string name="error_camera_not_available">Kamera nuk është e disponueshme. Ju lutemi kontrolloni kamerën e pajisjes ose provoni ta ristartoni aplikacionin.</string>
+    <string name="error_image_capture_canceled">Fotografimi u anulua</string>
+    <string name="error_permissions_required">MEX ka nevojë për qasje në kamerë dhe vendndodhje për të skanuar paketa dhe ndjekur dorëzimet. Ju lutemi aktivizoni këto leje në Cilësime.</string>
+    <string name="error_sms_permission_required">Leja për SMS kërkohet për të monitoruar përgjigjet e klientëve. Ju lutemi aktivizoni lejet për SMS në Cilësime.</string>
+
+    <!-- Printer Messages -->
+    <string name="printer_found">U gjet printeri: %s</string>
+    <string name="printer_not_found">Nuk u gjet printer i mbështetur. Duke kërkuar për: PT-210, GOOJPRT, ose MTP-II</string>
+    <string name="printer_connected">Printeri u lidh: %s</string>
+    <string name="printer_not_connected">Printeri nuk është i lidhur</string>
+    <string name="printer_feature_disabled">Funksioni i printerit është i çaktivizuar</string>
+    <string name="printer_bluetooth_not_supported">Bluetooth nuk mbështetet në këtë pajisje</string>
+    <string name="printer_bluetooth_required">Bluetooth-i kërkohet për printim</string>
+    <string name="printer_searching">Duke skanuar për pajisje…</string>
+    <string name="printer_looking_for">Duke kërkuar për Goojprt PT-210…</string>
+    <string name="printer_pairing_mode">Sigurohuni që printeri është i ndezur dhe në mënyrën e çiftimit</string>
+    <string name="printer_no_printers">Nuk u gjetën printerë</string>
+    <string name="printer_select">Zgjidh printer</string>
+
+    <!-- Location & Routing -->
+    <string name="location_service_disabled">Shërbimi i vendndodhjes nuk është i aktivizuar</string>
+    <string name="routing_recalculate">Rillogarit rrugën</string>
+    <string name="routing_error">E pamundur të llogaritet rruga, ju lutemi provoni përsëri</string>
+
+    <!-- Network & Loading -->
+    <string name="loading_processing">Në proces, Ju lutemi prisni…</string>
+    <string name="loading_default">Duke u ngarkuar…</string>
+    <string name="error_no_internet">Nuk ka lidhje interneti</string>
+
+    <!-- Tab Titles & Navigation -->
+    <string name="tab_deliveries">Dorëzimet</string>
+    <string name="tab_details">Detajet</string>
+    <string name="tab_notes">Shënimet</string>
+    <string name="tab_pictures">Fotografitë</string>
+    <string name="tab_sms">SMS</string>
+    <string name="tab_cod">COD</string>
+    <string name="tab_returns">Kthimet</string>
+
+</resources>

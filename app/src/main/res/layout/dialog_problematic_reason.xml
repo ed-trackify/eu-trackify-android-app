@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_dialogRootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black_Bg2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/panel_blank_rounded"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/problematic_title"
+                android:textColor="@color/text_primary"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/problematic_select_reason"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Radio buttons for reasons -->
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_not_answering" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_wrong_number" />
+
+                <RadioButton
+                    android:id="@+id/radio3"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_not_ordered" />
+
+                <RadioButton
+                    android:id="@+id/radio4"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_not_in_country" />
+
+                <RadioButton
+                    android:id="@+id/radio5"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_rejecting" />
+
+                <RadioButton
+                    android:id="@+id/radio6"
+                    style="@style/RadioStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_type_selector"
+                    android:padding="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/note_type_other" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/et_OtherNote"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edittext_rounded"
+                android:gravity="center_vertical"
+                android:hint="@string/problematic_other_hint"
+                android:singleLine="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/text_tertiary"
+                android:textSize="14sp" />
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/ButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/problematic_cancel"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    style="@style/ButtonStyleBlue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/problematic_submit"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

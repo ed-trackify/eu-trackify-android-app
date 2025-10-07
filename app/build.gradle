@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'eu.trackify.net'
+    compileSdk 33
+    buildToolsVersion "33.0.2"
+    useLibrary 'org.apache.http.legacy'
+
+    buildFeatures {
+        viewBinding false
+        dataBinding false
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId "eu.trackify.net"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        buildConfigField "String", "VERSION_NAME", "\"1.0\""
+        buildConfigField "int", "VERSION_CODE", "1"
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8 (required for Android Gradle Plugin 8.1.4)
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':imageResizer')
+    implementation project(':dragNDropList')
+    implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+
+    // Barcode scanning
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    
+    // AndroidX Core Libraries - Updated versions
+    implementation 'androidx.activity:activity:1.2.3'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    
+    // Material Design 3
+    implementation 'com.google.android.material:material:1.4.0'
+    
+    // Local libraries
+    implementation files('libs\\androidprintsdk.jar')
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+    // Data handling
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    // Image loading
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    
+    // Permissions
+    implementation 'com.karumi:dexter:6.2.3'
+    
+    // Additional features
+    implementation 'com.github.aykuttasil:CallRecorder:v1.5.3'
+    implementation 'com.github.MindorksOpenSource:PRDownloader:v0.6.0'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'me.aflak.libraries:bluetooth:1.3.9'
+    
+    // WorkManager for reliable background processing
+    def work_version = "2.8.1"
+    implementation "androidx.work:work-runtime:$work_version"
+    // Optional - for debugging WorkManager
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/btnClose"
+        style="@style/ButtonStyleFlat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_flat_blue"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true">
+        
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/White"
+            android:layout_marginRight="10dp" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_back_to_shipments"
+            android:textSize="14sp"
+            android:textColor="@color/White"
+            android:singleLine="true" />
+            
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnClose" >
+
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/viewpagertab2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:stl_clickable="true"
+            app:stl_defaultTabBackground="@color/primary"
+            app:stl_defaultTabTextAllCaps="false"
+            app:stl_defaultTabTextColor="@color/White"
+            app:stl_defaultTabTextHorizontalPadding="4dp"
+            app:stl_defaultTabTextMinWidth="0dp"
+            app:stl_defaultTabTextSize="10sp"
+            app:stl_distributeEvenly="true"
+            app:stl_dividerColor="#33FFFFFF"
+            app:stl_dividerThickness="1dp"
+            app:stl_drawDecorationAfterTab="true"
+            app:stl_indicatorAlwaysInCenter="false"
+            app:stl_indicatorColor="@color/White"
+            app:stl_indicatorCornerRadius="2dp"
+            app:stl_indicatorGravity="bottom"
+            app:stl_indicatorInFront="false"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="3dp"
+            app:stl_indicatorWidth="auto"
+            app:stl_indicatorWithoutPadding="false"
+            app:stl_overlineColor="#4D000000"
+            app:stl_overlineThickness="0dp"
+            app:stl_titleOffset="auto_center"
+            app:stl_underlineColor="@color/primary_dark"
+            app:stl_underlineThickness="1dp" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/viewpagertab2" />
+    </RelativeLayout>
+
+</RelativeLayout>

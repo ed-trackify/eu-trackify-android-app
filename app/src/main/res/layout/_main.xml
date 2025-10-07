@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White_Smoke" >
+
+    <RelativeLayout
+        android:id="@+id/ll_Topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/primary"
+        android:orientation="horizontal" >
+
+        <!-- Refresh button on the left -->
+        <ImageView
+            android:id="@+id/iv_Refresh"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_refresh"
+            android:tint="@color/White"
+            android:background="@drawable/refresh_button_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
+        <!-- Right side icons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_Route"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/location"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_ConnectPrinter"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/print_connecting"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_Settings"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/settings"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- App title in center -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/White"
+            android:textSize="26dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/ll_Topbar" >
+
+        <common.LoginCtrl
+            android:id="@+id/loginCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserDistributorTabCtrl
+            android:id="@+id/userDistributorTabCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserWarehouseManagerCtrl
+            android:id="@+id/userWarehouseManagerCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserWarehouseAdminCtrl
+            android:id="@+id/userWarehouseAdminCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserPackerCtrl
+            android:id="@+id/userPackerCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserDistributorDriverCtrl
+            android:id="@+id/userDistributorDriverCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.UserDistributorShipmentDetailTabCtrl
+            android:id="@+id/userDistributorShipmentDetailTabCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.RoutingCtrl
+            android:id="@+id/routingCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+
+        <common.ViewReturnShipmentDetail
+            android:id="@+id/viewReturnShipmentDetail"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <common.SignatureCtrl
+        android:id="@+id/signatureCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.SendProblemCommentsCtrl
+        android:id="@+id/sendCommentsCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.SettingsCtrl
+        android:id="@+id/settingsCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.ChangePasswordDialog
+        android:id="@+id/changePasswordDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.SendFileCommentsCtrl
+        android:id="@+id/sendFileCommentsCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.ImageUploadCtrl
+        android:id="@+id/imageUploadCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <common.ModalCtrl
+        android:id="@+id/modalCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/splashCtrl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible"
+        layout="@layout/ctrl_splash" />
+
+</RelativeLayout>

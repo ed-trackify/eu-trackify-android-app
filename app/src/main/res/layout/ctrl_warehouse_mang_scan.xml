@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White_Smoke" >
+
+    <Button
+        android:id="@+id/btnScan"
+        style="@style/ButtonStyleFlat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="Scan"
+        android:textSize="30dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnScan"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/tv_Scanned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="N/A"
+                android:textColor="@color/primary"
+                android:textSize="30dp" />
+
+            <TextView
+                style="@style/PanelStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="8dp"
+                android:text="Quantity" />
+
+            <EditText
+                android:id="@+id/et_Quantity"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:background="@drawable/edittext_whitebg_primaryborder_notop_rounded"
+                android:inputType="number"
+                android:textCursorDrawable="@null" >
+            </EditText>
+
+            <Button
+                android:id="@+id/btnStockIn"
+                style="@style/ButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="15dp"
+                android:text="Stock in" />
+
+            <Button
+                android:id="@+id/btnStockOut"
+                style="@style/ButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="15dp"
+                android:text="Stock out" />
+
+            <Button
+                android:id="@+id/btnCourier"
+                style="@style/ButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="15dp"
+                android:text="Sent by 3rd Party courier" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

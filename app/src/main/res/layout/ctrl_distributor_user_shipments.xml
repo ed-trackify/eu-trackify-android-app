@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White_Smoke">
+
+    <LinearLayout
+        android:id="@+id/llScan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Black">
+
+            <CheckBox
+                android:id="@+id/chkMultiscan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Multiscan"
+                android:textColor="@color/White"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <Button
+                android:id="@+id/btnScanPick"
+                style="@style/ButtonStyleFlat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:background="#42d4f4"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:drawableLeft="@drawable/ic_package"
+                android:drawablePadding="4dp"
+                android:text="Pick up"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnScanDelivery"
+                style="@style/ButtonStyleFlat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:background="#efe770"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:drawableLeft="@drawable/ic_delivery_truck"
+                android:drawablePadding="4dp"
+                android:text="In Delivery"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_Search"
+        style="@style/EditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_rounded"
+        android:hint="@string/search_hint"
+        android:singleLine="true"
+        android:textCursorDrawable="@null"
+        android:visibility="visible"></EditText>
+
+    <!-- Client Filter Chips -->
+    <LinearLayout
+        android:id="@+id/clientFilterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_Search"
+        android:orientation="horizontal"
+        android:background="@color/White"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/filterWurth01"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="32dp"
+            android:text="Wurth/1 (0)"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/chip_in_delivery"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:layout_marginRight="4dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/filterWurthN"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="32dp"
+            android:text="Wurth/N (0)"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/chip_picked_up"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:layout_marginRight="4dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/filterOthers"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="32dp"
+            android:text="Others (0)"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/chip_problematic"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <!-- Delivered Shipments Count Info Bar -->
+    <LinearLayout
+        android:id="@+id/llDeliveredInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clientFilterContainer"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/cod_background"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_delivery_truck"
+            android:tint="@color/success"
+            android:layout_marginRight="6dp" />
+
+        <TextView
+            android:id="@+id/tvDeliveredCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivered: 0"
+            android:textColor="@color/success"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_results"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/llScan"
+        android:layout_below="@id/llDeliveredInfo"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:overScrollMode="ifContentScrolls"
+        android:paddingLeft="6dp"
+        android:paddingTop="5dp"
+        android:paddingRight="6dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
+        android:scrollbars="vertical"
+        android:transcriptMode="alwaysScroll" />
+
+</RelativeLayout>

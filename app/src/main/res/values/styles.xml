@@ -1,0 +1,111 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <!-- Application theme with MEX brand colors -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:colorBackground">@color/background_primary</item>
+    </style>
+
+    <!-- <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog"> -->
+    <!-- <item name="android:windowBackground">@android:color/transparent</item> -->
+    <!-- </style> -->
+
+    <!-- MEX Brand Button Styles -->
+    <style name="ButtonStyle">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/button_rounded</item>
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <style name="ButtonStyle.Primary" parent="ButtonStyle">
+        <item name="android:backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/text_on_primary</item>
+    </style>
+    
+    <style name="ButtonStyle.Secondary" parent="ButtonStyle">
+        <item name="android:backgroundTint">@color/background_primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="ButtonStyleFlat">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/button_style_flat</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonStyleBlue">
+        <item name="android:layout_height">55dp</item>
+        <item name="android:background">@drawable/button_rounded_blue</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <!-- MEX Brand Panel/Header Styles -->
+    <style name="PanelStyle">
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/panel_heading_rounded</item>
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <!-- MEX Typography Styles -->
+    <style name="TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    
+    <style name="TextStyle.Heading" parent="TextStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    
+    <style name="TextStyle.Body" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+    
+    <style name="TextStyle.Caption" parent="TextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="RadioStyle">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- MEX Brand Input Field Styles -->
+    <style name="EditTextStyle">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_tertiary</item>
+        <item name="android:background">@drawable/edittext_whitebg_primaryborder_rounded</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+</resources>

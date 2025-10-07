@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/White_Smoke">
+
+    <!-- Collapsible Add Note Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/White"
+        android:elevation="2dp">
+
+        <!-- Add Note Button (Always Visible) -->
+        <LinearLayout
+            android:id="@+id/btnToggleAddNote"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/add_note"
+                android:tint="@color/primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="@string/notes_add_new"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivExpandIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_expand_more"
+                android:tint="@color/text_secondary" />
+        </LinearLayout>
+
+        <!-- Note Type Selection (Initially Hidden) -->
+        <ScrollView
+            android:id="@+id/ll_Top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notes_select_type"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="12dp" />
+                
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:checked="true"
+                        android:text="@string/note_type_not_answering" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/note_type_wrong_number" />
+
+                    <RadioButton
+                        android:id="@+id/radio3"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/note_type_not_ordered" />
+
+                    <RadioButton
+                        android:id="@+id/radio4"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/note_type_not_in_country" />
+
+                    <RadioButton
+                        android:id="@+id/radio5"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/note_type_rejecting" />
+
+                    <RadioButton
+                        android:id="@+id/radio6"
+                        style="@style/RadioStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/note_type_selector"
+                        android:padding="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/note_type_other" />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/et_OtherNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_rounded"
+                    android:gravity="center_vertical"
+                    android:hint="@string/note_custom_hint"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/text_tertiary"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnSendComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="@string/note_submit"
+                    android:textColor="@color/White"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Notes Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/notes_history_header"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tvNoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 notes"
+            android:textSize="11sp"
+            android:textColor="@color/text_tertiary" />
+    </LinearLayout>
+
+    <!-- Notes List -->
+    <ListView
+        android:id="@+id/lv_results"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:overScrollMode="ifContentScrolls"
+        android:padding="6dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
+        android:scrollbars="vertical"
+        android:transcriptMode="alwaysScroll" />
+
+</LinearLayout>
