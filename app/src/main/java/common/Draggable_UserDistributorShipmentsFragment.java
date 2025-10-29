@@ -184,7 +184,6 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 												App.Object.userDistributorTabCtrl.ChangeTabTitle(tabTitle, App.Object.userDistributorMyShipmentsFragment);
 
 												if (resp.shipments.size() == 0) {
-													MessageCtrl.Toast("No record found");
 													ApplyFilter();
 												} else {
 													for (ShipmentWithDetail sd : resp.shipments) {

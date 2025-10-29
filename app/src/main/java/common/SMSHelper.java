@@ -236,7 +236,7 @@ public class SMSHelper {
         message = message.replace("{receiver_address}", smsData.receiverAddress != null ? smsData.receiverAddress : "");
         message = message.replace("{driver_name}", smsData.driverName != null ? smsData.driverName : "");
         message = message.replace("{sender_name}", smsData.senderName != null ? smsData.senderName : "");
-        message = message.replace("{company}", App.Object.getString(com.app.MEX_Delivery.R.string.app_name));
+        message = message.replace("{company}", App.Object.getString(eu.trackify.net.R.string.app_name));
         
         // Add COD message if applicable (only for In Delivery status)
         if (smsData.statusId == 1) {
@@ -245,7 +245,7 @@ public class SMSHelper {
         
         // Replace COD placeholder if it exists in custom messages
         if (smsData.receiverCod > 0) {
-            message = message.replace("{receiver_cod}", String.format("%.0f MKD", smsData.receiverCod));
+            message = message.replace("{receiver_cod}", String.format("%.0f €", smsData.receiverCod));
         }
         
         return message;

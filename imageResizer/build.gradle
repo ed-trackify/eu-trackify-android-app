@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.example.imageresizer'
-    compileSdk 34
-    buildToolsVersion "34.0.0"
+    compileSdk 33
+    buildToolsVersion "33.0.2"
 
     defaultConfig {
         minSdk 14
-        targetSdk 34
+        targetSdk 33
     }
 
     compileOptions {

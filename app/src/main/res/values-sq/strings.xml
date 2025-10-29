@@ -101,7 +101,7 @@
     <string name="tab_title_todo">Për dorëzim</string>
     <string name="tab_title_delivered">Dorëzuar</string>
     <string name="tab_title_todo_count">(%d) Për dorëzim</string>
-    <string name="tab_title_delivered_count">(%d) Dorëzuar\n%s mkd</string>
+    <string name="tab_title_delivered_count">(%d) Dorëzuar\n%s €</string>
     <string name="delivered_count_label">Dorëzuar: %d</string>
 
     <!-- Search & Sort -->
@@ -254,7 +254,7 @@
     <!-- Shipment Row (List Item) -->
     <string name="shipment_customer_name">Emri i klientit</string>
     <string name="shipment_delivery_address">Adresa e dorëzimit</string>
-    <string name="shipment_cod_amount">%s MKD</string>
+    <string name="shipment_cod_amount">%s €</string>
     <string name="shipment_time_away">%s min larg</string>
     <string name="shipment_button_deliver">Dorëzo</string>
     <string name="shipment_button_reject">Refuzo</string>

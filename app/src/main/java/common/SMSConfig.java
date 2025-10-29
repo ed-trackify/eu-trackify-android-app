@@ -74,7 +74,7 @@ public class SMSConfig {
     public static String buildCompleteMessage(String baseMessage, boolean hasCod, double codAmount) {
         if (hasCod && codAmount > 0) {
             // Add COD message
-            String codMessage = MSG_COD_ADDITION.replace("{receiver_cod}", String.format("%.0f MKD", codAmount));
+            String codMessage = MSG_COD_ADDITION.replace("{receiver_cod}", String.format("%.0f €", codAmount));
             return baseMessage + codMessage;
         }
         return baseMessage;

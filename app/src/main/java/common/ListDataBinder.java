@@ -236,12 +236,12 @@ public class ListDataBinder<E> extends ArrayAdapter<E> {
 		}
 		tvAddress.setText(TextHighlighter.highlight(fullAddress, currentSearchQuery));
 		
-		// Set COD amount if applicable - format with MKD suffix
+		// Set COD amount if applicable - format with euro symbol suffix
 		View llCod = view.findViewById(R.id.llCod);
 		TextView tvCodAmount = (TextView) view.findViewById(R.id.tvCodAmount);
 		if (!AppModel.IsNullOrEmpty(obj.receiver_cod)) {
 			llCod.setVisibility(View.VISIBLE);
-			tvCodAmount.setText(obj.receiver_cod + " MKD");
+			tvCodAmount.setText(obj.receiver_cod + " €");
 		} else {
 			llCod.setVisibility(View.GONE);
 		}

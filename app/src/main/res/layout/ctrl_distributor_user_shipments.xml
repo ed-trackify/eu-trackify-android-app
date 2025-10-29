@@ -108,7 +108,8 @@
             android:gravity="center"
             android:layout_marginRight="4dp"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/filterWurthN"
@@ -125,7 +126,8 @@
             android:gravity="center"
             android:layout_marginRight="4dp"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/filterOthers"

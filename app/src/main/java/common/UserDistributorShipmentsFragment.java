@@ -51,8 +51,6 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
     // Client filter chips
     View clientFilterContainer;
-    TextView filterWurth01;
-    TextView filterWurthN;
     TextView filterOthers;
 
     // Active client filters
@@ -74,8 +72,6 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
         // Initialize client filter chips
         clientFilterContainer = v.findViewById(R.id.clientFilterContainer);
-        filterWurth01 = v.findViewById(R.id.filterWurth01);
-        filterWurthN = v.findViewById(R.id.filterWurthN);
         filterOthers = v.findViewById(R.id.filterOthers);
 
         binder = new ListDataBinder<ShipmentWithDetail>(Type == ShipmentsType.MyShipments ? BindedListType.MyShipments : BindedListType.ReconcileShipments, lv_results);
@@ -187,7 +183,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
                                                             deliveredCount++;
                                                         }
                                                     }
-                                                    // Update tab title with format: "(X) Delivered\n(Ymkd)" with newline
+                                                    // Update tab title with format: "(X) Delivered\n(Y€)" with newline
                                                     int codAmount = (int) resp.cod_to_reconcile;
                                                     String tabTitle = String.format(getContext().getString(R.string.tab_title_delivered_count), deliveredCount, String.valueOf(codAmount));
                                                     App.Object.userDistributorTabCtrl.ChangeTabTitle(tabTitle, App.Object.userDistributorReconcileShipmentsFragment);
@@ -200,7 +196,6 @@ public class UserDistributorShipmentsFragment extends Fragment {
                                                 AppModel.Object.SaveVariable(Type == ShipmentsType.MyShipments ? AppModel.MY_SHIPMENTS_CACHE_KEY : AppModel.RECONCILE_SHIPMENTS_CACHE_KEY, new Gson().toJson(resp));
 
                                                 if (resp.shipments.size() == 0) {
-                                                    MessageCtrl.Toast("No record found");
                                                     ApplyFilter();
                                                 } else {
                                                     for (ShipmentWithDetail sd : resp.shipments) {
@@ -241,7 +236,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
                                                         deliveredCount++;
                                                     }
                                                 }
-                                                // Update tab title with format: "(X) Delivered\n(Ymkd)" with newline
+                                                // Update tab title with format: "(X) Delivered\n(Y€)" with newline
                                                 int codAmount = (int) cached.cod_to_reconcile;
                                                 String tabTitle = String.format(getContext().getString(R.string.tab_title_delivered_count), deliveredCount, String.valueOf(codAmount));
                                                 App.Object.userDistributorTabCtrl.ChangeTabTitle(tabTitle, App.Object.userDistributorReconcileShipmentsFragment);
@@ -322,21 +317,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
             boolean matches = false;
 
             for (String filterType : activeClientFilters) {
-                if (filterType.equals("wurth01")) {
-                    // Wurth/1: client_id = 2785 AND tracking_id ends with -01
-                    if (s.client_id != null && s.client_id.equals("2785") &&
-                        s.tracking_id != null && s.tracking_id.endsWith("-01")) {
-                        matches = true;
-                        break;
-                    }
-                } else if (filterType.equals("wurthN")) {
-                    // Wurth/N: client_id = 2785 AND tracking_id does NOT end with -01
-                    if (s.client_id != null && s.client_id.equals("2785") &&
-                        (s.tracking_id == null || !s.tracking_id.endsWith("-01"))) {
-                        matches = true;
-                        break;
-                    }
-                } else if (filterType.equals("others")) {
+                if (filterType.equals("others")) {
                     // Others: all other clients (client_id != 2785 or null)
                     if (s.client_id == null || !s.client_id.equals("2785")) {
                         matches = true;
@@ -546,23 +527,9 @@ public class UserDistributorShipmentsFragment extends Fragment {
     }
 
     private void setupClientFilterChips() {
-        if (filterWurth01 == null || filterWurthN == null || filterOthers == null) {
+        if (filterOthers == null) {
             return;
         }
-
-        filterWurth01.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleClientFilter("wurth01", filterWurth01);
-            }
-        });
-
-        filterWurthN.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleClientFilter("wurthN", filterWurthN);
-            }
-        });
 
         filterOthers.setOnClickListener(new OnClickListener() {
             @Override
@@ -585,10 +552,6 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
     private int getChipBackground(String filterType, boolean selected) {
         switch (filterType) {
-            case "wurth01":
-                return selected ? R.drawable.chip_in_delivery_selected : R.drawable.chip_in_delivery;
-            case "wurthN":
-                return selected ? R.drawable.chip_picked_up_selected : R.drawable.chip_picked_up;
             case "others":
                 return selected ? R.drawable.chip_problematic_selected : R.drawable.chip_problematic;
             default:
@@ -597,28 +560,14 @@ public class UserDistributorShipmentsFragment extends Fragment {
     }
 
     private void updateClientFilterCounts() {
-        int wurth01Count = 0;
-        int wurthNCount = 0;
         int othersCount = 0;
 
         for (ShipmentWithDetail s : ITEMS) {
-            if (s.client_id != null && s.client_id.equals("2785")) {
-                if (s.tracking_id != null && s.tracking_id.endsWith("-01")) {
-                    wurth01Count++;
-                } else {
-                    wurthNCount++;
-                }
-            } else {
+            if (s.client_id == null || !s.client_id.equals("2785")) {
                 othersCount++;
             }
         }
 
-        if (filterWurth01 != null) {
-            filterWurth01.setText("Wurth/1 (" + wurth01Count + ")");
-        }
-        if (filterWurthN != null) {
-            filterWurthN.setText("Wurth/N (" + wurthNCount + ")");
-        }
         if (filterOthers != null) {
             filterOthers.setText("Others (" + othersCount + ")");
         }

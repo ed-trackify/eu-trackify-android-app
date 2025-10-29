@@ -38,7 +38,7 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon2" />
+                android:src="@drawable/icon" />
 
             <TextView
                 style="@style/PanelStyle"

@@ -101,7 +101,7 @@
     <string name="tab_title_todo">For Delivery</string>
     <string name="tab_title_delivered">Delivered</string>
     <string name="tab_title_todo_count">(%d) For Delivery</string>
-    <string name="tab_title_delivered_count">(%d) Delivered\n%s mkd</string>
+    <string name="tab_title_delivered_count">(%d) Delivered\n%s €</string>
     <string name="delivered_count_label">Delivered: %d</string>
 
     <!-- Search & Sort -->
@@ -254,7 +254,7 @@
     <!-- Shipment Row (List Item) -->
     <string name="shipment_customer_name">Customer Name</string>
     <string name="shipment_delivery_address">Delivery Address</string>
-    <string name="shipment_cod_amount">%s MKD</string>
+    <string name="shipment_cod_amount">%s €</string>
     <string name="shipment_time_away">%s min away</string>
     <string name="shipment_button_deliver">Deliver</string>
     <string name="shipment_button_reject">Reject</string>

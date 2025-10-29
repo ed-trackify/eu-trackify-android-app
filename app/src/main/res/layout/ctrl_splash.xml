@@ -16,7 +16,7 @@
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
             android:padding="10dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icon" />
 
         <TextView
             android:layout_width="fill_parent"

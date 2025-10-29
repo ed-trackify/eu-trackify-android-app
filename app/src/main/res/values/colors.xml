@@ -2,10 +2,10 @@
 <resources>
 
     <!-- Material Design 3 - Primary Colors -->
-    <color name="primary">#2E7D6B</color>
-    <color name="primary_dark">#1F5A4F</color>
-    <color name="primary_light">#4A9B8A</color>
-    <color name="primary_variant">#3A8F7D</color>
+    <color name="primary">#1A243C</color>
+    <color name="primary_dark">#0F1A2E</color>
+    <color name="primary_light">#2A3450</color>
+    <color name="primary_variant">#243A5C</color>
     <color name="on_primary">#FFFFFF</color>
     
     <!-- Semi-transparent colors for ripple effects -->
@@ -286,5 +286,8 @@
     <color name="Yellow2">#ffea00</color>
     <color name="Yellow2_Light">#c8d8db03</color>
     <color name="Yellow_Green">#9ACD32</color>
+    
+    <!-- Adaptive Icon Background -->
+    <color name="ic_launcher_background">#1E3A8A</color>
 
 </resources>
