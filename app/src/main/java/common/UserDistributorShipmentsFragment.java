@@ -362,6 +362,15 @@ public class UserDistributorShipmentsFragment extends Fragment {
                 // Returns "In Delivery" - no SMS needed
                 status = "prezemena";
                 actualStatusId = scanStatusId;
+            } else if (scanStatusId == 4 || scanStatusId == 20) {
+                // Pickup scan - send country-based SMS
+                status = "prezemena";
+                actualStatusId = scanStatusId;
+
+                // Send pickup SMS for regular pickups only (not returns)
+                if (scanStatusId == 4) {
+                    sendPickupSMSForShipment(code);
+                }
             }
 
             SendKey(code, status, actualStatusId, false);
@@ -422,6 +431,79 @@ public class UserDistributorShipmentsFragment extends Fragment {
         }
 
         AppModel.ApplicationError(null, "=== MULTI-SCAN SMS SEND END ===");
+    }
+
+    private void sendPickupSMSForShipment(final String scannedCode) {
+        // Send country-based pickup SMS
+        AppModel.ApplicationError(null, "=== PICKUP SMS SEND START ===");
+        AppModel.ApplicationError(null, "SMS: Attempting pickup SMS for code: " + scannedCode);
+
+        // Create SMS data
+        SMSHelper.SMSData smsData = new SMSHelper.SMSData();
+
+        // Set tracking ID and status
+        smsData.trackingId = scannedCode;
+        smsData.shipmentId = scannedCode;
+        smsData.statusId = 4; // Picked Up
+        smsData.driverName = App.CurrentUser != null ? App.CurrentUser.user : "";
+
+        AppModel.ApplicationError(null, "SMS: Tracking ID set to: " + smsData.trackingId);
+
+        // Try to find receiver details and country ID
+        boolean foundDetails = false;
+
+        synchronized (ITEMS) {
+            for (ShipmentWithDetail s : ITEMS) {
+                if (s.tracking_id != null && s.tracking_id.equalsIgnoreCase(scannedCode)) {
+                    // Found it - get receiver details and country ID
+                    smsData.receiverPhone = s.receiver_phone;
+                    smsData.receiverName = s.receiver_name;
+                    smsData.receiverAddress = s.receiver_address;
+                    smsData.senderName = s.sender_name;
+                    smsData.countryId = s.receiver_country_id; // Get country ID for localized message
+                    try {
+                        smsData.receiverCod = Double.parseDouble(s.receiver_cod);
+                    } catch (Exception e) {
+                        smsData.receiverCod = 0;
+                    }
+                    foundDetails = true;
+                    AppModel.ApplicationError(null, "SMS: Found details in current list for: " + scannedCode);
+                    AppModel.ApplicationError(null, "SMS: Phone=" + smsData.receiverPhone + ", CountryID=" + smsData.countryId);
+                    break;
+                }
+            }
+        }
+
+        if (!foundDetails) {
+            AppModel.ApplicationError(null, "SMS: No details found in list for: " + scannedCode);
+        }
+
+        // Try to send SMS immediately if we have phone number
+        if (foundDetails && !AppModel.IsNullOrEmpty(smsData.receiverPhone)) {
+            AppModel.ApplicationError(null, "SMS: Found details - TrackingID: " + smsData.trackingId + " Phone: " + smsData.receiverPhone + " Country: " + smsData.countryId);
+
+            // Try immediate send first
+            SMSHelper.sendSMSImmediate(getContext(), smsData, new SMSHelper.SMSCallback() {
+                @Override
+                public void onResult(boolean success) {
+                    if (!success) {
+                        // Only add to queue if immediate send failed
+                        AppModel.ApplicationError(null, "SMS: Immediate send failed, adding to queue: " + scannedCode);
+                        SMSQueueManager queueManager = SMSQueueManager.getInstance(App.Object);
+                        queueManager.addToQueue(smsData);
+                    } else {
+                        AppModel.ApplicationError(null, "SMS: Pickup SMS sent immediately for: " + scannedCode);
+                    }
+                }
+            });
+
+        } else if (!foundDetails) {
+            AppModel.ApplicationError(null, "SMS: No details found for: " + scannedCode);
+        } else {
+            AppModel.ApplicationError(null, "SMS: No phone number for: " + scannedCode);
+        }
+
+        AppModel.ApplicationError(null, "=== PICKUP SMS SEND END ===");
     }
 
     private void SendKey(String code, String status, int statusId, boolean sendComments) {

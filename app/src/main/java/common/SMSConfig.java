@@ -13,7 +13,7 @@ public class SMSConfig {
     public static final boolean SEND_SMS_FOR_IN_DELIVERY = true;   // status_id = 1 (In Delivery)
     public static final boolean SEND_SMS_FOR_DELIVERED = false;     // status_id = 2 (Delivered)
     public static final boolean SEND_SMS_FOR_REJECTED = false;      // status_id = 3 (Problematic)
-    public static final boolean SEND_SMS_FOR_PICKED_UP = false;     // status_id = 4 (Picked Up)
+    public static final boolean SEND_SMS_FOR_PICKED_UP = true;      // status_id = 4 (Picked Up) - ENABLED
     
     // Message Templates - Base messages
     public static final String MSG_IN_DELIVERY = "Pocituvani, vo Mex Posta e primena pratka za vas, ke vi bide isporacana vo narednite 48h. Ve molime ocekuvajte povik od ovoj telefonski broj. ";
@@ -54,7 +54,7 @@ public class SMSConfig {
         if (hasCustomText && customText != null && !customText.isEmpty()) {
             return customText;
         }
-        
+
         // Otherwise use configured templates
         switch (statusId) {
             case 1: // In Delivery
@@ -68,6 +68,11 @@ public class SMSConfig {
             default:
                 return "";
         }
+    }
+
+    // Method to get pickup message based on country ID
+    public static String getPickupMessageByCountry(String countryId) {
+        return SMSTemplates.getPickupMessage(countryId);
     }
     
     // Method to build the complete message with COD addition if needed

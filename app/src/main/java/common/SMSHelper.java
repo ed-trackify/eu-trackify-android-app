@@ -39,7 +39,8 @@ public class SMSHelper {
         public double receiverCod;
         public String smsText; // Custom SMS text from shipment data
         public int statusId;
-        
+        public String countryId; // Country ID for localized messages
+
         public SMSData() {
             receiverCod = 0;
             statusId = 1; // Default to In Delivery
@@ -216,18 +217,26 @@ public class SMSHelper {
             AppModel.ApplicationError(null, "SMS BUILD ERROR: Tracking ID is null or empty!");
             return null; // Don't build message without tracking ID
         }
-        
+
         // Log which tracking ID is being used in the message
         AppModel.ApplicationError(null, "SMS: Building message for tracking ID: " + smsData.trackingId);
-        
+
         // Get the base message template
-        // Note: smsData.smsText is only populated when SMS is sent from detail screen
-        // For scan operations, smsText will be null and template will be used
-        String message = SMSConfig.getMessageTemplate(
-            smsData.statusId, 
-            smsData.smsText != null && !smsData.smsText.isEmpty(),
-            smsData.smsText
-        );
+        // For pickup status (4), use country-based template
+        String message;
+        if (smsData.statusId == 4) {
+            // Use country-based pickup message
+            message = SMSConfig.getPickupMessageByCountry(smsData.countryId);
+            AppModel.ApplicationError(null, "SMS: Using country-based pickup message for country: " + smsData.countryId);
+        } else {
+            // Note: smsData.smsText is only populated when SMS is sent from detail screen
+            // For scan operations, smsText will be null and template will be used
+            message = SMSConfig.getMessageTemplate(
+                smsData.statusId,
+                smsData.smsText != null && !smsData.smsText.isEmpty(),
+                smsData.smsText
+            );
+        }
         
         // Replace placeholders - ensure we use the exact tracking ID passed
         // NEVER use any other source for tracking ID

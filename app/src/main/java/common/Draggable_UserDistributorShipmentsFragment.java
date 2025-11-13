@@ -514,6 +514,120 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		AppModel.ApplicationError(null, "=== SMS SEND END ===");
 	}
 
+	private void sendPickupSMSForShipment(final String scannedCode) {
+		// Send country-based pickup SMS
+		AppModel.ApplicationError(null, "=== PICKUP SMS SEND START ===");
+		AppModel.ApplicationError(null, "SMS: Attempting pickup SMS for code: " + scannedCode);
+
+		// Create SMS data - START WITH THE SCANNED CODE
+		SMSHelper.SMSData smsData = new SMSHelper.SMSData();
+
+		// Set tracking ID and status
+		smsData.trackingId = scannedCode;
+		smsData.shipmentId = scannedCode;
+		smsData.statusId = 4; // Picked Up
+		smsData.driverName = App.CurrentUser != null ? App.CurrentUser.user : "";
+
+		AppModel.ApplicationError(null, "SMS: Tracking ID set to: " + smsData.trackingId);
+
+		// Try to find receiver details and country ID
+		boolean foundDetails = false;
+
+		// First check current list
+		synchronized (ITEMS) {
+			for (ShipmentWithDetail s : ITEMS) {
+				if (s.tracking_id != null && s.tracking_id.equalsIgnoreCase(scannedCode)) {
+					// Found it - get receiver details and country ID
+					smsData.receiverPhone = s.receiver_phone;
+					smsData.receiverName = s.receiver_name;
+					smsData.receiverAddress = s.receiver_address;
+					smsData.senderName = s.sender_name;
+					smsData.countryId = s.receiver_country_id; // Get country ID for localized message
+					try {
+						smsData.receiverCod = Double.parseDouble(s.receiver_cod);
+					} catch (Exception e) {
+						smsData.receiverCod = 0;
+					}
+					foundDetails = true;
+					AppModel.ApplicationError(null, "SMS: Found details in current list for: " + scannedCode);
+					AppModel.ApplicationError(null, "SMS: Phone=" + smsData.receiverPhone + ", CountryID=" + smsData.countryId);
+					break;
+				}
+			}
+		}
+
+		// If not found, check cache
+		if (!foundDetails) {
+			String cachedData = AppModel.Object.GetVariable(AppModel.MY_SHIPMENTS_CACHE_KEY);
+			if (!AppModel.IsNullOrEmpty(cachedData)) {
+				try {
+					ShipmentResponse cached = new Gson().fromJson(cachedData, ShipmentResponse.class);
+					if (cached != null && cached.shipments != null) {
+						for (ShipmentWithDetail s : cached.shipments) {
+							if (s.tracking_id != null && s.tracking_id.equalsIgnoreCase(scannedCode)) {
+								// Found it - get receiver details and country ID
+								smsData.receiverPhone = s.receiver_phone;
+								smsData.receiverName = s.receiver_name;
+								smsData.receiverAddress = s.receiver_address;
+								smsData.senderName = s.sender_name;
+								smsData.countryId = s.receiver_country_id;
+								try {
+									smsData.receiverCod = Double.parseDouble(s.receiver_cod);
+								} catch (Exception e) {
+									smsData.receiverCod = 0;
+								}
+								foundDetails = true;
+								AppModel.ApplicationError(null, "SMS: Found details in cache for: " + scannedCode);
+								AppModel.ApplicationError(null, "SMS CACHE: Phone=" + smsData.receiverPhone + ", CountryID=" + smsData.countryId);
+								break;
+							}
+						}
+					}
+				} catch (Exception e) {
+					AppModel.ApplicationError(null, "SMS: Cache error: " + e.getMessage());
+				}
+			}
+		}
+
+		// FINAL CHECK - make absolutely sure tracking ID hasn't changed
+		if (!scannedCode.equals(smsData.trackingId)) {
+			AppModel.ApplicationError(null, "SMS CRITICAL ERROR: Tracking ID changed from " + scannedCode + " to " + smsData.trackingId);
+			smsData.trackingId = scannedCode; // Force it back
+		}
+
+		// Try to send SMS immediately if we have phone number
+		if (foundDetails && !AppModel.IsNullOrEmpty(smsData.receiverPhone)) {
+			AppModel.ApplicationError(null, "SMS: Found details - TrackingID: " + smsData.trackingId + " Phone: " + smsData.receiverPhone + " Country: " + smsData.countryId);
+
+			// Try immediate send first
+			SMSHelper.sendSMSImmediate(getContext(), smsData, new SMSHelper.SMSCallback() {
+				@Override
+				public void onResult(boolean success) {
+					if (!success) {
+						// Only add to queue if immediate send failed
+						AppModel.ApplicationError(null, "SMS: Immediate send failed, adding to queue: " + scannedCode);
+						SMSQueueManager queueManager = SMSQueueManager.getInstance(App.Object);
+						queueManager.addToQueue(smsData);
+
+						// Log queue status
+						AppModel.ApplicationError(null, "SMS Queue Status: Size=" + queueManager.getQueueSize() +
+							", Sent=" + queueManager.getSentCount() +
+							", Remaining=" + queueManager.getRemainingCapacity());
+					} else {
+						AppModel.ApplicationError(null, "SMS: Pickup SMS sent immediately for: " + scannedCode);
+					}
+				}
+			});
+
+		} else if (!foundDetails) {
+			AppModel.ApplicationError(null, "SMS: No details found for: " + scannedCode);
+		} else {
+			AppModel.ApplicationError(null, "SMS: No phone number for: " + scannedCode);
+		}
+
+		AppModel.ApplicationError(null, "=== PICKUP SMS SEND END ===");
+	}
+
 	private void SendKey(String code, String status, int statusId, boolean sendComments) {
 		try {
 			AppModel.ApplicationError(null, "SENDKEY: code=" + code + ", statusId=" + statusId);
@@ -557,13 +671,18 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 									if (!AppModel.IsNullOrEmpty(u.response_txt))
 										MessageCtrl.Toast(u.response_txt);
 
-									// Send SMS if status is "In Delivery" (statusId = 1)
+									// Send SMS if status is "In Delivery" (statusId = 1) or "Picked Up" (statusId = 4)
 									// CRITICAL: Use the exact same code that was just sent to the server
 									// IMPORTANT: Send SMS BEFORE calling Load() to avoid race conditions with ITEMS list refresh
 									if (statusId == 1) {
 										AppModel.ApplicationError(null, "SMS TRIGGER: Sending SMS for scanned code: " + code);
 										// Send SMS in background - don't wait for it
 										sendSMSForShipment(code);
+										// No toast for SMS - just log it
+									} else if (statusId == 4) {
+										AppModel.ApplicationError(null, "SMS TRIGGER: Sending PICKUP SMS for scanned code: " + code);
+										// Send pickup SMS in background
+										sendPickupSMSForShipment(code);
 										// No toast for SMS - just log it
 									}
 

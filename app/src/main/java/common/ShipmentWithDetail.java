@@ -22,6 +22,7 @@ public class ShipmentWithDetail {
     public String client_id;
     public String receiver_phone;
     public String receiver_name;
+    public String receiver_country_id;
     public String instructions;
 
     public Double lat;
