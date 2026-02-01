@@ -35,6 +35,7 @@ import common.UserDistributorShipmentsFragment.ShipmentsType;
 public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 
 	boolean isDeliveryScan;
+	boolean isStatusCheckScan = false;
 
 	DragNDropListView lv_results;
 	ListDataBinder_Draggable binder;
@@ -65,6 +66,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		btnScanDelivery.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				isStatusCheckScan = false;
 				isDeliveryScan = true;
 				App.Object.ShowScanner();
 			}
@@ -79,7 +81,17 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		v.findViewById(R.id.btnScanPick).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				isStatusCheckScan = false;
 				isDeliveryScan = false;
+				App.Object.ShowScanner();
+			}
+		});
+
+		// Status Check button - scans without changing status
+		v.findViewById(R.id.btnStatusCheck).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				isStatusCheckScan = true;
 				App.Object.ShowScanner();
 			}
 		});
@@ -355,6 +367,17 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 	public void SetScannedCode(String code) {
 		// Scanned = code;
 		if (code != null) {
+			// Check if this is a status check scan
+			if (isStatusCheckScan) {
+				isStatusCheckScan = false; // Reset the flag
+				// Open the status check controller with the scanned code
+				if (App.Object.statusCheckCtrl != null) {
+					App.Object.statusCheckCtrl.show(code);
+				}
+				KeyRef.PlayBeep();
+				return;
+			}
+
 			AppModel.ApplicationError(null, "SCAN: Received barcode: " + code);
 			AppModel.ApplicationError(null, "SCAN: isDeliveryScan = " + isDeliveryScan);
 
@@ -392,6 +415,14 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 
 	public void OnCommentsSubmit(String code, String comments) {
 		SubmitRequest(code, "odbiena", 3, comments);
+	}
+
+	/**
+	 * Trigger a status check scan from outside the fragment (e.g., from StatusCheckCtrl)
+	 */
+	public void triggerStatusCheckScan() {
+		isStatusCheckScan = true;
+		App.Object.ShowScanner();
 	}
 	
 	private void sendSMSForShipment(final String scannedCode) {

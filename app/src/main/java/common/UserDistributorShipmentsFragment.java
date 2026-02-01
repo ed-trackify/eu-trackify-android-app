@@ -40,12 +40,13 @@ public class UserDistributorShipmentsFragment extends Fragment {
     }
 
     int scanStatusId;
+    boolean isStatusCheckScan = false;
 
     ListView lv_results;
     ListDataBinder<ShipmentWithDetail> binder;
     EditText et_Search;
     CheckBox chkMultiscan;
-    Button btnScanDelivery, btnScanPick;
+    Button btnScanDelivery, btnScanPick, btnStatusCheck;
     View llDeliveredInfo;
     TextView tvDeliveredCount;
 
@@ -65,6 +66,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         chkMultiscan = v.findViewById(R.id.chkMultiscan);
         btnScanDelivery = v.findViewById(R.id.btnScanDelivery);
         btnScanPick = v.findViewById(R.id.btnScanPick);
+        btnStatusCheck = v.findViewById(R.id.btnStatusCheck);
         et_Search = (EditText) v.findViewById(R.id.et_Search);
         lv_results = (ListView) v.findViewById(R.id.lv_results);
         llDeliveredInfo = v.findViewById(R.id.llDeliveredInfo);
@@ -81,6 +83,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         btnScanPick.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                isStatusCheckScan = false;
                 scanStatusId = Type == ShipmentsType.Returns ? 20 : 4;
                 App.Object.ShowScanner();
             }
@@ -89,7 +92,16 @@ public class UserDistributorShipmentsFragment extends Fragment {
         btnScanDelivery.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                isStatusCheckScan = false;
                 scanStatusId = Type == ShipmentsType.Returns ? 7 : 1;
+                App.Object.ShowScanner();
+            }
+        });
+
+        btnStatusCheck.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isStatusCheckScan = true;
                 App.Object.ShowScanner();
             }
         });
@@ -98,6 +110,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
             chkMultiscan.setVisibility(View.GONE);
             btnScanPick.setVisibility(View.GONE);
             btnScanDelivery.setVisibility(View.GONE);
+            btnStatusCheck.setVisibility(View.GONE);
             // Show client filter chips for delivered screen
             clientFilterContainer.setVisibility(View.VISIBLE);
             setupClientFilterChips();
@@ -108,6 +121,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
             btnScanDelivery.setText(getString(R.string.scan_deliver_returned));
             btnScanDelivery.setBackgroundColor(Color.parseColor("#910000"));
             btnScanDelivery.setTextColor(Color.parseColor("#FFFFFF"));
+            btnStatusCheck.setVisibility(View.GONE); // Hide status check for returns
         }
 
         lv_results.setOnItemClickListener(new OnItemClickListener() {
@@ -336,6 +350,17 @@ public class UserDistributorShipmentsFragment extends Fragment {
     public void SetScannedCode(String code) {
         // Scanned = code;
         if (code != null) {
+            // Check if this is a status check scan
+            if (isStatusCheckScan) {
+                isStatusCheckScan = false; // Reset the flag
+                // Open the status check controller with the scanned code
+                if (App.Object.statusCheckCtrl != null) {
+                    App.Object.statusCheckCtrl.show(code);
+                }
+                KeyRef.PlayBeep();
+                return;
+            }
+
             boolean multiScanEnabled = chkMultiscan.isChecked();
             if (multiScanEnabled)
                 App.Object.ShowScanner();
@@ -380,6 +405,14 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
     public void OnCommentsSubmit(String code, String comments) {
         SubmitRequest(code, "odbiena", 3, comments);
+    }
+
+    /**
+     * Trigger a status check scan from outside the fragment (e.g., from StatusCheckCtrl)
+     */
+    public void triggerStatusCheckScan() {
+        isStatusCheckScan = true;
+        App.Object.ShowScanner();
     }
 
     private void sendSMSForShipment(final String scannedCode) {

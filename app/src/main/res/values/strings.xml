@@ -51,6 +51,8 @@
     <string name="settings_quick_actions">QUICK ACTIONS</string>
     <string name="settings_change_password">Change Password</string>
     <string name="settings_change_password_desc">Update your account password</string>
+    <string name="settings_manage_permissions">Manage Permissions</string>
+    <string name="settings_manage_permissions_desc">Enable SMS, Camera, Location access</string>
     <string name="settings_check_updates">Check for Updates</string>
     <string name="settings_check_updates_desc">Get the latest app version</string>
 
@@ -289,7 +291,12 @@
     <string name="error_camera_not_available">Camera not available. Please check device camera or try restarting the app.</string>
     <string name="error_image_capture_canceled">Image capture canceled</string>
     <string name="error_permissions_required">MEX needs camera and location access to scan packages and track deliveries. Please enable these permissions in Settings.</string>
+    <string name="error_permissions_limited">Some features may be limited without all permissions.</string>
     <string name="error_sms_permission_required">SMS permission is required to monitor customer replies. Please enable SMS permissions in Settings.</string>
+    <string name="permission_settings_title">Permissions Required</string>
+    <string name="permission_settings_message">This app needs certain permissions (SMS, Camera, Location) to function properly. Some permissions were denied.\n\nPlease tap \"Open Settings\" and enable the required permissions, then return to the app.</string>
+    <string name="permission_settings_open">Open Settings</string>
+    <string name="permission_settings_continue">Continue Anyway</string>
 
     <!-- Printer Messages -->
     <string name="printer_found">Found printer: %s</string>
@@ -323,5 +330,32 @@
     <string name="tab_sms">SMS</string>
     <string name="tab_cod">COD</string>
     <string name="tab_returns">Returns</string>
+
+    <!-- Scan Buttons -->
+    <string name="btn_pick_up">Pick up</string>
+    <string name="btn_in_delivery">In Delivery</string>
+    <string name="btn_status_check">Status Check</string>
+
+    <!-- Status Check Screen -->
+    <string name="status_check_title">STATUS CHECK</string>
+    <string name="status_check_subtitle">Review shipment details before updating status</string>
+    <string name="status_check_shipment_info">SHIPMENT INFORMATION</string>
+    <string name="status_check_courier_tracking">Courier Tracking:</string>
+    <string name="status_check_tracking_id">Tracking ID:</string>
+    <string name="status_check_current_status">Current Status:</string>
+    <string name="status_check_sender_info">SENDER INFORMATION</string>
+    <string name="status_check_receiver_info">RECEIVER INFORMATION</string>
+    <string name="status_check_cod_amount">COD Amount:</string>
+    <string name="status_check_instructions">Instructions:</string>
+    <string name="status_check_action_title">UPDATE STATUS</string>
+    <string name="status_check_action_subtitle">Select an action for this shipment</string>
+    <string name="status_check_btn_picked_up">Picked Up</string>
+    <string name="status_check_btn_returned">Returned to Sender</string>
+    <string name="status_check_btn_cancel">Cancel</string>
+    <string name="status_check_loading">Looking up shipment...</string>
+    <string name="status_check_not_found">Shipment not found</string>
+    <string name="status_check_error">Error looking up shipment</string>
+    <string name="status_check_success_picked_up">Shipment marked as Picked Up</string>
+    <string name="status_check_success_returned">Shipment marked as Returned to Sender</string>
 
 </resources>

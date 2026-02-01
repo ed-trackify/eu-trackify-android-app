@@ -51,6 +51,8 @@
     <string name="settings_quick_actions">VEPRIME TË SHPEJTA</string>
     <string name="settings_change_password">Ndrysho fjalëkalimin</string>
     <string name="settings_change_password_desc">Përditëso fjalëkalimin e llogarisë tuaj</string>
+    <string name="settings_manage_permissions">Menaxho Lejet</string>
+    <string name="settings_manage_permissions_desc">Aktivizo SMS, Kamerë, Vendndodhje</string>
     <string name="settings_check_updates">Kontrollo për përditësime</string>
     <string name="settings_check_updates_desc">Merr versionin më të fundit të aplikacionit</string>
 
@@ -289,7 +291,12 @@
     <string name="error_camera_not_available">Kamera nuk është e disponueshme. Ju lutemi kontrolloni kamerën e pajisjes ose provoni ta ristartoni aplikacionin.</string>
     <string name="error_image_capture_canceled">Fotografimi u anulua</string>
     <string name="error_permissions_required">MEX ka nevojë për qasje në kamerë dhe vendndodhje për të skanuar paketa dhe ndjekur dorëzimet. Ju lutemi aktivizoni këto leje në Cilësime.</string>
+    <string name="error_permissions_limited">Disa funksione mund të jenë të kufizuara pa të gjitha lejet.</string>
     <string name="error_sms_permission_required">Leja për SMS kërkohet për të monitoruar përgjigjet e klientëve. Ju lutemi aktivizoni lejet për SMS në Cilësime.</string>
+    <string name="permission_settings_title">Kërkohen Lejet</string>
+    <string name="permission_settings_message">Ky aplikacion ka nevojë për leje të caktuara (SMS, Kamerë, Vendndodhje) për të funksionuar siç duhet. Disa leje u refuzuan.\n\nJu lutemi prekni \"Hap Cilësimet\" dhe aktivizoni lejet e nevojshme, pastaj kthehuni në aplikacion.</string>
+    <string name="permission_settings_open">Hap Cilësimet</string>
+    <string name="permission_settings_continue">Vazhdo gjithsesi</string>
 
     <!-- Printer Messages -->
     <string name="printer_found">U gjet printeri: %s</string>
@@ -323,5 +330,32 @@
     <string name="tab_sms">SMS</string>
     <string name="tab_cod">COD</string>
     <string name="tab_returns">Kthimet</string>
+
+    <!-- Scan Buttons -->
+    <string name="btn_pick_up">Marrje</string>
+    <string name="btn_in_delivery">Në dorëzim</string>
+    <string name="btn_status_check">Kontrollo</string>
+
+    <!-- Status Check Screen -->
+    <string name="status_check_title">KONTROLLI I STATUSIT</string>
+    <string name="status_check_subtitle">Shiko detajet e dërgesës para se të përditësosh statusin</string>
+    <string name="status_check_shipment_info">INFORMACIONI I DËRGESËS</string>
+    <string name="status_check_courier_tracking">Kodi i kurrierit:</string>
+    <string name="status_check_tracking_id">Tracking ID:</string>
+    <string name="status_check_current_status">Statusi aktual:</string>
+    <string name="status_check_sender_info">INFORMACIONI I DËRGUESIT</string>
+    <string name="status_check_receiver_info">INFORMACIONI I MARRËSIT</string>
+    <string name="status_check_cod_amount">COD:</string>
+    <string name="status_check_instructions">Udhëzime:</string>
+    <string name="status_check_action_title">PËRDITËSO STATUSIN</string>
+    <string name="status_check_action_subtitle">Zgjidh një veprim për këtë dërgesë</string>
+    <string name="status_check_btn_picked_up">Marrë</string>
+    <string name="status_check_btn_returned">Kthyer te dërguesi</string>
+    <string name="status_check_btn_cancel">Anulo</string>
+    <string name="status_check_loading">Duke kërkuar dërgesën...</string>
+    <string name="status_check_not_found">Dërgesa nuk u gjet</string>
+    <string name="status_check_error">Gabim gjatë kërkimit të dërgesës</string>
+    <string name="status_check_success_picked_up">Dërgesa u shënua si Marrë</string>
+    <string name="status_check_success_returned">Dërgesa u shënua si Kthyer te dërguesi</string>
 
 </resources>

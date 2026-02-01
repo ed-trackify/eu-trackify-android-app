@@ -51,6 +51,8 @@
     <string name="settings_quick_actions">БРЗИ АКЦИИ</string>
     <string name="settings_change_password">Промени лозинка</string>
     <string name="settings_change_password_desc">Ажурирај ја лозинката на твојот профил</string>
+    <string name="settings_manage_permissions">Управувај со дозволи</string>
+    <string name="settings_manage_permissions_desc">Овозможи СМС, Камера, Локација</string>
     <string name="settings_check_updates">Провери за ажурирања</string>
     <string name="settings_check_updates_desc">Земи ја најновата верзија на апликацијата</string>
 
@@ -289,7 +291,12 @@
     <string name="error_camera_not_available">Камерата не е достапна. Ве молиме проверете ја камерата на уредот или обидете се да ја рестартирате апликацијата.</string>
     <string name="error_image_capture_canceled">Фотографирањето е откажано</string>
     <string name="error_permissions_required">MEX има потреба од пристап до камера и локација за скенирање на пакети и следење на достави. Ве молиме овозможете ги овие дозволи во Поставки.</string>
+    <string name="error_permissions_limited">Некои функции може да бидат ограничени без сите дозволи.</string>
     <string name="error_sms_permission_required">Потребна е дозвола за СМС за следење на одговорите од клиентите. Ве молиме овозможете ги СМС дозволите во Поставки.</string>
+    <string name="permission_settings_title">Потребни се дозволи</string>
+    <string name="permission_settings_message">Оваа апликација има потреба од одредени дозволи (СМС, Камера, Локација) за да функционира правилно. Некои дозволи беа одбиени.\n\nВе молиме допрете \"Отвори Поставки\" и овозможете ги потребните дозволи, потоа вратете се во апликацијата.</string>
+    <string name="permission_settings_open">Отвори Поставки</string>
+    <string name="permission_settings_continue">Продолжи сепак</string>
 
     <!-- Printer Messages -->
     <string name="printer_found">Пронајден печатач: %s</string>
@@ -323,5 +330,32 @@
     <string name="tab_sms">СМС</string>
     <string name="tab_cod">Готовина</string>
     <string name="tab_returns">Повратни</string>
+
+    <!-- Scan Buttons -->
+    <string name="btn_pick_up">Превземи</string>
+    <string name="btn_in_delivery">Во достава</string>
+    <string name="btn_status_check">Провери</string>
+
+    <!-- Status Check Screen -->
+    <string name="status_check_title">ПРОВЕРКА НА СТАТУС</string>
+    <string name="status_check_subtitle">Прегледај ги деталите за испратницата пред да го ажурираш статусот</string>
+    <string name="status_check_shipment_info">ИНФОРМАЦИИ ЗА ИСПРАТНИЦА</string>
+    <string name="status_check_courier_tracking">Курирски код:</string>
+    <string name="status_check_tracking_id">Tracking ID:</string>
+    <string name="status_check_current_status">Тековен статус:</string>
+    <string name="status_check_sender_info">ИНФОРМАЦИИ ЗА ИСПРАЌАЧ</string>
+    <string name="status_check_receiver_info">ИНФОРМАЦИИ ЗА ПРИМАЧ</string>
+    <string name="status_check_cod_amount">Готовина:</string>
+    <string name="status_check_instructions">Инструкции:</string>
+    <string name="status_check_action_title">АЖУРИРАЈ СТАТУС</string>
+    <string name="status_check_action_subtitle">Избери акција за оваа испратница</string>
+    <string name="status_check_btn_picked_up">Превземено</string>
+    <string name="status_check_btn_returned">Вратено на испраќач</string>
+    <string name="status_check_btn_cancel">Откажи</string>
+    <string name="status_check_loading">Се бара испратница...</string>
+    <string name="status_check_not_found">Испратницата не е пронајдена</string>
+    <string name="status_check_error">Грешка при барање на испратница</string>
+    <string name="status_check_success_picked_up">Испратницата е означена како Превземена</string>
+    <string name="status_check_success_returned">Испратницата е означена како Вратена на испраќач</string>
 
 </resources>

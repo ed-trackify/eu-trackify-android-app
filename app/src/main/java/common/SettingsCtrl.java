@@ -180,6 +180,18 @@ public class SettingsCtrl extends LinearLayout {
                 });
             }
 
+            // Manage Permissions button - opens app settings
+            LinearLayout btnPermissionsContainer = (LinearLayout) v.findViewById(R.id.btnPermissionsContainer);
+            if (btnPermissionsContainer != null) {
+                btnPermissionsContainer.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Open app settings where user can enable permissions
+                        App.openAppSettings(App.Object);
+                    }
+                });
+            }
+
             // Update button (hidden button for compatibility)
             btnUpdate = (Button) v.findViewById(R.id.btnUpdate);
             if (btnUpdate != null) {

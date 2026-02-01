@@ -39,14 +39,14 @@
                 style="@style/ButtonStyleFlat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
+                android:layout_weight="33"
                 android:background="#42d4f4"
                 android:padding="8dp"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:drawableLeft="@drawable/ic_package"
                 android:drawablePadding="4dp"
-                android:text="Pick up"
+                android:text="@string/btn_pick_up"
                 android:textSize="14sp" />
 
             <Button
@@ -54,14 +54,30 @@
                 style="@style/ButtonStyleFlat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
+                android:layout_weight="34"
                 android:background="#efe770"
                 android:padding="8dp"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:drawableLeft="@drawable/ic_delivery_truck"
                 android:drawablePadding="4dp"
-                android:text="In Delivery"
+                android:text="@string/btn_in_delivery"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnStatusCheck"
+                style="@style/ButtonStyleFlat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:background="#9370DB"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="4dp"
+                android:text="@string/btn_status_check"
+                android:textColor="@color/White"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

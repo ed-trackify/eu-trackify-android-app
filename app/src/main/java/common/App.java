@@ -71,6 +71,7 @@ public class App extends FragmentActivity {
     public SignatureCtrl signatureCtrl;
     public RoutingCtrl routingCtrl;
     public ViewReturnShipmentDetail viewReturnShipmentDetail;
+    public StatusCheckCtrl statusCheckCtrl;
 
     ImageView iv_Settings, iv_Refresh, iv_Route, iv_ConnectPrinter;
 
@@ -149,6 +150,7 @@ public class App extends FragmentActivity {
         signatureCtrl = (SignatureCtrl) findViewById(R.id.signatureCtrl);
         routingCtrl = (RoutingCtrl) findViewById(R.id.routingCtrl);
         viewReturnShipmentDetail = (ViewReturnShipmentDetail) findViewById(R.id.viewReturnShipmentDetail);
+        statusCheckCtrl = (StatusCheckCtrl) findViewById(R.id.statusCheckCtrl);
         settingsCtrl = (SettingsCtrl) findViewById(R.id.settingsCtrl);
         changePasswordDialog = (ChangePasswordDialog) findViewById(R.id.changePasswordDialog);
 
@@ -510,23 +512,34 @@ public class App extends FragmentActivity {
                         try {
                             if (report.areAllPermissionsGranted()) {
                                 onPermissionGranted.run();
+                            } else if (report.isAnyPermissionPermanentlyDenied()) {
+                                // Some permissions are permanently denied - show dialog to open settings
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        showPermissionSettingsDialog(activity, onPermissionGranted);
+                                    }
+                                });
                             } else {
+                                // Permissions denied but not permanently - proceed anyway with limited functionality
                                 activity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         try {
-                                            MessageCtrl.Toast(activity.getString(R.string.error_permissions_required));
-                                            activity.finish();
+                                            MessageCtrl.Toast(activity.getString(R.string.error_permissions_limited));
+                                            // Continue with limited functionality instead of closing
+                                            onPermissionGranted.run();
                                         } catch (Exception e) {
-                                            AppModel.ApplicationError(e, "Failed to show permission error message");
-                                            activity.finish();
+                                            AppModel.ApplicationError(e, "Failed to show permission warning");
+                                            onPermissionGranted.run();
                                         }
                                     }
                                 });
                             }
                         } catch (Exception ex) {
                             AppModel.ApplicationError(ex, "Permission check failed");
-                            activity.finish();
+                            // Continue anyway
+                            onPermissionGranted.run();
                         }
                     }
 
@@ -535,6 +548,41 @@ public class App extends FragmentActivity {
                         token.continuePermissionRequest();
                     }
                 }).check();
+    }
+
+    /**
+     * Show dialog prompting user to open app settings to enable permissions
+     */
+    private static void showPermissionSettingsDialog(final Activity activity, final Runnable onContinue) {
+        new android.app.AlertDialog.Builder(activity)
+            .setTitle(R.string.permission_settings_title)
+            .setMessage(R.string.permission_settings_message)
+            .setPositiveButton(R.string.permission_settings_open, new android.content.DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(android.content.DialogInterface dialog, int which) {
+                    openAppSettings(activity);
+                }
+            })
+            .setNegativeButton(R.string.permission_settings_continue, new android.content.DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(android.content.DialogInterface dialog, int which) {
+                    // Continue with limited functionality
+                    MessageCtrl.Toast(activity.getString(R.string.error_permissions_limited));
+                    onContinue.run();
+                }
+            })
+            .setCancelable(false)
+            .show();
+    }
+
+    /**
+     * Open the app's settings page where user can manually enable permissions
+     */
+    public static void openAppSettings(Activity activity) {
+        Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        android.net.Uri uri = android.net.Uri.fromParts("package", activity.getPackageName(), null);
+        intent.setData(uri);
+        activity.startActivity(intent);
     }
 
     // MEX Brand-Aligned Loading Messages
@@ -632,6 +680,8 @@ public class App extends FragmentActivity {
             iv_Route.performClick();
         else if (viewReturnShipmentDetail.getVisibility() == View.VISIBLE)
             viewReturnShipmentDetail.setVisibility(View.GONE);
+        else if (statusCheckCtrl != null && statusCheckCtrl.getVisibility() == View.VISIBLE)
+            statusCheckCtrl.hide();
         else if (changePasswordDialog != null && changePasswordDialog.getVisibility() == View.VISIBLE)
             changePasswordDialog.SetVisibility(false);
         else if (modalCtrl.getVisibility() != View.VISIBLE && sendProblemCommentsCtrl.getVisibility() != View.VISIBLE && sendFileCommentsCtrl.getVisibility() != View.VISIBLE && userDistributorShipmentDetailTabCtrl.getVisibility() != View.VISIBLE && settingsCtrl.getVisibility() != View.VISIBLE)

@@ -986,6 +986,48 @@ public class Communicator {
     }
 
     /**
+     * Look up a shipment by courier tracking code (barcode scan)
+     * This endpoint searches across multiple fields to find the shipment
+     */
+    public static void LookupShipmentByCourierTracking(final String courierTracking, final IServerResponse callback) {
+        if (!AppModel.Object.IsNetworkAvailable(false)) {
+            callback.onCompleted(false, "Internet connection not available");
+            return;
+        }
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String url = URL + "/lookup_shipment.php";
+
+                    HashMap<String, Object> reqParams = new HashMap<String, Object>();
+                    reqParams.put("courier_tracking", courierTracking);
+                    reqParams.put("user_id", App.CurrentUser.user_id);
+
+                    String json = Rest.Post(url, reqParams);
+
+                    // Check if error response
+                    if (json.contains("\"error\"") || json.contains("\"success\":false")) {
+                        ShipmentError error = new Gson().fromJson(json, ShipmentError.class);
+                        callback.onCompleted(false, error.response_txt != null ? error.response_txt : "Shipment not found");
+                    } else {
+                        ShipmentWithDetail shipment = new Gson().fromJson(json, ShipmentWithDetail.class);
+                        if (shipment != null && shipment.shipment_id != null) {
+                            callback.onCompleted(true, null, shipment);
+                        } else {
+                            callback.onCompleted(false, "Shipment not found");
+                        }
+                    }
+                } catch (Exception ex) {
+                    callback.onCompleted(false, "Something went wrong, Please try again");
+                    AppModel.ApplicationError(ex, "Communicator::LookupShipmentByCourierTracking");
+                }
+            }
+        })).start();
+    }
+
+    /**
      * Send a single SMS reply to the server
      */
     public static void SendSMSReply(final SMSReplyMonitor.SMSReply reply, final IServerResponse callback) {
