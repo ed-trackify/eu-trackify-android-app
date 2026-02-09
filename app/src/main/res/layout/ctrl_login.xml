@@ -2,87 +2,169 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White" >
+    android:background="@color/primary">
 
+    <!-- Hidden exit button (kept for compatibility) -->
     <Button
         android:id="@+id/btnExit"
         style="@style/ButtonStyleFlat"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         android:singleLine="true"
         android:text="@string/login_exit"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:visibility="gone" />
+
+    <!-- Version text at the bottom -->
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Version 1.1"
+        android:textColor="@color/text_tertiary"
+        android:textSize="12sp" />
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnExit"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_version"
         android:fadingEdge="none"
         android:fillViewport="true"
-        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb" >
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb">
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
 
+            <!-- Hidden splash image (kept for compatibility) -->
             <ImageView
                 android:id="@+id/iv_splash"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon" />
+                android:src="@drawable/icon"
+                android:visibility="gone" />
 
+            <!-- Top spacer -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.6" />
+
+            <!-- EU Flag -->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_eu_flag" />
+
+            <!-- Branding text -->
             <TextView
-                style="@style/PanelStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="8dp"
-                android:text="@string/login_username" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="Trackify"
+                android:textColor="@color/on_primary"
+                android:textSize="32sp"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_Username"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:background="@drawable/edittext_whitebg_primaryborder_notop_rounded"
-                android:inputType="text"
-                android:textCursorDrawable="@null" >
-            </EditText>
-
+            <!-- Tagline -->
             <TextView
-                style="@style/PanelStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="8dp"
-                android:text="@string/login_password" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="28dp"
+                android:gravity="center"
+                android:text="Delivery Management and\nWarehouse Management System"
+                android:textColor="@color/text_tertiary"
+                android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/et_Password"
-                style="@style/EditTextStyle"
+            <!-- Login card -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/edittext_whitebg_primaryborder_notop_rounded"
-                android:inputType="textPassword"
-                android:textCursorDrawable="@null" >
-            </EditText>
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_card_background"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-            <Button
-                android:id="@+id/btnLogIn"
-                style="@style/ButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_marginTop="15dp"
-                android:text="@string/login_button" />
+                <!-- Username label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/login_username"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <!-- Username input -->
+                <EditText
+                    android:id="@+id/et_Username"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/edittext_rounded"
+                    android:hint="@string/login_username"
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
+
+                <!-- Password label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/login_password"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <!-- Password input -->
+                <EditText
+                    android:id="@+id/et_Password"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/edittext_rounded"
+                    android:hint="@string/login_password"
+                    android:inputType="textPassword"
+                    android:textCursorDrawable="@null" />
+
+                <!-- Login button -->
+                <Button
+                    android:id="@+id/btnLogIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="@string/login_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Bottom spacer -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1.2" />
+
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>

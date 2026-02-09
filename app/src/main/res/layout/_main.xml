@@ -79,17 +79,24 @@
 
             <ImageView
                 android:layout_width="36dp"
-                android:layout_height="24dp"
+                android:layout_height="27dp"
                 android:layout_marginLeft="6dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_eu_flag" />
         </LinearLayout>
     </RelativeLayout>
 
+    <include
+        layout="@layout/view_offline_indicator"
+        android:id="@+id/offline_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_Topbar" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/ll_Topbar" >
+        android:layout_below="@id/offline_indicator" >
 
         <common.LoginCtrl
             android:id="@+id/loginCtrl"

@@ -1,74 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="48dp"
-    android:height="32dp"
+    android:height="36dp"
     android:viewportWidth="48"
-    android:viewportHeight="32">
+    android:viewportHeight="36">
 
     <!-- Blue background -->
     <path
         android:fillColor="#003399"
-        android:pathData="M0,0h48v32H0z" />
+        android:pathData="M0,0h48v36H0z" />
 
-    <!-- 12 yellow stars arranged in a circle -->
-    <!-- Star 1 (12 o'clock position) -->
+    <!-- 12 yellow stars in circle, centered at (24,18), radius 9 -->
+    <!-- Star 1 (12 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M24,4l0.9,2.8h2.9l-2.4,1.7l0.9,2.8L24,9.6l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 2 (1 o'clock position) -->
+        android:pathData="M24,7.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 2 (1 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M30.9,5.6l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 3 (2 o'clock position) -->
+        android:pathData="M28.5,8.6l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 3 (2 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M35.6,10.4l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 4 (3 o'clock position) -->
+        android:pathData="M31.8,12.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 4 (3 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M37.2,16l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 5 (4 o'clock position) -->
+        android:pathData="M33,16.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 5 (4 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M35.6,21.6l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 6 (5 o'clock position) -->
+        android:pathData="M31.8,20.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 6 (5 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M30.9,26.4l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 7 (6 o'clock position) -->
+        android:pathData="M28.5,23.8l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 7 (6 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M24,28l0.9,2.8h2.9l-2.4,1.7l0.9,2.8L24,33.6l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 8 (7 o'clock position) -->
+        android:pathData="M24,25.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 8 (7 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M17.1,26.4l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 9 (8 o'clock position) -->
+        android:pathData="M19.5,23.8l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 9 (8 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M12.4,21.6l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 10 (9 o'clock position) -->
+        android:pathData="M16.2,20.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 10 (9 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M10.8,16l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 11 (10 o'clock position) -->
+        android:pathData="M15,16.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 11 (10 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M12.4,10.4l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
-
-    <!-- Star 12 (11 o'clock position) -->
+        android:pathData="M16.2,12.2l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
+    <!-- Star 12 (11 o'clock) -->
     <path
         android:fillColor="#FFCC00"
-        android:pathData="M17.1,5.6l0.9,2.8h2.9l-2.4,1.7l0.9,2.8l-2.3,-1.7l-2.3,1.7l0.9,-2.8l-2.4,-1.7h2.9z" />
+        android:pathData="M19.5,8.6l0.7,2.2h2.4l-1.9,1.4l0.7,2.2l-1.9,-1.4l-1.9,1.4l0.7,-2.2l-1.9,-1.4h2.4z" />
 
 </vector>

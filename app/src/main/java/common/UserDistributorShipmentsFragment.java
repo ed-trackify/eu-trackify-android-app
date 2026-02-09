@@ -46,6 +46,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
     boolean isReturnReceivedScan = false;
 
     ListView lv_results;
+    View emptyStateContainer;
     ListDataBinder<ShipmentWithDetail> binder;
     EditText et_Search;
     CheckBox chkMultiscan;
@@ -72,6 +73,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         btnStatusCheck = v.findViewById(R.id.btnStatusCheck);
         et_Search = (EditText) v.findViewById(R.id.et_Search);
         lv_results = (ListView) v.findViewById(R.id.lv_results);
+        emptyStateContainer = v.findViewById(R.id.emptyStateContainer);
         llDeliveredInfo = v.findViewById(R.id.llDeliveredInfo);
         tvDeliveredCount = (TextView) v.findViewById(R.id.tvDeliveredCount);
 
@@ -315,6 +317,17 @@ public class UserDistributorShipmentsFragment extends Fragment {
         }
 
         binder.Initialize(filtered);
+
+        // Toggle empty state visibility
+        if (emptyStateContainer != null) {
+            if (filtered.isEmpty()) {
+                emptyStateContainer.setVisibility(View.VISIBLE);
+                lv_results.setVisibility(View.GONE);
+            } else {
+                emptyStateContainer.setVisibility(View.GONE);
+                lv_results.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     private List<ShipmentWithDetail> GetSearched(String txt) {

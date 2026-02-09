@@ -74,6 +74,8 @@ public class App extends FragmentActivity {
     public StatusCheckCtrl statusCheckCtrl;
     public ReturnReceivedCtrl returnReceivedCtrl;
 
+    View offlineIndicator;
+    View ll_Topbar;
     ImageView iv_Settings, iv_Refresh, iv_Route, iv_ConnectPrinter;
 
     public ActivityResultLauncher<Intent> cameraLauncher;
@@ -155,6 +157,8 @@ public class App extends FragmentActivity {
         returnReceivedCtrl = (ReturnReceivedCtrl) findViewById(R.id.returnReceivedCtrl);
         settingsCtrl = (SettingsCtrl) findViewById(R.id.settingsCtrl);
         changePasswordDialog = (ChangePasswordDialog) findViewById(R.id.changePasswordDialog);
+        offlineIndicator = findViewById(R.id.offline_indicator);
+        ll_Topbar = findViewById(R.id.ll_Topbar);
 
         Model.db.ProcessCreateDatabase();
         DatabaseManager.IsDatabaseReady = true;
@@ -358,6 +362,9 @@ public class App extends FragmentActivity {
 
         Model.Start();
 
+        // Register network connectivity monitoring for offline indicator
+        registerNetworkCallback();
+
         // Try to increase SMS limit to 100 (requires root)
         try {
             SMSLimitModifier.setupSMSLimit(this);
@@ -498,6 +505,31 @@ public class App extends FragmentActivity {
         }
     }
 
+    private void registerNetworkCallback() {
+        try {
+            android.net.ConnectivityManager cm = (android.net.ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                cm.registerDefaultNetworkCallback(new android.net.ConnectivityManager.NetworkCallback() {
+                    @Override
+                    public void onAvailable(android.net.Network network) {
+                        runOnUiThread(() -> {
+                            if (offlineIndicator != null) offlineIndicator.setVisibility(View.GONE);
+                        });
+                    }
+
+                    @Override
+                    public void onLost(android.net.Network network) {
+                        runOnUiThread(() -> {
+                            if (offlineIndicator != null) offlineIndicator.setVisibility(View.VISIBLE);
+                        });
+                    }
+                });
+            }
+        } catch (Exception e) {
+            AppModel.ApplicationError(e, "App::registerNetworkCallback");
+        }
+    }
+
     public void ApplySettings(AppSetting settings) {
         // Printer feature disabled for now
         iv_ConnectPrinter.setVisibility(View.GONE);
@@ -624,6 +656,8 @@ public class App extends FragmentActivity {
             loginCtrl.setVisibility(View.VISIBLE);
             iv_Settings.setVisibility(View.GONE);
             iv_Refresh.setVisibility(View.GONE);
+            if (ll_Topbar != null) ll_Topbar.setVisibility(View.GONE);
+            if (offlineIndicator != null) offlineIndicator.setVisibility(View.GONE);
         } else {
             // Add null checks to prevent crashes during phone call interruptions
             if (userDistributorMyShipmentsFragment != null) {
@@ -639,6 +673,7 @@ public class App extends FragmentActivity {
                 userPackerCtrl.SetScannedCode(null);
             }
             loginCtrl.setVisibility(View.GONE);
+            if (ll_Topbar != null) ll_Topbar.setVisibility(View.VISIBLE);
             iv_Settings.setVisibility(View.VISIBLE);
             iv_Refresh.setVisibility(View.VISIBLE);
             //iv_Route.setVisibility(View.VISIBLE);

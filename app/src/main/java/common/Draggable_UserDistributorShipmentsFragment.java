@@ -39,6 +39,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 	boolean isReturnReceivedScan = false;
 
 	DragNDropListView lv_results;
+	View emptyStateContainer;
 	ListDataBinder_Draggable binder;
 	EditText et_Search;
 	CheckBox chkMultiscan;
@@ -60,6 +61,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		chkMultiscan = v.findViewById(R.id.chkMultiscan);
 		et_Search = (EditText) v.findViewById(R.id.et_Search);
 		lv_results = (DragNDropListView) v.findViewById(R.id.lv_results);
+		emptyStateContainer = v.findViewById(R.id.emptyStateContainer);
 		binder = new ListDataBinder_Draggable(BindedListType.MyShipments, lv_results, R.id.ivHandler);
 
 		// Set Return Received button
@@ -357,6 +359,17 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		}
 
 		binder.Initialize(orderedItems);
+
+		// Toggle empty state visibility
+		if (emptyStateContainer != null) {
+			if (orderedItems.isEmpty()) {
+				emptyStateContainer.setVisibility(View.VISIBLE);
+				lv_results.setVisibility(View.GONE);
+			} else {
+				emptyStateContainer.setVisibility(View.GONE);
+				lv_results.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 
 	private List<ShipmentWithDetail> GetSearched(String txt) {
