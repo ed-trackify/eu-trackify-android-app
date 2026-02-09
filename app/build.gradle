@@ -16,12 +16,12 @@ android {
         applicationId "eu.trackify.net"
         minSdk 21
         targetSdk 33
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
         multiDexEnabled true
 
-        buildConfigField "String", "VERSION_NAME", "\"1.1\""
-        buildConfigField "int", "VERSION_CODE", "2"
+        buildConfigField "String", "VERSION_NAME", "\"1.2\""
+        buildConfigField "int", "VERSION_CODE", "3"
     }
 
     compileOptions {

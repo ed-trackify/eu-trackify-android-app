@@ -455,19 +455,26 @@ public class App extends FragmentActivity {
 
                 } else {
                     try {
+                        // Pass raw barcode content to fragments
+                        // Each fragment/controller handles parsing appropriately:
+                        // - Normal scans: BarcodeParser.extractTrackingNumber() for single best match
+                        // - StatusCheck/ReturnReceived: BarcodeParser.extractCandidates() for multi-try
+                        String rawCode = result.getContents();
+                        AppModel.ApplicationError(null, "BARCODE: Raw=" + rawCode.length() + " chars");
+
                         if (userDistributorTabCtrl != null && userDistributorTabCtrl.getVisibility() == View.VISIBLE) {
                             if (userDistributorMyShipmentsFragment != null && userDistributorTabCtrl.isVisible(userDistributorMyShipmentsFragment))
-                                userDistributorMyShipmentsFragment.SetScannedCode(result.getContents());
+                                userDistributorMyShipmentsFragment.SetScannedCode(rawCode);
                             else if (userDistributorReturnShipmentsFragment != null && userDistributorTabCtrl.isVisible(userDistributorReturnShipmentsFragment))
-                                userDistributorReturnShipmentsFragment.SetScannedCode(result.getContents());
+                                userDistributorReturnShipmentsFragment.SetScannedCode(rawCode);
                         } else if (userWarehouseManagerCtrl != null && userWarehouseManagerCtrl.getVisibility() == View.VISIBLE)
-                            userWarehouseManagerCtrl.SetScannedCode(result.getContents());
+                            userWarehouseManagerCtrl.SetScannedCode(rawCode);
                         else if (userWarehouseAdminCtrl != null && userWarehouseAdminCtrl.getVisibility() == View.VISIBLE)
-                            userWarehouseAdminCtrl.SetScannedCode(result.getContents());
+                            userWarehouseAdminCtrl.SetScannedCode(rawCode);
                         else if (userPackerCtrl != null && userPackerCtrl.getVisibility() == View.VISIBLE)
-                            userPackerCtrl.SetScannedCode(result.getContents());
+                            userPackerCtrl.SetScannedCode(rawCode);
                         else if (userDistributorDriverCtrl != null && userDistributorDriverCtrl.getVisibility() == View.VISIBLE)
-                            userDistributorDriverCtrl.SetScannedCode(result.getContents());
+                            userDistributorDriverCtrl.SetScannedCode(rawCode);
                     } catch (Exception e) {
                         AppModel.ApplicationError(e, "App::BarcodeScanner - Fragment access error");
                     }

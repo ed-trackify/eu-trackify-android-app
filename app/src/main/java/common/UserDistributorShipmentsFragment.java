@@ -376,10 +376,9 @@ public class UserDistributorShipmentsFragment extends Fragment {
     public void SetScannedCode(String code) {
         // Scanned = code;
         if (code != null) {
-            // Check if this is a status check scan
+            // Check if this is a status check scan - pass raw code for multi-candidate lookup
             if (isStatusCheckScan) {
                 isStatusCheckScan = false; // Reset the flag
-                // Open the status check controller with the scanned code
                 if (App.Object.statusCheckCtrl != null) {
                     App.Object.statusCheckCtrl.show(code);
                 }
@@ -387,16 +386,19 @@ public class UserDistributorShipmentsFragment extends Fragment {
                 return;
             }
 
-            // Check if this is a return received scan
+            // Check if this is a return received scan - pass raw code for multi-candidate lookup
             if (isReturnReceivedScan) {
                 isReturnReceivedScan = false; // Reset the flag
-                // Open the return received controller with the scanned code
                 if (App.Object.returnReceivedCtrl != null) {
                     App.Object.returnReceivedCtrl.show(code);
                 }
                 KeyRef.PlayBeep();
                 return;
             }
+
+            // Parse barcode for normal scans
+            // Handles GS1/ANSI shipping labels, URL QR codes, and plain barcodes
+            String parsedCode = BarcodeParser.extractTrackingNumber(code);
 
             boolean multiScanEnabled = chkMultiscan.isChecked();
             if (multiScanEnabled)
@@ -419,7 +421,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
                 actualStatusId = scanStatusId; // Keep the original status ID for proper SMS handling
 
                 // Also send SMS locally for immediate delivery (matching single scan behavior)
-                sendSMSForShipment(code);
+                sendSMSForShipment(parsedCode);
             } else if (scanStatusId == 7) {
                 // Returns "In Delivery" - no SMS needed
                 status = "prezemena";
@@ -431,11 +433,11 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
                 // Send packed SMS for regular packed only (not returns)
                 if (scanStatusId == 14) {
-                    sendPickupSMSForShipment(code);
+                    sendPickupSMSForShipment(parsedCode);
                 }
             }
 
-            SendKey(code, status, actualStatusId, false);
+            SendKey(parsedCode, status, actualStatusId, false);
             KeyRef.PlayBeep();
         }
     }

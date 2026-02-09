@@ -396,10 +396,9 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 	public void SetScannedCode(String code) {
 		// Scanned = code;
 		if (code != null) {
-			// Check if this is a status check scan
+			// Check if this is a status check scan - pass raw code for multi-candidate lookup
 			if (isStatusCheckScan) {
 				isStatusCheckScan = false; // Reset the flag
-				// Open the status check controller with the scanned code
 				if (App.Object.statusCheckCtrl != null) {
 					App.Object.statusCheckCtrl.show(code);
 				}
@@ -407,10 +406,9 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 				return;
 			}
 
-			// Check if this is a return received scan
+			// Check if this is a return received scan - pass raw code for multi-candidate lookup
 			if (isReturnReceivedScan) {
 				isReturnReceivedScan = false; // Reset the flag
-				// Open the return received controller with the scanned code
 				if (App.Object.returnReceivedCtrl != null) {
 					App.Object.returnReceivedCtrl.show(code);
 				}
@@ -418,7 +416,10 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 				return;
 			}
 
-			AppModel.ApplicationError(null, "SCAN: Received barcode: " + code);
+			// Parse barcode for normal Packed/Delivery scans
+			// Handles GS1/ANSI shipping labels, URL QR codes, and plain barcodes
+			String parsedCode = BarcodeParser.extractTrackingNumber(code);
+			AppModel.ApplicationError(null, "SCAN: Received barcode: " + parsedCode + " (raw=" + code.length() + " chars)");
 			AppModel.ApplicationError(null, "SCAN: isDeliveryScan = " + isDeliveryScan);
 
 			boolean multiScanEnabled = chkMultiscan.isChecked();
@@ -427,7 +428,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 
 			ShipmentWithDetail obj = null;
 			for (ShipmentWithDetail s : ITEMS) {
-				if (s.tracking_id.equalsIgnoreCase(code)) {
+				if (s.tracking_id.equalsIgnoreCase(parsedCode)) {
 					obj = s;
 					break;
 				}
@@ -436,8 +437,8 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 			if (isDeliveryScan) {
 				// Always send the "In Delivery" request to trigger SMS check
 				// SMS will only be sent if not already sent today (handled in SMSHelper)
-				AppModel.ApplicationError(null, "SCAN: Sending IN DELIVERY for code: " + code);
-				SendKey(code,"prezemena", 1, false);
+				AppModel.ApplicationError(null, "SCAN: Sending IN DELIVERY for code: " + parsedCode);
+				SendKey(parsedCode,"prezemena", 1, false);
 
 				// Also open details if shipment already exists and is in delivery
 				if (obj != null && obj.status_id == 1) {
@@ -445,8 +446,8 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 					InitializeSelectedItem();
 				}
 			} else {
-				AppModel.ApplicationError(null, "SCAN: Sending PACKED for code: " + code);
-				SendKey(code,"prezemena", 14, false);
+				AppModel.ApplicationError(null, "SCAN: Sending PACKED for code: " + parsedCode);
+				SendKey(parsedCode,"prezemena", 14, false);
 			}
 
 			KeyRef.PlayBeep();

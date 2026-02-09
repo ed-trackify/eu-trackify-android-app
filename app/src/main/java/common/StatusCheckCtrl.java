@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import eu.trackify.net.R;
 
+import java.util.List;
+
 import common.Communicator.IServerResponse;
 
 /**
@@ -53,6 +55,8 @@ public class StatusCheckCtrl extends LinearLayout {
 
     // Data
     private String scannedCode;
+    private List<String> candidateCodes;
+    private int currentCandidateIndex;
     private ShipmentWithDetail currentShipment;
 
     public StatusCheckCtrl(Context context) {
@@ -181,20 +185,28 @@ public class StatusCheckCtrl extends LinearLayout {
     }
 
     /**
-     * Show the status check screen and look up the scanned code
+     * Show the status check screen and look up the scanned code.
+     * Accepts raw barcode data - will parse GS1/ANSI barcodes to extract
+     * tracking number candidates and try them sequentially.
      */
-    public void show(String courierTracking) {
-        this.scannedCode = courierTracking;
+    public void show(String rawBarcode) {
+        this.scannedCode = rawBarcode;
         this.currentShipment = null;
 
-        // Reset UI state
-        tvScannedCode.setText(courierTracking);
+        // Extract candidates from barcode (handles GS1/ANSI, URLs, plain codes)
+        this.candidateCodes = BarcodeParser.extractCandidates(rawBarcode);
+        this.currentCandidateIndex = 0;
+
+        // Show the best candidate in the UI
+        String displayCode = candidateCodes.isEmpty() ? rawBarcode : candidateCodes.get(0);
+        tvScannedCode.setText(displayCode);
         showLoading();
 
         setVisibility(View.VISIBLE);
 
-        // Look up the shipment
-        lookupShipment(courierTracking);
+        // Try the first candidate
+        AppModel.ApplicationError(null, "STATUS_CHECK: " + candidateCodes.size() + " candidates from barcode");
+        tryNextCandidate();
     }
 
     /**
@@ -203,7 +215,27 @@ public class StatusCheckCtrl extends LinearLayout {
     public void hide() {
         setVisibility(View.GONE);
         this.scannedCode = null;
+        this.candidateCodes = null;
         this.currentShipment = null;
+    }
+
+    /**
+     * Try the next candidate tracking number against the backend.
+     * If it fails, automatically tries the next candidate.
+     */
+    private void tryNextCandidate() {
+        if (candidateCodes == null || currentCandidateIndex >= candidateCodes.size()) {
+            // All candidates exhausted
+            showError(getContext().getString(R.string.status_check_not_found));
+            return;
+        }
+
+        String candidate = candidateCodes.get(currentCandidateIndex);
+        AppModel.ApplicationError(null, "STATUS_CHECK: Trying candidate " +
+            (currentCandidateIndex + 1) + "/" + candidateCodes.size() + ": " + candidate);
+        tvScannedCode.setText(candidate);
+
+        lookupShipment(candidate);
     }
 
     private void showLoading() {
@@ -246,9 +278,15 @@ public class StatusCheckCtrl extends LinearLayout {
                             populateShipmentDetails();
                             showShipmentDetails();
                         } else {
-                            String errorMsg = messageToShow != null ? messageToShow :
-                                getContext().getString(R.string.status_check_not_found);
-                            showError(errorMsg);
+                            // Try next candidate if available
+                            currentCandidateIndex++;
+                            if (candidateCodes != null && currentCandidateIndex < candidateCodes.size()) {
+                                tryNextCandidate();
+                            } else {
+                                String errorMsg = messageToShow != null ? messageToShow :
+                                    getContext().getString(R.string.status_check_not_found);
+                                showError(errorMsg);
+                            }
                         }
                     }
                 });
