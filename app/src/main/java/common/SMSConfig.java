@@ -14,9 +14,10 @@ public class SMSConfig {
     public static final boolean SEND_SMS_FOR_DELIVERED = false;     // status_id = 2 (Delivered)
     public static final boolean SEND_SMS_FOR_REJECTED = false;      // status_id = 3 (Problematic)
     public static final boolean SEND_SMS_FOR_PICKED_UP = true;      // status_id = 4 (Picked Up) - ENABLED
+    public static final boolean SEND_SMS_FOR_PACKED = true;         // status_id = 14 (Packed) - ENABLED
     
     // Message Templates - Base messages
-    public static final String MSG_IN_DELIVERY = "Pocituvani, vo Mex Posta e primena pratka za vas, ke vi bide isporacana vo narednite 48h. Ve molime ocekuvajte povik od ovoj telefonski broj. ";
+    public static final String MSG_IN_DELIVERY = "Pocituvani, vo EU Trackify e primena pratka za vas, ke vi bide isporacana vo narednite 48h. Ve molime ocekuvajte povik od ovoj telefonski broj. ";
     public static final String MSG_IN_DELIVERY_SHORT = "Pratka e kaj kurirot i e na pat kon vas.";
     
     // COD addition for In Delivery message
@@ -43,6 +44,8 @@ public class SMSConfig {
                 return SEND_SMS_FOR_REJECTED;
             case 4: // Picked Up
                 return SEND_SMS_FOR_PICKED_UP;
+            case 14: // Packed
+                return SEND_SMS_FOR_PACKED;
             default:
                 return false;
         }
@@ -64,6 +67,8 @@ public class SMSConfig {
             case 3: // Rejected/Problematic
                 return MSG_REJECTED;
             case 4: // Picked Up
+                return MSG_PICKED_UP;
+            case 14: // Packed
                 return MSG_PICKED_UP;
             default:
                 return "";

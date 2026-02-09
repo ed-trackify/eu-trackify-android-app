@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"Trackify EU"</string>
+
+    <!-- Login & Authentication -->
+    <string name="login_username">Korisničko ime</string>
+    <string name="login_password">Lozinka</string>
+    <string name="login_button">Prijava</string>
+    <string name="login_exit">Izlaz</string>
+    <string name="login_error_username_required">Molimo unesite korisničko ime</string>
+    <string name="login_error_password_required">Molimo unesite lozinku</string>
+    <string name="login_error_invalid_credentials">Neispravni podaci za prijavu, pokušajte ponovno</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Postavke</string>
+    <string name="settings_subtitle">Alati i konfiguracija</string>
+    <string name="settings_user_info_header">PODACI O KORISNIKU</string>
+    <string name="settings_profile_picture">Profilna slika</string>
+    <string name="settings_tap_change_photo">Dodirnite za promjenu fotografije</string>
+    <string name="settings_change_photo">Promijeni fotografiju</string>
+    <string name="settings_driver_account">Vozački račun</string>
+    <string name="settings_select_profile_picture">Odaberite profilnu sliku</string>
+    <string name="settings_close">Zatvori</string>
+
+    <!-- SMS Reply Monitoring -->
+    <string name="settings_sms_reply_header">PRAĆENJE SMS ODGOVORA</string>
+    <string name="settings_sms_monitor_label">Praćenje SMS odgovora kupaca</string>
+    <string name="settings_sms_status_disabled">Status: Onemogućeno</string>
+    <string name="settings_sms_status_enabled">Status: Omogućeno</string>
+    <string name="settings_sms_test_button">Testiraj provjeru SMS odgovora</string>
+
+    <!-- Printer Settings -->
+    <string name="settings_printer_header">POSTAVKE PISAČA</string>
+    <string name="settings_printer_bluetooth">Bluetooth pisač</string>
+    <string name="settings_printer_description">Ispis računa putem Bluetootha</string>
+    <string name="settings_printer_enabled">Pisač omogućen. Bluetooth će biti uključen.</string>
+    <string name="settings_printer_disabled">Pisač onemogućen</string>
+    <string name="settings_printer_enable_first">Molimo prvo omogućite pisač u postavkama</string>
+
+    <!-- Language Selection -->
+    <string name="settings_language_header">JEZIK / LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_english_desc">Engleski</string>
+    <string name="settings_language_macedonian">Македонски</string>
+    <string name="settings_language_macedonian_desc">Makedonski</string>
+    <string name="settings_language_albanian">Shqip</string>
+    <string name="settings_language_albanian_desc">Albanski</string>
+    <string name="settings_language_croatian">Hrvatski</string>
+    <string name="settings_language_croatian_desc">Zadani jezik</string>
+
+    <!-- Quick Actions -->
+    <string name="settings_quick_actions">BRZE RADNJE</string>
+    <string name="settings_change_password">Promijeni lozinku</string>
+    <string name="settings_change_password_desc">Ažurirajte lozinku računa</string>
+    <string name="settings_manage_permissions">Upravljanje dozvolama</string>
+    <string name="settings_manage_permissions_desc">Omogućite pristup SMS-u, kameri, lokaciji</string>
+    <string name="settings_check_updates">Provjeri ažuriranja</string>
+    <string name="settings_check_updates_desc">Preuzmite najnoviju verziju aplikacije</string>
+
+    <!-- App Version -->
+    <string name="settings_app_name">MEX Delivery</string>
+    <string name="settings_version">Verzija %s</string>
+
+    <!-- Change Password Dialog -->
+    <string name="password_change_title">Promjena lozinke</string>
+    <string name="password_current">Trenutna lozinka</string>
+    <string name="password_current_hint">Unesite trenutnu lozinku</string>
+    <string name="password_new">Nova lozinka</string>
+    <string name="password_new_hint">Unesite novu lozinku</string>
+    <string name="password_confirm">Potvrdite novu lozinku</string>
+    <string name="password_confirm_hint">Potvrdite novu lozinku</string>
+    <string name="password_requirements_title">Zahtjevi za lozinku:</string>
+    <string name="password_requirement_length">• Najmanje 6 znakova</string>
+    <string name="password_requirement_complexity">• Sadrži slova i brojeve</string>
+    <string name="password_match_success">✓ Lozinke se podudaraju</string>
+    <string name="password_match_fail">✗ Lozinke se ne podudaraju</string>
+    <string name="password_error_current_required">Molimo unesite trenutnu lozinku</string>
+    <string name="password_error_new_required">Molimo unesite novu lozinku</string>
+    <string name="password_error_min_length">Lozinka mora imati najmanje 6 znakova</string>
+    <string name="password_error_no_match">Lozinke se ne podudaraju</string>
+    <string name="password_error_same_as_old">Nova lozinka mora biti različita od trenutne</string>
+    <string name="password_success">Lozinka uspješno promijenjena</string>
+    <string name="password_error_failed">Promjena lozinke nije uspjela. Provjerite trenutnu lozinku.</string>
+    <string name="password_button_cancel">Odustani</string>
+    <string name="password_button_submit">Promijeni lozinku</string>
+
+    <!-- Shipments List Screen -->
+    <string name="shipments_total">Ukupno</string>
+    <string name="shipments_pending">Na čekanju</string>
+    <string name="shipments_delivered">Dostavljeno</string>
+    <string name="shipments_cod">Pouzeće</string>
+
+    <!-- Filter Tabs -->
+    <string name="filter_all">Sve</string>
+    <string name="filter_priority">Prioritet</string>
+    <string name="filter_cod">Pouzeće</string>
+    <string name="filter_nearby">U blizini</string>
+    <string name="filter_pending">Na čekanju</string>
+    <string name="filter_in_delivery">U dostavi (%d)</string>
+    <string name="filter_picked_up">Preuzeto (%d)</string>
+    <string name="filter_problematic">Problematično (%d)</string>
+
+    <!-- Main Tab Titles -->
+    <string name="tab_title_todo">Za dostavu</string>
+    <string name="tab_title_delivered">Dostavljeno</string>
+    <string name="tab_title_todo_count">(%d) Za dostavu</string>
+    <string name="tab_title_delivered_count">(%d) Dostavljeno\n%s €</string>
+    <string name="delivered_count_label">Dostavljeno: %d</string>
+
+    <!-- Search & Sort -->
+    <string name="search_hint">Pretraži po broju za praćenje, imenu ili adresi…</string>
+
+    <!-- Empty State -->
+    <string name="shipments_empty_title">Nema pronađenih dostava</string>
+    <string name="shipments_empty_subtitle">Povucite prema dolje za osvježavanje</string>
+
+    <!-- Multi-scan -->
+    <string name="multiscan_mode">Višestruko skeniranje</string>
+    <string name="multiscan_selected">%d odabrano</string>
+
+    <!-- Scan Buttons -->
+    <string name="scan_pickup">ZAPAKIRANO</string>
+    <string name="scan_return_in_delivery">Povrat u dostavi</string>
+    <string name="scan_delivery">U DOSTAVI</string>
+    <string name="scan_deliver_returned">Dostavi vraćeno</string>
+
+    <!-- Shipment Detail Screen -->
+    <string name="shipment_id_label">Broj pošiljke: </string>
+    <string name="shipment_from">Od: </string>
+    <string name="shipment_sender_address">Adresa pošiljatelja: </string>
+
+    <!-- Receiver Section -->
+    <string name="shipment_deliver_to">DOSTAVI NA</string>
+    <string name="shipment_cod_label">Pouzeće: </string>
+    <string name="shipment_instructions_header">UPUTE ZA DOSTAVU</string>
+
+    <!-- Contact Actions -->
+    <string name="action_call">Pozovi</string>
+    <string name="action_sms">SMS</string>
+
+    <!-- Delivery Actions -->
+    <string name="shipment_actions_header">RADNJE DOSTAVE</string>
+    <string name="action_in_delivery">Označi kao U dostavi</string>
+    <string name="action_deliver">Dostavi</string>
+    <string name="action_problematic">Problematično</string>
+
+    <!-- Additional Options -->
+    <string name="shipment_additional_options">DODATNE OPCIJE</string>
+    <string name="action_print">Ispis</string>
+    <string name="action_return">Povrat</string>
+    <string name="action_create_return">Kreiraj povratnu pošiljku</string>
+    <string name="action_view_return">Pregledaj povratnu pošiljku %s</string>
+
+    <!-- Status -->
+    <string name="status_pending">Na čekanju</string>
+    <string name="status_in_delivery">U dostavi</string>
+    <string name="status_delivered">Dostavljeno</string>
+    <string name="status_problematic">Problematično</string>
+    <string name="status_picked_up">Preuzeto</string>
+    <string name="status_problem">Problem</string>
+    <string name="status_return_shipment">Povratna pošiljka</string>
+
+    <!-- Notes Tab -->
+    <string name="notes_add_new">Dodaj novu bilješku</string>
+    <string name="notes_select_type">Odaberite vrstu bilješke</string>
+    <string name="notes_history_header">POVIJEST BILJEŠKI</string>
+    <string name="notes_count">%d bilješki</string>
+    <string name="notes_count_single">%d bilješka</string>
+
+    <!-- Note Types -->
+    <string name="note_type_not_answering">Ne javlja se na pozive</string>
+    <string name="note_type_wrong_number">Neispravan broj telefona</string>
+    <string name="note_type_not_ordered">Nije naručio/la</string>
+    <string name="note_type_not_in_country">Nije u državi</string>
+    <string name="note_type_rejecting">Odbija dostavu</string>
+    <string name="note_type_other">Ostalo (dodajte detalje ispod)</string>
+
+    <!-- Note Input -->
+    <string name="note_custom_hint">Dodajte prilagođenu bilješku ili dodatne detalje…</string>
+    <string name="note_submit">POŠALJI BILJEŠKU</string>
+
+    <!-- Empty State -->
+    <string name="notes_empty_title">Još nema bilješki</string>
+    <string name="notes_empty_subtitle">Dodirnite \'Dodaj novu bilješku\' za dodavanje prve bilješke</string>
+
+    <!-- Messages -->
+    <string name="note_error_more_info">Molimo unesite više informacija</string>
+    <string name="note_success">Bilješka uspješno poslana</string>
+    <string name="note_error_failed">Slanje bilješke nije uspjelo, pokušajte ponovno</string>
+
+    <!-- Pictures Tab -->
+    <string name="pictures_add_new">Dodaj novu sliku</string>
+    <string name="pictures_uploaded_header">UČITANE SLIKE</string>
+    <string name="pictures_count">%d stavki</string>
+
+    <!-- Empty State -->
+    <string name="pictures_empty_title">Nema učitanih slika</string>
+    <string name="pictures_empty_subtitle">Dodirnite gumb iznad za dodavanje slika</string>
+    <string name="pictures_empty_completed">Nema dostupnih slika za završene pošiljke</string>
+
+    <!-- Upload Dialog -->
+    <string name="pictures_dialog_title">Dodaj sliku</string>
+    <string name="pictures_choose_option">Odaberite opciju:</string>
+    <string name="pictures_take_photo">Snimi fotografiju</string>
+    <string name="pictures_from_gallery">Iz galerije</string>
+    <string name="pictures_change">Promijeni</string>
+    <string name="pictures_description">Opis:</string>
+    <string name="pictures_description_hint">Neobavezno…</string>
+    <string name="pictures_upload">UČITAJ SLIKU</string>
+    <string name="pictures_uploading">Učitavanje…</string>
+    <string name="pictures_size">Veličina: %s</string>
+    <string name="pictures_dimensions">Dimenzije: %dx%d</string>
+
+    <!-- Messages -->
+    <string name="pictures_success">Slika uspješno učitana</string>
+    <string name="pictures_error_select">Odabir slike nije uspio</string>
+    <string name="pictures_error_load">Učitavanje pregleda slike nije uspjelo</string>
+    <string name="pictures_error_no_image">Molimo prvo odaberite sliku</string>
+
+    <!-- SMS History Tab -->
+    <string name="sms_empty">SMS povijest nije dostupna</string>
+    <string name="sms_status_sent">POSLANO</string>
+    <string name="sms_type_auto_delivery">Automatski (Dostava)</string>
+    <string name="sms_pin_label">PIN: %s</string>
+    <string name="sms_attempts">Pokušaji: %d</string>
+    <string name="sms_message_sent">Poruka poslana</string>
+
+    <!-- Signature Screen -->
+    <string name="signature_title">POTVRDA DOSTAVE</string>
+    <string name="signature_pin_header">SIGURNOSNI PIN</string>
+    <string name="signature_pin_hint">Unesite 4-znamenkasti PIN</string>
+    <string name="signature_fullname_header">PUNO IME PRIMATELJA</string>
+    <string name="signature_fullname_hint">Unesite puno ime</string>
+    <string name="signature_section_header">POTPIS</string>
+    <string name="signature_hint">Potpišite ovdje prstom</string>
+    <string name="signature_clear">Obriši</string>
+    <string name="signature_confirm">POTVRDI DOSTAVU</string>
+
+    <!-- Validation Messages -->
+    <string name="signature_error_pin_required">Molimo unesite PIN</string>
+    <string name="signature_error_pin_length">PIN mora imati 4 znamenke</string>
+    <string name="signature_error_name_required">Molimo unesite puno ime primatelja</string>
+    <string name="signature_error_signature_required">Molimo unesite potpis</string>
+
+    <!-- Problematic Reason Dialog -->
+    <string name="problematic_title">Označi kao problematično</string>
+    <string name="problematic_select_reason">Odaberite razlog:</string>
+    <string name="problematic_other_hint">Dodajte više detalja ako odaberete \'Ostalo\'…</string>
+    <string name="problematic_cancel">Odustani</string>
+    <string name="problematic_submit">Pošalji</string>
+    <string name="problematic_error_select_reason">Molimo odaberite razlog</string>
+    <string name="problematic_error_enter_reason">Molimo unesite razlog</string>
+    <string name="problematic_success">Status ažuriran na Problematično</string>
+    <string name="problematic_partial_success">Status ažuriran, ali bilješka nije spremljena</string>
+    <string name="problematic_error_failed">Ažuriranje statusa nije uspjelo</string>
+
+    <!-- Shipment Row (List Item) -->
+    <string name="shipment_customer_name">Ime kupca</string>
+    <string name="shipment_delivery_address">Adresa dostave</string>
+    <string name="shipment_cod_amount">%s €</string>
+    <string name="shipment_time_away">%s min udaljenosti</string>
+    <string name="shipment_button_deliver">Dostavi</string>
+    <string name="shipment_button_reject">Odbij</string>
+    <string name="shipment_button_details">Detalji</string>
+
+    <!-- Common Buttons -->
+    <string name="button_cancel">Odustani</string>
+    <string name="button_submit">Pošalji</string>
+    <string name="button_close">Zatvori</string>
+    <string name="button_done">Gotovo</string>
+    <string name="button_retry">POKUŠAJ PONOVNO</string>
+    <string name="button_rescan">SKENIRAJ PONOVNO</string>
+    <string name="button_back">Natrag</string>
+    <string name="button_back_to_shipments">Natrag na pošiljke</string>
+
+    <!-- General Errors -->
+    <string name="error_loading_failed">Učitavanje nije uspjelo, pokušajte ponovno</string>
+    <string name="error_no_record">Zapis nije pronađen</string>
+    <string name="error_scan_first">Molimo prvo skenirajte barkod</string>
+    <string name="error_scan_failed">Slanje skeniranog ključa nije uspjelo, pokušajte ponovno</string>
+    <string name="error_file_not_found">Datoteka nije pronađena</string>
+    <string name="error_file_selection_failed">Odabir datoteke nije uspio</string>
+    <string name="error_invalid_phone">Neispravan broj telefona</string>
+    <string name="error_phone_not_found">Broj telefona nije pronađen</string>
+    <string name="error_sender_phone_not_found">Broj telefona pošiljatelja nije pronađen</string>
+    <string name="error_already_delivered">Ova pošiljka je već dostavljena!</string>
+    <string name="error_signature_failed">Slanje potpisa nije uspjelo, pokušajte ponovno</string>
+    <string name="error_create_return_failed">Kreiranje povratne pošiljke nije uspjelo, pokušajte ponovno</string>
+    <string name="error_describe_problem">Molimo opišite problem</string>
+
+    <!-- Camera & Permissions -->
+    <string name="error_camera_not_available">Kamera nije dostupna. Provjerite kameru uređaja ili pokušajte ponovno pokrenuti aplikaciju.</string>
+    <string name="error_image_capture_canceled">Snimanje slike otkazano</string>
+    <string name="error_permissions_required">MEX treba pristup kameri i lokaciji za skeniranje paketa i praćenje dostava. Molimo omogućite ove dozvole u Postavkama.</string>
+    <string name="error_permissions_limited">Neke značajke mogu biti ograničene bez svih dozvola.</string>
+    <string name="error_sms_permission_required">SMS dozvola je potrebna za praćenje odgovora kupaca. Molimo omogućite SMS dozvole u Postavkama.</string>
+    <string name="permission_settings_title">Potrebne dozvole</string>
+    <string name="permission_settings_message">Ova aplikacija treba određene dozvole (SMS, Kamera, Lokacija) za ispravno funkcioniranje. Neke dozvole su odbijene.\n\nMolimo dodirnite \"Otvori postavke\" i omogućite potrebne dozvole, zatim se vratite u aplikaciju.</string>
+    <string name="permission_settings_open">Otvori postavke</string>
+    <string name="permission_settings_continue">Nastavi svejedno</string>
+
+    <!-- Printer Messages -->
+    <string name="printer_found">Pronađen pisač: %s</string>
+    <string name="printer_not_found">Podržani pisač nije pronađen. Tražim: PT-210, GOOJPRT ili MTP-II</string>
+    <string name="printer_connected">Pisač povezan: %s</string>
+    <string name="printer_not_connected">Pisač nije povezan</string>
+    <string name="printer_feature_disabled">Značajka pisača je onemogućena</string>
+    <string name="printer_bluetooth_not_supported">Bluetooth nije podržan na ovom uređaju</string>
+    <string name="printer_bluetooth_required">Bluetooth je potreban za ispis</string>
+    <string name="printer_searching">Traženje uređaja…</string>
+    <string name="printer_looking_for">Tražim Goojprt PT-210…</string>
+    <string name="printer_pairing_mode">Provjerite je li pisač uključen i u načinu uparivanja</string>
+    <string name="printer_no_printers">Pisači nisu pronađeni</string>
+    <string name="printer_select">Odaberite pisač</string>
+
+    <!-- Location & Routing -->
+    <string name="location_service_disabled">Usluga lokacije nije omogućena</string>
+    <string name="routing_recalculate">Preračunaj rutu</string>
+    <string name="routing_error">Nije moguće izračunati rutu, pokušajte ponovno</string>
+
+    <!-- Network & Loading -->
+    <string name="loading_processing">Obrada, molimo pričekajte…</string>
+    <string name="loading_default">Učitavanje…</string>
+    <string name="error_no_internet">Nema internetske veze</string>
+
+    <!-- Tab Titles & Navigation -->
+    <string name="tab_deliveries">Dostave</string>
+    <string name="tab_details">Detalji</string>
+    <string name="tab_notes">Bilješke</string>
+    <string name="tab_pictures">Slike</string>
+    <string name="tab_sms">SMS</string>
+    <string name="tab_cod">Pouzeće</string>
+    <string name="tab_returns">Povrati</string>
+
+    <!-- Scan Buttons -->
+    <string name="btn_pick_up">Preuzmi</string>
+    <string name="btn_packed">Zapakirano</string>
+    <string name="btn_return_received">Povrat primljen</string>
+    <string name="btn_status_check">Provjera statusa</string>
+    <string name="btn_check">Provjera</string>
+
+    <!-- Return Received Screen -->
+    <string name="return_received_title">POVRAT PRIMLJEN</string>
+    <string name="return_received_subtitle">Skenirajte za potvrdu primitka povrata</string>
+    <string name="return_received_loading">Traženje pošiljke...</string>
+    <string name="return_received_not_found">Pošiljka nije pronađena</string>
+    <string name="return_received_error">Greška pri traženju pošiljke</string>
+    <string name="return_received_success">Povrat uspješno primljen</string>
+    <string name="return_received_btn_confirm">Potvrdi primitak povrata</string>
+    <string name="return_received_btn_cancel">Odustani</string>
+
+    <!-- Status Check Screen -->
+    <string name="status_check_title">PROVJERA STATUSA</string>
+    <string name="status_check_subtitle">Pregledajte detalje pošiljke prije ažuriranja statusa</string>
+    <string name="status_check_shipment_info">INFORMACIJE O POŠILJCI</string>
+    <string name="status_check_courier_tracking">Praćenje kurira:</string>
+    <string name="status_check_tracking_id">Broj za praćenje:</string>
+    <string name="status_check_current_status">Trenutni status:</string>
+    <string name="status_check_sender_info">PODACI O POŠILJATELJU</string>
+    <string name="status_check_receiver_info">PODACI O PRIMATELJU</string>
+    <string name="status_check_cod_amount">Iznos pouzeća:</string>
+    <string name="status_check_instructions">Upute:</string>
+    <string name="status_check_action_title">AŽURIRAJ STATUS</string>
+    <string name="status_check_action_subtitle">Odaberite radnju za ovu pošiljku</string>
+    <string name="status_check_btn_picked_up">Preuzeto</string>
+    <string name="status_check_btn_returned">Vraćeno pošiljatelju</string>
+    <string name="status_check_btn_cancel">Odustani</string>
+    <string name="status_check_loading">Traženje pošiljke...</string>
+    <string name="status_check_not_found">Pošiljka nije pronađena</string>
+    <string name="status_check_error">Greška pri traženju pošiljke</string>
+    <string name="status_check_success_picked_up">Pošiljka označena kao Preuzeta</string>
+    <string name="status_check_success_returned">Pošiljka označena kao Vraćena pošiljatelju</string>
+
+</resources>

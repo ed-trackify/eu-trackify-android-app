@@ -28,62 +28,80 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:background="@color/primary_dark"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:gravity="center_vertical">
 
             <Button
                 android:id="@+id/btnScanPick"
-                style="@style/ButtonStyleFlat"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:background="#42d4f4"
-                android:padding="8dp"
-                android:singleLine="true"
-                android:ellipsize="end"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/btn_bottom_packed"
                 android:drawableLeft="@drawable/ic_package"
                 android:drawablePadding="4dp"
-                android:text="@string/btn_pick_up"
-                android:textSize="14sp" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/btn_packed"
+                android:textColor="#1A243C"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center" />
 
             <Button
-                android:id="@+id/btnScanDelivery"
-                style="@style/ButtonStyleFlat"
+                android:id="@+id/btnReturnReceived"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="34"
-                android:background="#efe770"
-                android:padding="8dp"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:drawableLeft="@drawable/ic_delivery_truck"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/btn_bottom_return"
+                android:drawableLeft="@drawable/ic_tab_returns"
                 android:drawablePadding="4dp"
-                android:text="@string/btn_in_delivery"
-                android:textColor="@android:color/black"
-                android:textSize="14sp" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/btn_return_received"
+                android:textColor="@color/White"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/btnStatusCheck"
-                style="@style/ButtonStyleFlat"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:background="#9370DB"
-                android:padding="8dp"
-                android:singleLine="true"
-                android:ellipsize="end"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/btn_bottom_check"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="4dp"
-                android:text="@string/btn_status_check"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/btn_check"
                 android:textColor="@color/White"
-                android:textSize="14sp" />
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Status Filter Chips -->
+    <!-- Status Filter Chips (hidden) -->
     <LinearLayout
         android:id="@+id/statusFilterContainer"
         android:layout_width="match_parent"
@@ -94,7 +112,8 @@
         android:paddingBottom="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/filterStatusInDelivery"
@@ -149,7 +168,6 @@
         style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/statusFilterContainer"
         android:layout_margin="5dp"
         android:background="@drawable/edittext_rounded"
         android:hint="@string/search_hint"

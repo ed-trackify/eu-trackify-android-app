@@ -1,6 +1,8 @@
 package common;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,12 +43,13 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
     int scanStatusId;
     boolean isStatusCheckScan = false;
+    boolean isReturnReceivedScan = false;
 
     ListView lv_results;
     ListDataBinder<ShipmentWithDetail> binder;
     EditText et_Search;
     CheckBox chkMultiscan;
-    Button btnScanDelivery, btnScanPick, btnStatusCheck;
+    Button btnReturnReceived, btnScanPick, btnStatusCheck;
     View llDeliveredInfo;
     TextView tvDeliveredCount;
 
@@ -64,7 +67,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         final View v = inflater.inflate(R.layout.ctrl_distributor_user_shipments, null);
 
         chkMultiscan = v.findViewById(R.id.chkMultiscan);
-        btnScanDelivery = v.findViewById(R.id.btnScanDelivery);
+        btnReturnReceived = v.findViewById(R.id.btnReturnReceived);
         btnScanPick = v.findViewById(R.id.btnScanPick);
         btnStatusCheck = v.findViewById(R.id.btnStatusCheck);
         et_Search = (EditText) v.findViewById(R.id.et_Search);
@@ -78,22 +81,34 @@ public class UserDistributorShipmentsFragment extends Fragment {
 
         binder = new ListDataBinder<ShipmentWithDetail>(Type == ShipmentsType.MyShipments ? BindedListType.MyShipments : BindedListType.ReconcileShipments, lv_results);
 
-
+        // Tint button icons for proper visibility
+        Drawable[] packedDrawables = btnScanPick.getCompoundDrawables();
+        if (packedDrawables[0] != null) {
+            packedDrawables[0].setColorFilter(Color.parseColor("#1A243C"), PorterDuff.Mode.SRC_IN);
+        }
+        Drawable[] returnDrawables = btnReturnReceived.getCompoundDrawables();
+        if (returnDrawables[0] != null) {
+            returnDrawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        }
+        Drawable[] checkDrawables = btnStatusCheck.getCompoundDrawables();
+        if (checkDrawables[0] != null) {
+            checkDrawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        }
 
         btnScanPick.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 isStatusCheckScan = false;
-                scanStatusId = Type == ShipmentsType.Returns ? 20 : 4;
+                scanStatusId = Type == ShipmentsType.Returns ? 20 : 14;
                 App.Object.ShowScanner();
             }
         });
 
-        btnScanDelivery.setOnClickListener(new OnClickListener() {
+        btnReturnReceived.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 isStatusCheckScan = false;
-                scanStatusId = Type == ShipmentsType.Returns ? 7 : 1;
+                isReturnReceivedScan = true;
                 App.Object.ShowScanner();
             }
         });
@@ -109,7 +124,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         if (Type == ShipmentsType.ReconcileShipments) {
             chkMultiscan.setVisibility(View.GONE);
             btnScanPick.setVisibility(View.GONE);
-            btnScanDelivery.setVisibility(View.GONE);
+            btnReturnReceived.setVisibility(View.GONE);
             btnStatusCheck.setVisibility(View.GONE);
             // Show client filter chips for delivered screen
             clientFilterContainer.setVisibility(View.VISIBLE);
@@ -118,9 +133,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
             btnScanPick.setText(getString(R.string.scan_return_in_delivery));
             btnScanPick.setBackgroundColor(Color.parseColor("#c44c23"));
             btnScanPick.setTextColor(Color.parseColor("#FFFFFF"));
-            btnScanDelivery.setText(getString(R.string.scan_deliver_returned));
-            btnScanDelivery.setBackgroundColor(Color.parseColor("#910000"));
-            btnScanDelivery.setTextColor(Color.parseColor("#FFFFFF"));
+            // Return received button already has correct styling from layout
             btnStatusCheck.setVisibility(View.GONE); // Hide status check for returns
         }
 
@@ -361,6 +374,17 @@ public class UserDistributorShipmentsFragment extends Fragment {
                 return;
             }
 
+            // Check if this is a return received scan
+            if (isReturnReceivedScan) {
+                isReturnReceivedScan = false; // Reset the flag
+                // Open the return received controller with the scanned code
+                if (App.Object.returnReceivedCtrl != null) {
+                    App.Object.returnReceivedCtrl.show(code);
+                }
+                KeyRef.PlayBeep();
+                return;
+            }
+
             boolean multiScanEnabled = chkMultiscan.isChecked();
             if (multiScanEnabled)
                 App.Object.ShowScanner();
@@ -387,13 +411,13 @@ public class UserDistributorShipmentsFragment extends Fragment {
                 // Returns "In Delivery" - no SMS needed
                 status = "prezemena";
                 actualStatusId = scanStatusId;
-            } else if (scanStatusId == 4 || scanStatusId == 20) {
-                // Pickup scan - send country-based SMS
+            } else if (scanStatusId == 14 || scanStatusId == 20) {
+                // Packed scan - send country-based SMS
                 status = "prezemena";
                 actualStatusId = scanStatusId;
 
-                // Send pickup SMS for regular pickups only (not returns)
-                if (scanStatusId == 4) {
+                // Send packed SMS for regular packed only (not returns)
+                if (scanStatusId == 14) {
                     sendPickupSMSForShipment(code);
                 }
             }
@@ -477,7 +501,7 @@ public class UserDistributorShipmentsFragment extends Fragment {
         // Set tracking ID and status
         smsData.trackingId = scannedCode;
         smsData.shipmentId = scannedCode;
-        smsData.statusId = 4; // Picked Up
+        smsData.statusId = 14; // Packed
         smsData.driverName = App.CurrentUser != null ? App.CurrentUser.user : "";
 
         AppModel.ApplicationError(null, "SMS: Tracking ID set to: " + smsData.trackingId);

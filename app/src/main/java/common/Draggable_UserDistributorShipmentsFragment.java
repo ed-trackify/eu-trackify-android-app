@@ -36,6 +36,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 
 	boolean isDeliveryScan;
 	boolean isStatusCheckScan = false;
+	boolean isReturnReceivedScan = false;
 
 	DragNDropListView lv_results;
 	ListDataBinder_Draggable binder;
@@ -61,24 +62,39 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		lv_results = (DragNDropListView) v.findViewById(R.id.lv_results);
 		binder = new ListDataBinder_Draggable(BindedListType.MyShipments, lv_results, R.id.ivHandler);
 
-		// Set In Delivery button icon to black
-		Button btnScanDelivery = v.findViewById(R.id.btnScanDelivery);
-		btnScanDelivery.setOnClickListener(new OnClickListener() {
+		// Set Return Received button
+		Button btnReturnReceived = v.findViewById(R.id.btnReturnReceived);
+		btnReturnReceived.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				isStatusCheckScan = false;
-				isDeliveryScan = true;
+				isDeliveryScan = false;
+				isReturnReceivedScan = true;
 				App.Object.ShowScanner();
 			}
 		});
 
-		// Tint the drawable icon black
-		Drawable[] drawables = btnScanDelivery.getCompoundDrawables();
+		// Tint the drawable icon white for better visibility on red background
+		Drawable[] drawables = btnReturnReceived.getCompoundDrawables();
 		if (drawables[0] != null) {
-			drawables[0].setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+			drawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 		}
 
-		v.findViewById(R.id.btnScanPick).setOnClickListener(new OnClickListener() {
+		// Tint Packed button icon dark to match text color on light background
+		Button btnScanPick = v.findViewById(R.id.btnScanPick);
+		Drawable[] packedDrawables = btnScanPick.getCompoundDrawables();
+		if (packedDrawables[0] != null) {
+			packedDrawables[0].setColorFilter(Color.parseColor("#1A243C"), PorterDuff.Mode.SRC_IN);
+		}
+
+		// Tint Check button icon white
+		Button btnStatusCheck = v.findViewById(R.id.btnStatusCheck);
+		Drawable[] checkDrawables = btnStatusCheck.getCompoundDrawables();
+		if (checkDrawables[0] != null) {
+			checkDrawables[0].setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+		}
+
+		btnScanPick.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				isStatusCheckScan = false;
@@ -378,6 +394,17 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 				return;
 			}
 
+			// Check if this is a return received scan
+			if (isReturnReceivedScan) {
+				isReturnReceivedScan = false; // Reset the flag
+				// Open the return received controller with the scanned code
+				if (App.Object.returnReceivedCtrl != null) {
+					App.Object.returnReceivedCtrl.show(code);
+				}
+				KeyRef.PlayBeep();
+				return;
+			}
+
 			AppModel.ApplicationError(null, "SCAN: Received barcode: " + code);
 			AppModel.ApplicationError(null, "SCAN: isDeliveryScan = " + isDeliveryScan);
 
@@ -398,15 +425,15 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 				// SMS will only be sent if not already sent today (handled in SMSHelper)
 				AppModel.ApplicationError(null, "SCAN: Sending IN DELIVERY for code: " + code);
 				SendKey(code,"prezemena", 1, false);
-				
+
 				// Also open details if shipment already exists and is in delivery
 				if (obj != null && obj.status_id == 1) {
 					SELECTED = obj;
 					InitializeSelectedItem();
 				}
 			} else {
-				AppModel.ApplicationError(null, "SCAN: Sending PICKUP for code: " + code);
-				SendKey(code,"prezemena", 4, false);
+				AppModel.ApplicationError(null, "SCAN: Sending PACKED for code: " + code);
+				SendKey(code,"prezemena", 14, false);
 			}
 
 			KeyRef.PlayBeep();
@@ -422,6 +449,14 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 	 */
 	public void triggerStatusCheckScan() {
 		isStatusCheckScan = true;
+		App.Object.ShowScanner();
+	}
+
+	/**
+	 * Trigger a return received scan from outside the fragment (e.g., from ReturnReceivedCtrl)
+	 */
+	public void triggerReturnReceivedScan() {
+		isReturnReceivedScan = true;
 		App.Object.ShowScanner();
 	}
 	
@@ -556,7 +591,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 		// Set tracking ID and status
 		smsData.trackingId = scannedCode;
 		smsData.shipmentId = scannedCode;
-		smsData.statusId = 4; // Picked Up
+		smsData.statusId = 14; // Packed
 		smsData.driverName = App.CurrentUser != null ? App.CurrentUser.user : "";
 
 		AppModel.ApplicationError(null, "SMS: Tracking ID set to: " + smsData.trackingId);
@@ -702,7 +737,7 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 									if (!AppModel.IsNullOrEmpty(u.response_txt))
 										MessageCtrl.Toast(u.response_txt);
 
-									// Send SMS if status is "In Delivery" (statusId = 1) or "Picked Up" (statusId = 4)
+									// Send SMS if status is "In Delivery" (statusId = 1) or "Packed" (statusId = 14)
 									// CRITICAL: Use the exact same code that was just sent to the server
 									// IMPORTANT: Send SMS BEFORE calling Load() to avoid race conditions with ITEMS list refresh
 									if (statusId == 1) {
@@ -710,9 +745,9 @@ public class Draggable_UserDistributorShipmentsFragment extends Fragment {
 										// Send SMS in background - don't wait for it
 										sendSMSForShipment(code);
 										// No toast for SMS - just log it
-									} else if (statusId == 4) {
-										AppModel.ApplicationError(null, "SMS TRIGGER: Sending PICKUP SMS for scanned code: " + code);
-										// Send pickup SMS in background
+									} else if (statusId == 14) {
+										AppModel.ApplicationError(null, "SMS TRIGGER: Sending PACKED SMS for scanned code: " + code);
+										// Send packed SMS in background
 										sendPickupSMSForShipment(code);
 										// No toast for SMS - just log it
 									}

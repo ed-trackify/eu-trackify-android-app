@@ -39,13 +39,15 @@
     <string name="settings_printer_enable_first">Please enable printer in settings first</string>
 
     <!-- Language Selection -->
-    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA / JEZIK</string>
     <string name="settings_language_english">English</string>
     <string name="settings_language_english_desc">Default language</string>
     <string name="settings_language_macedonian">Македонски</string>
     <string name="settings_language_macedonian_desc">Macedonian</string>
     <string name="settings_language_albanian">Shqip</string>
     <string name="settings_language_albanian_desc">Albanian</string>
+    <string name="settings_language_croatian">Hrvatski</string>
+    <string name="settings_language_croatian_desc">Croatian</string>
 
     <!-- Quick Actions -->
     <string name="settings_quick_actions">QUICK ACTIONS</string>
@@ -57,7 +59,7 @@
     <string name="settings_check_updates_desc">Get the latest app version</string>
 
     <!-- App Version -->
-    <string name="settings_app_name">MEX Delivery</string>
+    <string name="settings_app_name">EU Trackify</string>
     <string name="settings_version">Version %s</string>
 
     <!-- Change Password Dialog -->
@@ -118,7 +120,7 @@
     <string name="multiscan_selected">%d selected</string>
 
     <!-- Scan Buttons -->
-    <string name="scan_pickup">PICK UP</string>
+    <string name="scan_pickup">PACKED</string>
     <string name="scan_return_in_delivery">Return In Delivery</string>
     <string name="scan_delivery">IN DELIVERY</string>
     <string name="scan_deliver_returned">Deliver returned</string>
@@ -290,7 +292,7 @@
     <!-- Camera & Permissions -->
     <string name="error_camera_not_available">Camera not available. Please check device camera or try restarting the app.</string>
     <string name="error_image_capture_canceled">Image capture canceled</string>
-    <string name="error_permissions_required">MEX needs camera and location access to scan packages and track deliveries. Please enable these permissions in Settings.</string>
+    <string name="error_permissions_required">EU Trackify needs camera and location access to scan packages and track deliveries. Please enable these permissions in Settings.</string>
     <string name="error_permissions_limited">Some features may be limited without all permissions.</string>
     <string name="error_sms_permission_required">SMS permission is required to monitor customer replies. Please enable SMS permissions in Settings.</string>
     <string name="permission_settings_title">Permissions Required</string>
@@ -333,8 +335,20 @@
 
     <!-- Scan Buttons -->
     <string name="btn_pick_up">Pick up</string>
-    <string name="btn_in_delivery">In Delivery</string>
+    <string name="btn_packed">Packed</string>
+    <string name="btn_return_received">Return Received</string>
     <string name="btn_status_check">Status Check</string>
+    <string name="btn_check">Check</string>
+
+    <!-- Return Received Screen -->
+    <string name="return_received_title">RETURN RECEIVED</string>
+    <string name="return_received_subtitle">Scan to confirm return receipt</string>
+    <string name="return_received_loading">Looking up shipment...</string>
+    <string name="return_received_not_found">Shipment not found</string>
+    <string name="return_received_error">Error looking up shipment</string>
+    <string name="return_received_success">Return received successfully</string>
+    <string name="return_received_btn_confirm">Confirm Return Received</string>
+    <string name="return_received_btn_cancel">Cancel</string>
 
     <!-- Status Check Screen -->
     <string name="status_check_title">STATUS CHECK</string>

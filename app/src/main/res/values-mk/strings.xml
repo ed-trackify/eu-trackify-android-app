@@ -39,13 +39,15 @@
     <string name="settings_printer_enable_first">Ве молиме прво овозможете печатач во поставките</string>
 
     <!-- Language Selection -->
-    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA / JEZIK</string>
     <string name="settings_language_english">English</string>
-    <string name="settings_language_english_desc">Default language</string>
+    <string name="settings_language_english_desc">Англиски</string>
     <string name="settings_language_macedonian">Македонски</string>
-    <string name="settings_language_macedonian_desc">Macedonian</string>
+    <string name="settings_language_macedonian_desc">Стандарден јазик</string>
     <string name="settings_language_albanian">Shqip</string>
-    <string name="settings_language_albanian_desc">Albanian</string>
+    <string name="settings_language_albanian_desc">Албански</string>
+    <string name="settings_language_croatian">Hrvatski</string>
+    <string name="settings_language_croatian_desc">Хрватски</string>
 
     <!-- Quick Actions -->
     <string name="settings_quick_actions">БРЗИ АКЦИИ</string>
@@ -57,7 +59,7 @@
     <string name="settings_check_updates_desc">Земи ја најновата верзија на апликацијата</string>
 
     <!-- App Version -->
-    <string name="settings_app_name">MEX Достава</string>
+    <string name="settings_app_name">EU Trackify</string>
     <string name="settings_version">Верзија %s</string>
 
     <!-- Change Password Dialog -->
@@ -118,7 +120,7 @@
     <string name="multiscan_selected">%d избрани</string>
 
     <!-- Scan Buttons -->
-    <string name="scan_pickup">ПРЕВЗЕМАЊЕ</string>
+    <string name="scan_pickup">СПАКУВАНО</string>
     <string name="scan_return_in_delivery">Врати во достава</string>
     <string name="scan_delivery">ВО ДОСТАВА</string>
     <string name="scan_deliver_returned">Достави вратени</string>
@@ -290,7 +292,7 @@
     <!-- Camera & Permissions -->
     <string name="error_camera_not_available">Камерата не е достапна. Ве молиме проверете ја камерата на уредот или обидете се да ја рестартирате апликацијата.</string>
     <string name="error_image_capture_canceled">Фотографирањето е откажано</string>
-    <string name="error_permissions_required">MEX има потреба од пристап до камера и локација за скенирање на пакети и следење на достави. Ве молиме овозможете ги овие дозволи во Поставки.</string>
+    <string name="error_permissions_required">EU Trackify има потреба од пристап до камера и локација за скенирање на пакети и следење на достави. Ве молиме овозможете ги овие дозволи во Поставки.</string>
     <string name="error_permissions_limited">Некои функции може да бидат ограничени без сите дозволи.</string>
     <string name="error_sms_permission_required">Потребна е дозвола за СМС за следење на одговорите од клиентите. Ве молиме овозможете ги СМС дозволите во Поставки.</string>
     <string name="permission_settings_title">Потребни се дозволи</string>
@@ -333,8 +335,10 @@
 
     <!-- Scan Buttons -->
     <string name="btn_pick_up">Превземи</string>
+    <string name="btn_packed">Спакувано</string>
     <string name="btn_in_delivery">Во достава</string>
     <string name="btn_status_check">Провери</string>
+    <string name="btn_check">Провери</string>
 
     <!-- Status Check Screen -->
     <string name="status_check_title">ПРОВЕРКА НА СТАТУС</string>

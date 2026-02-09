@@ -39,13 +39,15 @@
     <string name="settings_printer_enable_first">Ju lutemi aktivizoni printerin në cilësime së pari</string>
 
     <!-- Language Selection -->
-    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA</string>
+    <string name="settings_language_header">LANGUAGE / ЈАЗИК / GJUHA / JEZIK</string>
     <string name="settings_language_english">English</string>
-    <string name="settings_language_english_desc">Default language</string>
+    <string name="settings_language_english_desc">Anglisht</string>
     <string name="settings_language_macedonian">Македонски</string>
-    <string name="settings_language_macedonian_desc">Macedonian</string>
+    <string name="settings_language_macedonian_desc">Maqedonisht</string>
     <string name="settings_language_albanian">Shqip</string>
-    <string name="settings_language_albanian_desc">Albanian</string>
+    <string name="settings_language_albanian_desc">Gjuha standarde</string>
+    <string name="settings_language_croatian">Hrvatski</string>
+    <string name="settings_language_croatian_desc">Kroatisht</string>
 
     <!-- Quick Actions -->
     <string name="settings_quick_actions">VEPRIME TË SHPEJTA</string>
@@ -57,7 +59,7 @@
     <string name="settings_check_updates_desc">Merr versionin më të fundit të aplikacionit</string>
 
     <!-- App Version -->
-    <string name="settings_app_name">MEX Delivery</string>
+    <string name="settings_app_name">EU Trackify</string>
     <string name="settings_version">Versioni %s</string>
 
     <!-- Change Password Dialog -->
@@ -118,7 +120,7 @@
     <string name="multiscan_selected">%d të zgjedhura</string>
 
     <!-- Scan Buttons -->
-    <string name="scan_pickup">MARRJE</string>
+    <string name="scan_pickup">PAKETUAR</string>
     <string name="scan_return_in_delivery">Ktheni në dorëzim</string>
     <string name="scan_delivery">NË DORËZIM</string>
     <string name="scan_deliver_returned">Dorëzo të kthyerat</string>
@@ -290,7 +292,7 @@
     <!-- Camera & Permissions -->
     <string name="error_camera_not_available">Kamera nuk është e disponueshme. Ju lutemi kontrolloni kamerën e pajisjes ose provoni ta ristartoni aplikacionin.</string>
     <string name="error_image_capture_canceled">Fotografimi u anulua</string>
-    <string name="error_permissions_required">MEX ka nevojë për qasje në kamerë dhe vendndodhje për të skanuar paketa dhe ndjekur dorëzimet. Ju lutemi aktivizoni këto leje në Cilësime.</string>
+    <string name="error_permissions_required">EU Trackify ka nevojë për qasje në kamerë dhe vendndodhje për të skanuar paketa dhe ndjekur dorëzimet. Ju lutemi aktivizoni këto leje në Cilësime.</string>
     <string name="error_permissions_limited">Disa funksione mund të jenë të kufizuara pa të gjitha lejet.</string>
     <string name="error_sms_permission_required">Leja për SMS kërkohet për të monitoruar përgjigjet e klientëve. Ju lutemi aktivizoni lejet për SMS në Cilësime.</string>
     <string name="permission_settings_title">Kërkohen Lejet</string>
@@ -333,8 +335,10 @@
 
     <!-- Scan Buttons -->
     <string name="btn_pick_up">Marrje</string>
+    <string name="btn_packed">Paketuar</string>
     <string name="btn_in_delivery">Në dorëzim</string>
     <string name="btn_status_check">Kontrollo</string>
+    <string name="btn_check">Kontrollo</string>
 
     <!-- Status Check Screen -->
     <string name="status_check_title">KONTROLLI I STATUSIT</string>
