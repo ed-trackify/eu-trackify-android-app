@@ -210,7 +210,7 @@ public class UploadWorker extends Worker {
         createNotificationChannel();
         
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-            .setContentTitle("MEX Delivery Upload")
+            .setContentTitle("EU Trackify Upload")
             .setContentText(message)
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_LOW)

@@ -1028,6 +1028,50 @@ public class Communicator {
     }
 
     /**
+     * Mark a shipment as Return Received (status 10)
+     * Called when scanning a courier tracking barcode with the Return Received button
+     *
+     * @param trackingId The internal tracking ID of the shipment
+     * @param courierTracking The scanned courier tracking barcode
+     * @param callback Response callback
+     */
+    public static void MarkReturnReceived(final String trackingId, final String courierTracking, final IServerResponse callback) {
+        if (!AppModel.Object.IsNetworkAvailable(false)) {
+            callback.onCompleted(false, "Internet connection not available");
+            return;
+        }
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String url = URL + "/return_received.php";
+
+                    HashMap<String, Object> reqParams = new HashMap<String, Object>();
+                    reqParams.put("tracking_id", trackingId);
+                    reqParams.put("courier_tracking", courierTracking);
+                    reqParams.put("user_id", App.CurrentUser.user_id);
+                    reqParams.put("user", App.CurrentUser.user);
+
+                    String json = Rest.Post(url, reqParams);
+
+                    // Check if error response
+                    if (json.contains("\"error\"") || json.contains("\"success\":false")) {
+                        ShipmentError error = new Gson().fromJson(json, ShipmentError.class);
+                        callback.onCompleted(false, error.response_txt != null ? error.response_txt : "Failed to mark as return received");
+                    } else {
+                        KeyRef response = new Gson().fromJson(json, KeyRef.class);
+                        callback.onCompleted(true, null, response);
+                    }
+                } catch (Exception ex) {
+                    callback.onCompleted(false, "Something went wrong, Please try again");
+                    AppModel.ApplicationError(ex, "Communicator::MarkReturnReceived");
+                }
+            }
+        })).start();
+    }
+
+    /**
      * Send a single SMS reply to the server
      */
     public static void SendSMSReply(final SMSReplyMonitor.SMSReply reply, final IServerResponse callback) {

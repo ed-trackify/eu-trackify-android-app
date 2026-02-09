@@ -41,7 +41,7 @@ public class AppModel {
 
 	public static final boolean IsBeta = false;
 
-	public static final String APP_FOLDER_NAME = "MEX";
+	public static final String APP_FOLDER_NAME = "EU_Trackify";
 	public final String ORIGINAL_DB_NAME = "DB.sqlite";
 
 	public static final String USER_KEY = "USER_KEY";

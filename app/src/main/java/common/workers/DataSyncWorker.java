@@ -126,7 +126,7 @@ public class DataSyncWorker extends Worker {
         createNotificationChannel();
         
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-            .setContentTitle("MEX Delivery")
+            .setContentTitle("EU Trackify")
             .setContentText(message)
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_LOW)

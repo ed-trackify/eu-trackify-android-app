@@ -1,7 +1,7 @@
 # Trackify EU Android App
 
 ## Overview
-Trackify EU is a delivery driver and distributor management Android application. This is a clone of the MEX delivery app, configured to work with the Trackify EU backend infrastructure.
+Trackify EU is a delivery driver and distributor management Android application. This is the EU Trackify delivery app, configured to work with the Trackify EU backend infrastructure.
 
 ## App Details
 - **App Name**: Trackify EU
@@ -190,12 +190,12 @@ The `.gitignore` file excludes:
 
 ## Support & Documentation
 - Backend API: See [BACKEND_IMPLEMENTATION.md](./BACKEND_IMPLEMENTATION.md)
-- Original app: Based on MEX Delivery App
+- Original app: Based on EU Trackify Delivery App
 - Issues: Report to development team
 
 ## Version History
 - **v1.0 (Build 1)** - Initial release
-  - Cloned from MEX delivery app
+  - EU Trackify delivery app
   - Updated to Trackify EU branding
   - Configured for https://eu.trackify.net backend
   - Android 13+ and Android 15 compatibility

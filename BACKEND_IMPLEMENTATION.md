@@ -1,7 +1,7 @@
 # Trackify EU - Backend Implementation Guide
 
 ## Overview
-This document outlines the backend API requirements for the Trackify EU Android app. The app is a clone of the MEX delivery app, configured to work with a new backend at `https://eu.trackify.net`.
+This document outlines the backend API requirements for the Trackify EU Android app. The app is the EU Trackify delivery app, configured to work with a new backend at `https://eu.trackify.net`.
 
 ## App Configuration
 - **App Name**: Trackify EU

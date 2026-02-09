@@ -25,7 +25,7 @@ import common.workers.LocationUpdateWorker;
 import common.workers.UploadWorker;
 
 /**
- * Manages all WorkManager scheduling for the MEX Delivery app
+ * Manages all WorkManager scheduling for the EU Trackify app
  * Replaces inefficient background threads with proper Android background processing
  */
 public class WorkManagerScheduler {

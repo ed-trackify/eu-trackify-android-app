@@ -8,7 +8,7 @@
         <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
 
-    <!-- Application theme with MEX brand colors -->
+    <!-- Application theme with EU Trackify brand colors -->
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:statusBarColor">@color/primary_dark</item>
         <item name="android:navigationBarColor">@color/primary</item>
@@ -19,7 +19,7 @@
     <!-- <item name="android:windowBackground">@android:color/transparent</item> -->
     <!-- </style> -->
 
-    <!-- MEX Brand Button Styles -->
+    <!-- EU Trackify Brand Button Styles -->
     <style name="ButtonStyle">
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/button_rounded</item>
@@ -58,7 +58,7 @@
         <item name="android:paddingRight">5dp</item>
     </style>
 
-    <!-- MEX Brand Panel/Header Styles -->
+    <!-- EU Trackify Brand Panel/Header Styles -->
     <style name="PanelStyle">
         <item name="android:padding">12dp</item>
         <item name="android:background">@drawable/panel_heading_rounded</item>
@@ -67,7 +67,7 @@
         <item name="android:textStyle">bold</item>
     </style>
     
-    <!-- MEX Typography Styles -->
+    <!-- EU Trackify Typography Styles -->
     <style name="TextStyle">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:fontFamily">sans-serif</item>
@@ -96,7 +96,7 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <!-- MEX Brand Input Field Styles -->
+    <!-- EU Trackify Brand Input Field Styles -->
     <style name="EditTextStyle">
         <item name="android:layout_height">48dp</item>
         <item name="android:padding">12dp</item>

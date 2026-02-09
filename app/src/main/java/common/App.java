@@ -72,6 +72,7 @@ public class App extends FragmentActivity {
     public RoutingCtrl routingCtrl;
     public ViewReturnShipmentDetail viewReturnShipmentDetail;
     public StatusCheckCtrl statusCheckCtrl;
+    public ReturnReceivedCtrl returnReceivedCtrl;
 
     ImageView iv_Settings, iv_Refresh, iv_Route, iv_ConnectPrinter;
 
@@ -151,6 +152,7 @@ public class App extends FragmentActivity {
         routingCtrl = (RoutingCtrl) findViewById(R.id.routingCtrl);
         viewReturnShipmentDetail = (ViewReturnShipmentDetail) findViewById(R.id.viewReturnShipmentDetail);
         statusCheckCtrl = (StatusCheckCtrl) findViewById(R.id.statusCheckCtrl);
+        returnReceivedCtrl = (ReturnReceivedCtrl) findViewById(R.id.returnReceivedCtrl);
         settingsCtrl = (SettingsCtrl) findViewById(R.id.settingsCtrl);
         changePasswordDialog = (ChangePasswordDialog) findViewById(R.id.changePasswordDialog);
 
@@ -585,7 +587,7 @@ public class App extends FragmentActivity {
         activity.startActivity(intent);
     }
 
-    // MEX Brand-Aligned Loading Messages
+    // EU Trackify Brand-Aligned Loading Messages
     public static void SetProcessing(boolean show) {
         App.Object.modalCtrl.SetText("Updating your deliveries...");
         App.Object.modalCtrl.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -682,6 +684,8 @@ public class App extends FragmentActivity {
             viewReturnShipmentDetail.setVisibility(View.GONE);
         else if (statusCheckCtrl != null && statusCheckCtrl.getVisibility() == View.VISIBLE)
             statusCheckCtrl.hide();
+        else if (returnReceivedCtrl != null && returnReceivedCtrl.getVisibility() == View.VISIBLE)
+            returnReceivedCtrl.hide();
         else if (changePasswordDialog != null && changePasswordDialog.getVisibility() == View.VISIBLE)
             changePasswordDialog.SetVisibility(false);
         else if (modalCtrl.getVisibility() != View.VISIBLE && sendProblemCommentsCtrl.getVisibility() != View.VISIBLE && sendFileCommentsCtrl.getVisibility() != View.VISIBLE && userDistributorShipmentDetailTabCtrl.getVisibility() != View.VISIBLE && settingsCtrl.getVisibility() != View.VISIBLE)

@@ -692,12 +692,14 @@ public class SettingsCtrl extends LinearLayout {
             LinearLayout langEnglish = findViewById(R.id.lang_english);
             LinearLayout langMacedonian = findViewById(R.id.lang_macedonian);
             LinearLayout langAlbanian = findViewById(R.id.lang_albanian);
+            LinearLayout langCroatian = findViewById(R.id.lang_croatian);
 
             final ImageView checkEnglish = findViewById(R.id.check_english);
             final ImageView checkMacedonian = findViewById(R.id.check_macedonian);
             final ImageView checkAlbanian = findViewById(R.id.check_albanian);
+            final ImageView checkCroatian = findViewById(R.id.check_croatian);
 
-            if (langEnglish == null || langMacedonian == null || langAlbanian == null) {
+            if (langEnglish == null || langMacedonian == null || langAlbanian == null || langCroatian == null) {
                 return; // Elements not found
             }
 
@@ -705,13 +707,13 @@ public class SettingsCtrl extends LinearLayout {
             final String currentLang = getSavedLanguage();
 
             // Update UI to show current selection
-            updateLanguageCheckmarks(currentLang, checkEnglish, checkMacedonian, checkAlbanian);
+            updateLanguageCheckmarks(currentLang, checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
 
             // English click listener
             langEnglish.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeLanguage("en", checkEnglish, checkMacedonian, checkAlbanian);
+                    changeLanguage("en", checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
                 }
             });
 
@@ -719,7 +721,7 @@ public class SettingsCtrl extends LinearLayout {
             langMacedonian.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeLanguage("mk", checkEnglish, checkMacedonian, checkAlbanian);
+                    changeLanguage("mk", checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
                 }
             });
 
@@ -727,7 +729,15 @@ public class SettingsCtrl extends LinearLayout {
             langAlbanian.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeLanguage("sq", checkEnglish, checkMacedonian, checkAlbanian);
+                    changeLanguage("sq", checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
+                }
+            });
+
+            // Croatian click listener
+            langCroatian.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeLanguage("hr", checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
                 }
             });
 
@@ -739,20 +749,21 @@ public class SettingsCtrl extends LinearLayout {
     /**
      * Update checkmarks to show selected language
      */
-    private void updateLanguageCheckmarks(String languageCode, ImageView checkEnglish, ImageView checkMacedonian, ImageView checkAlbanian) {
-        if (checkEnglish == null || checkMacedonian == null || checkAlbanian == null) {
+    private void updateLanguageCheckmarks(String languageCode, ImageView checkEnglish, ImageView checkMacedonian, ImageView checkAlbanian, ImageView checkCroatian) {
+        if (checkEnglish == null || checkMacedonian == null || checkAlbanian == null || checkCroatian == null) {
             return;
         }
 
         checkEnglish.setVisibility(languageCode.equals("en") ? View.VISIBLE : View.GONE);
         checkMacedonian.setVisibility(languageCode.equals("mk") ? View.VISIBLE : View.GONE);
         checkAlbanian.setVisibility(languageCode.equals("sq") ? View.VISIBLE : View.GONE);
+        checkCroatian.setVisibility(languageCode.equals("hr") ? View.VISIBLE : View.GONE);
     }
 
     /**
      * Change app language
      */
-    private void changeLanguage(String languageCode, ImageView checkEnglish, ImageView checkMacedonian, ImageView checkAlbanian) {
+    private void changeLanguage(String languageCode, ImageView checkEnglish, ImageView checkMacedonian, ImageView checkAlbanian, ImageView checkCroatian) {
         try {
             String currentLang = getSavedLanguage();
 
@@ -765,7 +776,7 @@ public class SettingsCtrl extends LinearLayout {
             saveLanguage(languageCode);
 
             // Update checkmarks
-            updateLanguageCheckmarks(languageCode, checkEnglish, checkMacedonian, checkAlbanian);
+            updateLanguageCheckmarks(languageCode, checkEnglish, checkMacedonian, checkAlbanian, checkCroatian);
 
             // Restart app to apply new language
             restartApp();

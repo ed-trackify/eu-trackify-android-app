@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/Black">
+            android:background="@color/primary">
 
             <CheckBox
                 android:id="@+id/chkMultiscan"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/primary_dark"
+            android:background="@color/primary"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:paddingTop="6dp"

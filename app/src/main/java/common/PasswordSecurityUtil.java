@@ -25,7 +25,7 @@ public class PasswordSecurityUtil {
     private static final int KEY_LENGTH = 256;
 
     // Device-specific key generation
-    private static final String SALT_BASE = "MEX_D3l1v3ry_S@lt_2024";
+    private static final String SALT_BASE = "EU_Tr@ck1fy_S@lt_2024";
 
     /**
      * Hash password using SHA-256 for transmission to server
