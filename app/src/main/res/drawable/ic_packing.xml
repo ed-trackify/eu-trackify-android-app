@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Open box with flaps -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,8L3,19C3,19.55 3.45,20 4,20L20,20C20.55,20 21,19.55 21,19L21,8L12,12L3,8Z" />
+    <!-- Left flap -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,8L1,5L7,5L12,8L3,8Z" />
+    <!-- Right flap -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M21,8L23,5L17,5L12,8L21,8Z" />
+    <!-- Down arrow indicating packing -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,2L12,6M9,4L12,7L15,4"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFFFFF" />
+</vector>

@@ -63,58 +63,63 @@ public class UserDistributorSMSHistoryFragment extends Fragment {
     
     private void loadSMSHistory() {
         isLoaded = true;
-        if (App.Object.userDistributorMyShipmentsFragment != null && 
-            App.Object.userDistributorMyShipmentsFragment.SELECTED != null) {
-            
-            String shipmentId = App.Object.userDistributorMyShipmentsFragment.SELECTED.shipment_id;
-            
-            if (shipmentId != null && !shipmentId.isEmpty()) {
-                showLoading(true);
-                
-                Communicator.GetSMSHistory(shipmentId, new IServerResponse() {
-                    @Override
-                    public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
-                        if (getActivity() != null) {
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showLoading(false);
-                                    
-                                    if (success && objs != null && objs.length > 0) {
-                                        SMSHistoryResponse response = (SMSHistoryResponse) objs[0];
-                                        
-                                        if (response.success && response.messages != null) {
-                                            messages.clear();
-                                            messages.addAll(response.messages);
-                                            adapter.notifyDataSetChanged();
-                                            
-                                            // Update tab count
-                                            if (App.Object.userDistributorShipmentDetailTabCtrl != null) {
-                                                App.Object.userDistributorShipmentDetailTabCtrl.UpdateTabCount(
-                                                    UserDistributorSMSHistoryFragment.this, 
-                                                    messages.size()
-                                                );
-                                            }
-                                            
-                                            if (messages.isEmpty()) {
-                                                showEmptyState("No SMS messages sent for this shipment");
-                                            } else {
-                                                showList();
-                                            }
+
+        // Determine shipment ID based on context
+        String shipmentId = null;
+        if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType ==
+                common.UserDistributorShipmentsFragment.ShipmentsType.StatusCheck) {
+            if (StatusCheckCtrl.SELECTED != null) {
+                shipmentId = StatusCheckCtrl.SELECTED.shipment_id;
+            }
+        } else if (App.Object.userDistributorMyShipmentsFragment != null &&
+                App.Object.userDistributorMyShipmentsFragment.SELECTED != null) {
+            shipmentId = App.Object.userDistributorMyShipmentsFragment.SELECTED.shipment_id;
+        }
+
+        if (shipmentId != null && !shipmentId.isEmpty()) {
+            showLoading(true);
+
+            Communicator.GetSMSHistory(shipmentId, new IServerResponse() {
+                @Override
+                public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showLoading(false);
+
+                                if (success && objs != null && objs.length > 0) {
+                                    SMSHistoryResponse response = (SMSHistoryResponse) objs[0];
+
+                                    if (response.success && response.messages != null) {
+                                        messages.clear();
+                                        messages.addAll(response.messages);
+                                        adapter.notifyDataSetChanged();
+
+                                        // Update tab count
+                                        if (App.Object.userDistributorShipmentDetailTabCtrl != null) {
+                                            App.Object.userDistributorShipmentDetailTabCtrl.UpdateTabCount(
+                                                UserDistributorSMSHistoryFragment.this,
+                                                messages.size()
+                                            );
+                                        }
+
+                                        if (messages.isEmpty()) {
+                                            showEmptyState("No SMS messages sent for this shipment");
                                         } else {
-                                            showEmptyState(response.error != null ? response.error : "Failed to load SMS history");
+                                            showList();
                                         }
                                     } else {
-                                        showEmptyState("Failed to load SMS history");
+                                        showEmptyState(response.error != null ? response.error : "Failed to load SMS history");
                                     }
+                                } else {
+                                    showEmptyState("Failed to load SMS history");
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
-                });
-            } else {
-                showEmptyState("No shipment selected");
-            }
+                }
+            });
         } else {
             showEmptyState("No shipment selected");
         }

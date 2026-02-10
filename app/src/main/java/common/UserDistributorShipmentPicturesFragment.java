@@ -96,7 +96,11 @@ public class UserDistributorShipmentPicturesFragment extends Fragment {
     
     public void Initialize() {
         try {
-            Current = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? App.Object.userDistributorMyShipmentsFragment.SELECTED : (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ?  App.Object.userDistributorReturnShipmentsFragment.SELECTED : App.Object.userDistributorReconcileShipmentsFragment.SELECTED);
+            if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.StatusCheck) {
+                Current = StatusCheckCtrl.SELECTED;
+            } else {
+                Current = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? App.Object.userDistributorMyShipmentsFragment.SELECTED : (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ?  App.Object.userDistributorReturnShipmentsFragment.SELECTED : App.Object.userDistributorReconcileShipmentsFragment.SELECTED);
+            }
             if (Current != null) {
                 binder.Initialize(Current._Images);
                 App.Object.userDistributorShipmentDetailTabCtrl.ChangeTabTitle("Pictures (" + Current._Images.size() + ")", this);

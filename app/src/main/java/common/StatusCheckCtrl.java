@@ -17,12 +17,16 @@ import eu.trackify.net.R;
 import java.util.List;
 
 import common.Communicator.IServerResponse;
+import common.UserDistributorShipmentsFragment.ShipmentsType;
 
 /**
- * Status Check Controller - Displays shipment details after scanning courier tracking
- * Allows updating status to Picked Up (4) or Returned to Sender (7) without auto-changing status
+ * Status Check Controller - Looks up shipment by courier tracking and opens full detail view
+ * with Packed (14) and Packing (12) action buttons.
  */
 public class StatusCheckCtrl extends LinearLayout {
+
+    // Static selected shipment for use by detail tabs
+    public static ShipmentWithDetail SELECTED;
 
     // UI Elements
     private ImageView btnBack;
@@ -275,8 +279,13 @@ public class StatusCheckCtrl extends LinearLayout {
                     public void run() {
                         if (success && objs != null && objs.length > 0) {
                             currentShipment = (ShipmentWithDetail) objs[0];
-                            populateShipmentDetails();
-                            showShipmentDetails();
+                            currentShipment.GenerateNotes();
+                            currentShipment.GeneratePictures();
+
+                            // Set static SELECTED and open full detail view
+                            SELECTED = currentShipment;
+                            hide();
+                            openFullDetailView();
                         } else {
                             // Try next candidate if available
                             currentCandidateIndex++;
@@ -292,6 +301,18 @@ public class StatusCheckCtrl extends LinearLayout {
                 });
             }
         });
+    }
+
+    /**
+     * Opens the full tabbed detail view (Details, Notes, Photos, SMS) for the looked-up shipment.
+     */
+    private void openFullDetailView() {
+        if (App.Object.userDistributorShipmentDetailTabCtrl.Show(ShipmentsType.StatusCheck)) {
+            App.Object.userDistributorShipmentDetail.Initialize();
+            App.Object.userDistributorNotesFragment.Initialize();
+            App.Object.userDistributorPicturesFragment.Initialize();
+            App.Object.userDistributorShipmentDetailTabCtrl.Initialize();
+        }
     }
 
     private void populateShipmentDetails() {

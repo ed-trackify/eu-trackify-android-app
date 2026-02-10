@@ -31,6 +31,7 @@ import common.UserDistributorShipmentsFragment.ShipmentsType;
 public class UserDistributorShipmentDetail extends Fragment {
 
     public View btnInDelivery, btnDelivered, btnRejected, btnPrint, btnCreateReturn;
+    View llStatusCheckButtons, btnPacked, btnPacking;
     TextView sid, tid, status, sendName, sendPh, sendAddr, recName, recPh, recAddr, recCod, recInstructions, tvBtnCreateReturn;
     View ivCall, ivSms, ivCallSender, instructionsContainer;
 
@@ -297,6 +298,27 @@ public class UserDistributorShipmentDetail extends Fragment {
             }
         });
 
+        // StatusCheck buttons: Packed and Packing
+        llStatusCheckButtons = v.findViewById(R.id.llStatusCheckButtons);
+        btnPacked = v.findViewById(R.id.btnPacked);
+        btnPacking = v.findViewById(R.id.btnPacking);
+
+        btnPacked.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Current == null) return;
+                submitStatusCheckAction(14, "prezemena"); // Packed
+            }
+        });
+
+        btnPacking.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Current == null) return;
+                submitStatusCheckAction(12, "prezemena"); // Packing
+            }
+        });
+
         Initialize();
 
         return v;
@@ -374,7 +396,11 @@ public class UserDistributorShipmentDetail extends Fragment {
     }
 
     public void Initialize() {
-        Current = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? App.Object.userDistributorMyShipmentsFragment.SELECTED : (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ?  App.Object.userDistributorReturnShipmentsFragment.SELECTED : App.Object.userDistributorReconcileShipmentsFragment.SELECTED);
+        if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.StatusCheck) {
+            Current = StatusCheckCtrl.SELECTED;
+        } else {
+            Current = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? App.Object.userDistributorMyShipmentsFragment.SELECTED : (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ?  App.Object.userDistributorReturnShipmentsFragment.SELECTED : App.Object.userDistributorReconcileShipmentsFragment.SELECTED);
+        }
 
         if (Current != null && sid != null) {
             sid.setText(Current.shipment_id);
@@ -427,11 +453,58 @@ public class UserDistributorShipmentDetail extends Fragment {
             ivCall.setVisibility(AppModel.IsNullOrEmpty(Current.receiver_phone) ? View.GONE : View.VISIBLE);
             ivSms.setVisibility(AppModel.IsNullOrEmpty(Current.receiver_phone) || AppModel.IsNullOrEmpty(Current.sms_text) ? View.GONE : View.VISIBLE);
 
-            btnInDelivery.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
-            btnDelivered.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments || App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
-            btnRejected.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? View.VISIBLE : View.GONE);
+            if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.StatusCheck) {
+                // StatusCheck mode: show Packed/Packing, hide standard buttons
+                btnInDelivery.setVisibility(View.GONE);
+                btnDelivered.setVisibility(View.GONE);
+                btnRejected.setVisibility(View.GONE);
+                btnPrint.setVisibility(View.GONE);
+                btnCreateReturn.setVisibility(View.GONE);
+                llStatusCheckButtons.setVisibility(View.VISIBLE);
+            } else {
+                // Normal mode
+                llStatusCheckButtons.setVisibility(View.GONE);
+                btnInDelivery.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
+                btnDelivered.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments || App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
+                btnRejected.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? View.VISIBLE : View.GONE);
+            }
             initializeReturnShipment();
         }
+    }
+
+    private void submitStatusCheckAction(final int statusId, String status) {
+        App.SetProcessing(true);
+        Communicator.SendDistributorRequest(Current.tracking_id, status, statusId, null, new IServerResponse() {
+            @Override
+            public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                App.Object.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        App.SetProcessing(false);
+                        if (success) {
+                            if (objs != null && objs.length > 0) {
+                                KeyRef u = (KeyRef) objs[0];
+                                if (!AppModel.IsNullOrEmpty(u.response_txt)) {
+                                    MessageCtrl.Toast(u.response_txt);
+                                }
+                            }
+                            // Refresh all shipment lists
+                            if (App.Object.userDistributorMyShipmentsFragment != null)
+                                App.Object.userDistributorMyShipmentsFragment.Load();
+                            if (App.Object.userDistributorReconcileShipmentsFragment != null)
+                                App.Object.userDistributorReconcileShipmentsFragment.Load();
+                            if (App.Object.userDistributorReturnShipmentsFragment != null)
+                                App.Object.userDistributorReturnShipmentsFragment.Load();
+
+                            // Close detail view
+                            App.Object.userDistributorShipmentDetailTabCtrl.Hide();
+                        } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
+                            MessageCtrl.Toast(messageToShow);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void initializeReturnShipment() {

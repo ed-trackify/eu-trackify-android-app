@@ -32,7 +32,7 @@ import common.ListDataBinder.BindedListType;
 public class UserDistributorShipmentsFragment extends Fragment {
 
     public enum ShipmentsType {
-        MyShipments, ReconcileShipments, Returns, Pickup, InDelivery, Problematic
+        MyShipments, ReconcileShipments, Returns, Pickup, InDelivery, Problematic, StatusCheck
     }
 
     public ShipmentsType Type;

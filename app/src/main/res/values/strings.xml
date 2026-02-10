@@ -372,4 +372,8 @@
     <string name="status_check_success_picked_up">Shipment marked as Picked Up</string>
     <string name="status_check_success_returned">Shipment marked as Returned to Sender</string>
 
+    <!-- StatusCheck Detail Actions -->
+    <string name="action_packed">Packed</string>
+    <string name="action_packing">Packing</string>
+
 </resources>

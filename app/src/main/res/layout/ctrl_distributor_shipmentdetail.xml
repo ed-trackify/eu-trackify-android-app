@@ -495,6 +495,76 @@
 
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- StatusCheck Action Buttons - Packed / Packing (hidden by default) -->
+                <LinearLayout
+                    android:id="@+id/llStatusCheckButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone">
+
+                    <!-- Packed Button -->
+                    <LinearLayout
+                        android:id="@+id/btnPacked"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="52dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/button_rounded_turquoise"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:elevation="2dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_package"
+                            android:tint="#1A243C" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/action_packed"
+                            android:textColor="#1A243C"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Packing Button -->
+                    <LinearLayout
+                        android:id="@+id/btnPacking"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/button_rounded_amber"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:elevation="2dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_packing"
+                            android:tint="@color/White" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/action_packing"
+                            android:textColor="@color/White"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Additional Actions -->
