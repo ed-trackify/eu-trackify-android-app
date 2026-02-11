@@ -376,4 +376,17 @@
     <string name="action_packed">Packed</string>
     <string name="action_packing">Packing</string>
 
+    <!-- Detail Page Improvements -->
+    <string name="action_whatsapp">WhatsApp</string>
+    <string name="tracking_id_copied">Tracking ID copied</string>
+    <string name="package_info_header">PACKAGE INFO</string>
+    <string name="whatsapp_not_installed">WhatsApp is not installed</string>
+    <string name="confirm_yes">Yes</string>
+    <string name="confirm_cancel">Cancel</string>
+    <string name="confirm_in_delivery">Mark this shipment as In Delivery?</string>
+    <string name="confirm_deliver">Deliver this shipment? This will open the signature screen.</string>
+    <string name="confirm_packed">Mark this shipment as Packed?</string>
+    <string name="confirm_packing">Mark this shipment as Packing?</string>
+    <string name="shipment_position">%1$d of %2$d</string>
+
 </resources>

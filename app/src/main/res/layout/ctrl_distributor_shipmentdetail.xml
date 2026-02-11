@@ -28,7 +28,7 @@
                 android:padding="16dp"
                 android:elevation="2dp"
                 android:orientation="vertical">
-                
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,38 +52,99 @@
                         android:textSize="16dp" />
                 </LinearLayout>
 
+                <!-- Tracking ID row with prev/next arrows -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-                    
-                    <TextView
-                        android:id="@+id/tid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ABCDDDDD"
-                        android:textColor="@color/primary"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:layout_marginRight="12dp" />
+                    android:layout_marginBottom="4dp">
 
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/btnPrevShipment"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_chevron_left"
+                        android:tint="@color/primary"
+                        android:padding="6dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Problem"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:background="@color/Black"
-                        android:textColor="@color/White"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                        
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ABCDDDDD"
+                                android:textColor="@color/primary"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:layout_marginRight="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:background="?android:attr/selectableItemBackground" />
+
+                            <ImageView
+                                android:id="@+id/btnCopyTracking"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_copy"
+                                android:tint="@color/text_secondary"
+                                android:padding="2dp"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:layout_marginRight="10dp" />
+
+                            <TextView
+                                android:id="@+id/status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Problem"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
+                                android:background="@color/Black"
+                                android:textColor="@color/White"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Position indicator (e.g. "3 of 15") -->
+                        <TextView
+                            android:id="@+id/tvShipmentPosition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/btnNextShipment"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_chevron_right"
+                        android:tint="@color/primary"
+                        android:padding="6dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <!-- Sender info with phone and call icon -->
@@ -110,7 +171,7 @@
                         android:textColor="@color/text_primary"
                         android:textSize="13sp"
                         android:textStyle="bold" />
-                        
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -120,7 +181,7 @@
                         android:textSize="13sp"
                         android:layout_marginLeft="6dp"
                         android:layout_marginRight="6dp" />
-                        
+
                     <TextView
                         android:id="@+id/sendPh"
                         android:layout_width="wrap_content"
@@ -129,7 +190,7 @@
                         android:text="-"
                         android:textColor="@color/Blue"
                         android:textSize="13sp" />
-                        
+
                     <ImageView
                         android:id="@+id/ivCallSender"
                         android:layout_width="32dp"
@@ -144,7 +205,6 @@
                         android:background="?android:attr/selectableItemBackgroundBorderless" />
                 </LinearLayout>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -170,6 +230,39 @@
                     android:textSize="16dp" />
             </LinearLayout>
 
+            <!-- Package Info Card (hidden when no description) -->
+            <LinearLayout
+                android:id="@+id/packageInfoContainer"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:elevation="2dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/package_info_header"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="2dp" />
+            </LinearLayout>
+
             <!-- Receiver Card -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="8dp">
-                    
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -197,8 +290,9 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="11sp"
                         android:textStyle="bold" />
-                    
+
                     <LinearLayout
+                        android:id="@+id/llCodBadge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -207,7 +301,7 @@
                         android:paddingRight="10dp"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp">
-                        
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -226,7 +320,7 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
-                    
+
                 <!-- First line: Receiver Name and Address on same line -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,7 +335,7 @@
                         android:textColor="@color/text_primary"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-                        
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -257,10 +351,16 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="-"
-                        android:textColor="@color/text_primary"
+                        android:textColor="@color/Blue"
                         android:textSize="14sp"
                         android:ellipsize="end"
-                        android:maxLines="2" />
+                        android:maxLines="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:drawableLeft="@drawable/ic_map_pin"
+                        android:drawablePadding="4dp"
+                        android:drawableTint="@color/text_secondary" />
                 </LinearLayout>
 
                 <!-- Second line: Phone -->
@@ -286,7 +386,7 @@
                         android:textColor="@color/Blue"
                         android:textSize="14sp" />
                 </LinearLayout>
-                
+
                 <!-- Third line: Instructions -->
                 <LinearLayout
                     android:id="@+id/instructionsContainer"
@@ -317,7 +417,7 @@
                         android:lineSpacingExtra="2dp" />
                 </LinearLayout>
 
-                <!-- Contact Actions -->
+                <!-- Contact Actions: Call, SMS, WhatsApp -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -343,10 +443,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginLeft="4dp"
                             android:text="@string/action_call"
                             android:textColor="@color/White"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -355,7 +455,7 @@
                         android:id="@+id/ivSms"
                         android:layout_width="0dp"
                         android:layout_height="42dp"
-                        android:layout_marginLeft="12dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/button_rounded_blue"
                         android:gravity="center"
@@ -371,10 +471,38 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginLeft="4dp"
                             android:text="@string/action_sms"
                             android:textColor="@color/White"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnWhatsApp"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_rounded_whatsapp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_whatsapp"
+                            android:tint="@color/White" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/action_whatsapp"
+                            android:textColor="@color/White"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -384,6 +512,7 @@
 
             <!-- Action Buttons Section -->
             <TextView
+                android:id="@+id/tvActionsHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/shipment_actions_header"
@@ -393,14 +522,14 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp" />
-                
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp">
-                
+
                 <LinearLayout
                     android:id="@+id/btnInDelivery"
                     android:layout_width="match_parent"
@@ -569,6 +698,7 @@
 
             <!-- Additional Actions -->
             <TextView
+                android:id="@+id/tvAdditionalHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/shipment_additional_options"
@@ -578,14 +708,14 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp" />
-                
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp">
-                
+
                 <LinearLayout
                     android:id="@+id/btnPrint"
                     android:layout_width="0dp"

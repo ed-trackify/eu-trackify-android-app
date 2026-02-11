@@ -1,6 +1,11 @@
 package common;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -22,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import eu.trackify.net.R;
 
 import java.io.File;
+import java.util.List;
 
 import common.Communicator.IServerResponse;
 import common.CountingInputStreamEntity.IUploadListener;
@@ -32,7 +38,12 @@ public class UserDistributorShipmentDetail extends Fragment {
 
     public View btnInDelivery, btnDelivered, btnRejected, btnPrint, btnCreateReturn;
     View llStatusCheckButtons, btnPacked, btnPacking;
+    View btnWhatsApp;
+    View btnPrevShipment, btnNextShipment, btnCopyTracking;
+    View packageInfoContainer, llCodBadge;
+    View tvActionsHeader, tvAdditionalHeader;
     TextView sid, tid, status, sendName, sendPh, sendAddr, recName, recPh, recAddr, recCod, recInstructions, tvBtnCreateReturn;
+    TextView tvDescription, tvShipmentPosition;
     View ivCall, ivSms, ivCallSender, instructionsContainer;
 
     ShipmentWithDetail Current;
@@ -53,6 +64,69 @@ public class UserDistributorShipmentDetail extends Fragment {
         recInstructions = (TextView) v.findViewById(R.id.recInstructions);
         instructionsContainer = v.findViewById(R.id.instructionsContainer);
         ivCallSender = v.findViewById(R.id.ivCallSender);
+
+        // New UI elements
+        btnPrevShipment = v.findViewById(R.id.btnPrevShipment);
+        btnNextShipment = v.findViewById(R.id.btnNextShipment);
+        btnCopyTracking = v.findViewById(R.id.btnCopyTracking);
+        tvShipmentPosition = (TextView) v.findViewById(R.id.tvShipmentPosition);
+        packageInfoContainer = v.findViewById(R.id.packageInfoContainer);
+        tvDescription = (TextView) v.findViewById(R.id.tvDescription);
+        llCodBadge = v.findViewById(R.id.llCodBadge);
+        btnWhatsApp = v.findViewById(R.id.btnWhatsApp);
+        tvActionsHeader = v.findViewById(R.id.tvActionsHeader);
+        tvAdditionalHeader = v.findViewById(R.id.tvAdditionalHeader);
+
+        // Copy tracking ID to clipboard
+        OnClickListener copyTrackingListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Current == null || AppModel.IsNullOrEmpty(Current.tracking_id)) return;
+                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("tracking_id", Current.tracking_id);
+                clipboard.setPrimaryClip(clip);
+                MessageCtrl.Toast(getContext().getString(R.string.tracking_id_copied));
+            }
+        };
+        tid.setOnClickListener(copyTrackingListener);
+        btnCopyTracking.setOnClickListener(copyTrackingListener);
+
+        // Open address in Google Maps
+        recAddr.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Current == null) return;
+                String uri;
+                if (Current.lat != null && Current.lon != null && Current.lat != 0 && Current.lon != 0) {
+                    String label = Uri.encode(Current.receiver_name != null ? Current.receiver_name : "");
+                    uri = "geo:" + Current.lat + "," + Current.lon + "?q=" + Current.lat + "," + Current.lon + "(" + label + ")";
+                } else {
+                    String address = recAddr.getText().toString();
+                    if (AppModel.IsNullOrEmpty(address) || address.equals("-")) return;
+                    uri = "geo:0,0?q=" + Uri.encode(address);
+                }
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    AppModel.ApplicationError(ex, "UserDistributorShipmentDetail::openMaps");
+                }
+            }
+        });
+
+        // Prev/Next shipment navigation
+        btnPrevShipment.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateShipment(-1);
+            }
+        });
+        btnNextShipment.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateShipment(1);
+            }
+        });
 
         // Sender phone call functionality
         ivCallSender.setOnClickListener(new OnClickListener() {
@@ -115,40 +189,31 @@ public class UserDistributorShipmentDetail extends Fragment {
             }
         });
 
+        // WhatsApp button
+        btnWhatsApp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Current == null || AppModel.IsNullOrEmpty(Current.receiver_phone)) return;
+                String phone = Current.receiver_phone.replaceAll("[\\s\\-()]", "");
+                if (phone.startsWith("+")) phone = phone.substring(1);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/" + phone));
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    MessageCtrl.Toast(getContext().getString(R.string.whatsapp_not_installed));
+                    AppModel.ApplicationError(ex, "UserDistributorShipmentDetail::whatsapp");
+                }
+            }
+        });
+
         btnInDelivery = v.findViewById(R.id.btnInDelivery);
         btnInDelivery.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                App.SetProcessing(true);
-                Communicator.SendDistributorRequest(Current.tracking_id, "odbiena", 20, null, new IServerResponse() {
+                showConfirmationDialog(getContext().getString(R.string.confirm_in_delivery), new Runnable() {
                     @Override
-                    public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
-                        App.Object.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    if (success) {
-                                        if (objs != null) {
-                                            KeyRef u = (KeyRef) objs[0];
-                                            MessageCtrl.Toast(u.response_txt);
-                                            App.Object.userDistributorReturnShipmentsFragment.Load();
-                                        } else
-                                            MessageCtrl.Toast(getContext().getString(R.string.error_scan_failed));
-                                    } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
-                                        MessageCtrl.Toast(messageToShow);
-
-                                        Current.status_id = 20; // For offline mode
-                                        Current.status_name = "odbiena"; // For offline mode
-                                        Current.hasPendingSync = true;
-                                        App.Object.userDistributorReturnShipmentsFragment.ApplyFilter();
-                                    }
-                                } catch (Exception ex) {
-                                    AppModel.ApplicationError(ex, "ScanCtrl::SubmitStatus");
-                                } finally {
-                                    App.SetLoading(false);
-                                }
-                            }
-                        });
+                    public void run() {
+                        doInDelivery();
                     }
                 });
             }
@@ -164,67 +229,10 @@ public class UserDistributorShipmentDetail extends Fragment {
                     return;
                 }
 
-                App.Object.signatureCtrl.Show(Current, new ISignature() {
+                showConfirmationDialog(getContext().getString(R.string.confirm_deliver), new Runnable() {
                     @Override
-                    public void onSignatureSubmit(Bitmap bitmap, String fullName, String nullablePin) {
-
-                        int statusId = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? 21 : 2;
-
-                        App.SetProcessing(true);
-                        Communicator.SubmitSignature(AppModel.ConvertBitmapToBase64String(bitmap), fullName, Current.shipment_id, nullablePin, statusId, new IServerResponse() {
-                            @Override
-                            public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
-                                App.Object.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            if (success) {
-                                                if (objs != null) {
-                                                    KeyRef u = (KeyRef) objs[0];
-                                                    MessageCtrl.Toast(u.response_txt);
-
-                                                    // Update local status immediately to prevent duplicate deliveries
-                                                    if (Current != null) {
-                                                        Current.status_id = statusId; // statusId is either 2 (delivered) or 21 (delivered returns)
-                                                    }
-
-                                                    // Clear cache to force fresh data on next load
-                                                    AppModel.Object.SaveVariable(AppModel.MY_SHIPMENTS_CACHE_KEY, "");
-                                                    AppModel.Object.SaveVariable(AppModel.RECONCILE_SHIPMENTS_CACHE_KEY, "");
-
-                                                    App.Object.userDistributorMyShipmentsFragment.Load();
-                                                    App.Object.userDistributorReconcileShipmentsFragment.Load();
-                                                    App.Object.userDistributorReturnShipmentsFragment.Load();
-                                                    App.Object.userDistributorShipmentDetailTabCtrl.Hide();
-                                                } else {
-                                                    MessageCtrl.Toast(getContext().getString(R.string.error_signature_failed));
-                                                    // App.SetLoading(false);
-                                                }
-                                            } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
-                                                MessageCtrl.Toast(messageToShow);
-
-                                                if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments) {
-                                                    App.Object.userDistributorMyShipmentsFragment.ITEMS.remove(Current); // For offline mode
-                                                    App.Object.userDistributorMyShipmentsFragment.ApplyFilter();
-                                                } else if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns) {
-                                                    App.Object.userDistributorReturnShipmentsFragment.ITEMS.remove(Current); // For offline mode
-                                                    App.Object.userDistributorReturnShipmentsFragment.ApplyFilter();
-                                                } else {
-                                                    App.Object.userDistributorReconcileShipmentsFragment.ITEMS.remove(Current); // For offline mode
-                                                    App.Object.userDistributorReconcileShipmentsFragment.ApplyFilter();
-                                                }
-                                                App.Object.userDistributorShipmentDetailTabCtrl.Hide();
-                                            }
-                                        } catch (Exception ex) {
-                                            AppModel.ApplicationError(ex, "ScanCtrl::SubmitStatus");
-                                            // App.SetLoading(false);
-                                        } finally {
-                                            App.SetProcessing(false);
-                                        }
-                                    }
-                                });
-                            }
-                        });
+                    public void run() {
+                        doDeliver();
                     }
                 });
             }
@@ -324,6 +332,124 @@ public class UserDistributorShipmentDetail extends Fragment {
         return v;
     }
 
+    // ── Confirmation dialog ──────────────────────────────────────────────
+
+    private void showConfirmationDialog(String message, final Runnable onConfirm) {
+        new AlertDialog.Builder(getContext())
+            .setMessage(message)
+            .setPositiveButton(getContext().getString(R.string.confirm_yes), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    onConfirm.run();
+                }
+            })
+            .setNegativeButton(getContext().getString(R.string.confirm_cancel), null)
+            .show();
+    }
+
+    // ── In Delivery action (extracted for confirmation) ──────────────────
+
+    private void doInDelivery() {
+        App.SetProcessing(true);
+        Communicator.SendDistributorRequest(Current.tracking_id, "odbiena", 20, null, new IServerResponse() {
+            @Override
+            public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                App.Object.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (success) {
+                                if (objs != null) {
+                                    KeyRef u = (KeyRef) objs[0];
+                                    MessageCtrl.Toast(u.response_txt);
+                                    App.Object.userDistributorReturnShipmentsFragment.Load();
+                                } else
+                                    MessageCtrl.Toast(getContext().getString(R.string.error_scan_failed));
+                            } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
+                                MessageCtrl.Toast(messageToShow);
+
+                                Current.status_id = 20; // For offline mode
+                                Current.status_name = "odbiena"; // For offline mode
+                                Current.hasPendingSync = true;
+                                App.Object.userDistributorReturnShipmentsFragment.ApplyFilter();
+                            }
+                        } catch (Exception ex) {
+                            AppModel.ApplicationError(ex, "ScanCtrl::SubmitStatus");
+                        } finally {
+                            App.SetLoading(false);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // ── Deliver action (extracted for confirmation) ──────────────────────
+
+    private void doDeliver() {
+        App.Object.signatureCtrl.Show(Current, new ISignature() {
+            @Override
+            public void onSignatureSubmit(Bitmap bitmap, String fullName, String nullablePin) {
+
+                int statusId = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? 21 : 2;
+
+                App.SetProcessing(true);
+                Communicator.SubmitSignature(AppModel.ConvertBitmapToBase64String(bitmap), fullName, Current.shipment_id, nullablePin, statusId, new IServerResponse() {
+                    @Override
+                    public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                        App.Object.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (success) {
+                                        if (objs != null) {
+                                            KeyRef u = (KeyRef) objs[0];
+                                            MessageCtrl.Toast(u.response_txt);
+
+                                            // Update local status immediately to prevent duplicate deliveries
+                                            if (Current != null) {
+                                                Current.status_id = statusId;
+                                            }
+
+                                            // Clear cache to force fresh data on next load
+                                            AppModel.Object.SaveVariable(AppModel.MY_SHIPMENTS_CACHE_KEY, "");
+                                            AppModel.Object.SaveVariable(AppModel.RECONCILE_SHIPMENTS_CACHE_KEY, "");
+
+                                            App.Object.userDistributorMyShipmentsFragment.Load();
+                                            App.Object.userDistributorReconcileShipmentsFragment.Load();
+                                            App.Object.userDistributorReturnShipmentsFragment.Load();
+                                            App.Object.userDistributorShipmentDetailTabCtrl.Hide();
+                                        } else {
+                                            MessageCtrl.Toast(getContext().getString(R.string.error_signature_failed));
+                                        }
+                                    } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
+                                        MessageCtrl.Toast(messageToShow);
+
+                                        if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments) {
+                                            App.Object.userDistributorMyShipmentsFragment.ITEMS.remove(Current);
+                                            App.Object.userDistributorMyShipmentsFragment.ApplyFilter();
+                                        } else if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns) {
+                                            App.Object.userDistributorReturnShipmentsFragment.ITEMS.remove(Current);
+                                            App.Object.userDistributorReturnShipmentsFragment.ApplyFilter();
+                                        } else {
+                                            App.Object.userDistributorReconcileShipmentsFragment.ITEMS.remove(Current);
+                                            App.Object.userDistributorReconcileShipmentsFragment.ApplyFilter();
+                                        }
+                                        App.Object.userDistributorShipmentDetailTabCtrl.Hide();
+                                    }
+                                } catch (Exception ex) {
+                                    AppModel.ApplicationError(ex, "ScanCtrl::SubmitStatus");
+                                } finally {
+                                    App.SetProcessing(false);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
     public void SubmitPicture(String comments) {
         App.SetUploading(true);
         App.HideKeyboard();
@@ -337,11 +463,9 @@ public class UserDistributorShipmentDetail extends Fragment {
                         try {
                             if (success && objs != null && objs[0] != null && objs[0].toString().equalsIgnoreCase("true")) {
                                 MessageCtrl.Toast(getContext().getString(R.string.pictures_success));
-                                // Refresh the pictures tab if it exists
                                 if (App.Object.userDistributorPicturesFragment != null) {
                                     App.Object.userDistributorPicturesFragment.Initialize();
                                 }
-                                // Reload shipment data to get updated picture count
                                 Initialize();
                             } else if (!AppModel.IsNullOrEmpty(messageToShow)) {
                                 MessageCtrl.Toast(messageToShow);
@@ -361,7 +485,7 @@ public class UserDistributorShipmentDetail extends Fragment {
             }
         });
     }
-    
+
     public void SubmitPictureWithProgress(String comments, File imageFile, final IUploadListener progressListener, final Runnable onSuccess) {
         App.HideKeyboard();
 
@@ -374,11 +498,9 @@ public class UserDistributorShipmentDetail extends Fragment {
                         try {
                             if (success && objs != null && objs[0] != null && objs[0].toString().equalsIgnoreCase("true")) {
                                 MessageCtrl.Toast(getContext().getString(R.string.pictures_success));
-                                // Refresh the pictures tab if it exists
                                 if (App.Object.userDistributorPicturesFragment != null) {
                                     App.Object.userDistributorPicturesFragment.Initialize();
                                 }
-                                // Reload shipment data to get updated picture count
                                 Initialize();
                                 if (onSuccess != null) {
                                     onSuccess.run();
@@ -394,6 +516,8 @@ public class UserDistributorShipmentDetail extends Fragment {
             }
         }, progressListener);
     }
+
+    // ── Initialize ───────────────────────────────────────────────────────
 
     public void Initialize() {
         if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.StatusCheck) {
@@ -411,11 +535,11 @@ public class UserDistributorShipmentDetail extends Fragment {
             // Set tracking ID with exchange tracking ID using exchange symbol if present
             String displayTrackingId = Current.tracking_id;
             if (!AppModel.IsNullOrEmpty(Current.exchange_tracking_id)) {
-                displayTrackingId = displayTrackingId + " ↔ " + Current.exchange_tracking_id;
+                displayTrackingId = displayTrackingId + " \u21c4 " + Current.exchange_tracking_id;
             }
             tid.setText(displayTrackingId);
             sendName.setText(Current.sender_name);
-            
+
             // Set sender phone and visibility of call icon
             if (!AppModel.IsNullOrEmpty(Current.sender_phone)) {
                 sendPh.setText(Current.sender_phone);
@@ -424,11 +548,11 @@ public class UserDistributorShipmentDetail extends Fragment {
                 sendPh.setText("-");
                 ivCallSender.setVisibility(View.GONE);
             }
-            
+
             sendAddr.setText(Current.sender_address);
             recName.setText(Current.receiver_name);
             recPh.setText(Current.receiver_phone);
-            
+
             // Merge receiver address and city with comma separator
             String fullAddress = Current.receiver_address;
             if (!AppModel.IsNullOrEmpty(Current.receiver_city)) {
@@ -439,9 +563,45 @@ public class UserDistributorShipmentDetail extends Fragment {
                 }
             }
             recAddr.setText(fullAddress);
-            
+
+            // ── COD styling (#8) ─────────────────────────────────────────
             recCod.setText(Current.receiver_cod);
-            
+            boolean hasCod = !AppModel.IsNullOrEmpty(Current.receiver_cod)
+                    && !Current.receiver_cod.equals("0")
+                    && !Current.receiver_cod.equals("0.00")
+                    && !Current.receiver_cod.equals("0.0");
+            if (hasCod) {
+                llCodBadge.setVisibility(View.VISIBLE);
+                // Check if high COD (>= 50)
+                try {
+                    double codValue = Double.parseDouble(Current.receiver_cod);
+                    if (codValue >= 50) {
+                        llCodBadge.setBackgroundColor(Color.parseColor("#DC2626")); // red for high COD
+                    } else {
+                        llCodBadge.setBackgroundColor(Color.parseColor("#1A243C")); // primary
+                    }
+                } catch (Exception e) {
+                    llCodBadge.setBackgroundColor(Color.parseColor("#1A243C"));
+                }
+            } else {
+                llCodBadge.setVisibility(View.GONE);
+            }
+
+            // ── Description / Package info (#2) ─────────────────────────
+            if (!AppModel.IsNullOrEmpty(Current.description)) {
+                packageInfoContainer.setVisibility(View.VISIBLE);
+                String desc = Current.description;
+                if (!AppModel.IsNullOrEmpty(Current.description_title) && !Current.description_title.equals(Current.description)) {
+                    desc = Current.description_title + "\n" + Current.description;
+                }
+                tvDescription.setText(desc);
+            } else if (!AppModel.IsNullOrEmpty(Current.description_title)) {
+                packageInfoContainer.setVisibility(View.VISIBLE);
+                tvDescription.setText(Current.description_title);
+            } else {
+                packageInfoContainer.setVisibility(View.GONE);
+            }
+
             // Set instructions if available
             if (!AppModel.IsNullOrEmpty(Current.instructions)) {
                 recInstructions.setText(Current.instructions);
@@ -452,6 +612,7 @@ public class UserDistributorShipmentDetail extends Fragment {
 
             ivCall.setVisibility(AppModel.IsNullOrEmpty(Current.receiver_phone) ? View.GONE : View.VISIBLE);
             ivSms.setVisibility(AppModel.IsNullOrEmpty(Current.receiver_phone) || AppModel.IsNullOrEmpty(Current.sms_text) ? View.GONE : View.VISIBLE);
+            btnWhatsApp.setVisibility(AppModel.IsNullOrEmpty(Current.receiver_phone) ? View.GONE : View.VISIBLE);
 
             if (App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.StatusCheck) {
                 // StatusCheck mode: show Packed/Packing, hide standard buttons
@@ -460,17 +621,107 @@ public class UserDistributorShipmentDetail extends Fragment {
                 btnRejected.setVisibility(View.GONE);
                 btnPrint.setVisibility(View.GONE);
                 btnCreateReturn.setVisibility(View.GONE);
+                tvAdditionalHeader.setVisibility(View.GONE);
                 llStatusCheckButtons.setVisibility(View.VISIBLE);
             } else {
                 // Normal mode
                 llStatusCheckButtons.setVisibility(View.GONE);
+                tvAdditionalHeader.setVisibility(View.VISIBLE);
                 btnInDelivery.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
                 btnDelivered.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments || App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.Returns ? View.VISIBLE : View.GONE);
                 btnRejected.setVisibility(App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType == ShipmentsType.MyShipments ? View.VISIBLE : View.GONE);
             }
             initializeReturnShipment();
+
+            // ── Prev/Next navigation (#10) ───────────────────────────────
+            updateNavigationArrows();
         }
     }
+
+    // ── Navigation between shipments (#10) ───────────────────────────────
+
+    private List<ShipmentWithDetail> getShipmentsList() {
+        ShipmentsType type = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType;
+        if (type == ShipmentsType.MyShipments) return App.Object.userDistributorMyShipmentsFragment.ITEMS;
+        if (type == ShipmentsType.Returns) return App.Object.userDistributorReturnShipmentsFragment.ITEMS;
+        if (type == ShipmentsType.ReconcileShipments) return App.Object.userDistributorReconcileShipmentsFragment.ITEMS;
+        return null;
+    }
+
+    private int findCurrentIndex(List<ShipmentWithDetail> items) {
+        if (Current == null || items == null) return -1;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).shipment_id != null && items.get(i).shipment_id.equals(Current.shipment_id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void updateNavigationArrows() {
+        ShipmentsType type = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType;
+        if (type == ShipmentsType.StatusCheck) {
+            btnPrevShipment.setVisibility(View.GONE);
+            btnNextShipment.setVisibility(View.GONE);
+            tvShipmentPosition.setVisibility(View.GONE);
+            return;
+        }
+
+        List<ShipmentWithDetail> items = getShipmentsList();
+        if (items == null || items.isEmpty()) {
+            btnPrevShipment.setVisibility(View.INVISIBLE);
+            btnNextShipment.setVisibility(View.INVISIBLE);
+            tvShipmentPosition.setVisibility(View.GONE);
+            return;
+        }
+
+        int currentIndex = findCurrentIndex(items);
+        btnPrevShipment.setVisibility(View.VISIBLE);
+        btnNextShipment.setVisibility(View.VISIBLE);
+        btnPrevShipment.setAlpha(currentIndex > 0 ? 1.0f : 0.25f);
+        btnNextShipment.setAlpha(currentIndex < items.size() - 1 ? 1.0f : 0.25f);
+        btnPrevShipment.setClickable(currentIndex > 0);
+        btnNextShipment.setClickable(currentIndex < items.size() - 1);
+
+        // Show position indicator
+        if (items.size() > 1) {
+            tvShipmentPosition.setVisibility(View.VISIBLE);
+            tvShipmentPosition.setText(String.format(getContext().getString(R.string.shipment_position), currentIndex + 1, items.size()));
+        } else {
+            tvShipmentPosition.setVisibility(View.GONE);
+        }
+    }
+
+    private void navigateShipment(int direction) {
+        List<ShipmentWithDetail> items = getShipmentsList();
+        if (items == null || items.isEmpty()) return;
+
+        int currentIndex = findCurrentIndex(items);
+        if (currentIndex < 0) return;
+
+        int newIndex = currentIndex + direction;
+        if (newIndex < 0 || newIndex >= items.size()) return;
+
+        ShipmentWithDetail newSelection = items.get(newIndex);
+        ShipmentsType type = App.Object.userDistributorShipmentDetailTabCtrl.LoadFromShipmentType;
+
+        // Update SELECTED on the appropriate fragment
+        if (type == ShipmentsType.MyShipments) {
+            App.Object.userDistributorMyShipmentsFragment.SELECTED = newSelection;
+        } else if (type == ShipmentsType.Returns) {
+            App.Object.userDistributorReturnShipmentsFragment.SELECTED = newSelection;
+        } else if (type == ShipmentsType.ReconcileShipments) {
+            App.Object.userDistributorReconcileShipmentsFragment.SELECTED = newSelection;
+        }
+
+        // Re-initialize all tabs
+        Initialize();
+        App.Object.userDistributorNotesFragment.Initialize();
+        App.Object.userDistributorPicturesFragment.Initialize();
+        App.Object.userDistributorSMSHistoryFragment.Initialize();
+    }
+
+    // ── StatusCheck action ───────────────────────────────────────────────
 
     private void submitStatusCheckAction(final int statusId, String status) {
         App.SetProcessing(true);
@@ -600,7 +851,6 @@ public class UserDistributorShipmentDetail extends Fragment {
                                     try {
                                         if (noteSuccess) {
                                             MessageCtrl.Toast(getContext().getString(R.string.problematic_success));
-                                            // Refresh the shipments list
                                             App.Object.userDistributorMyShipmentsFragment.Load();
                                         } else {
                                             MessageCtrl.Toast(getContext().getString(R.string.problematic_partial_success));

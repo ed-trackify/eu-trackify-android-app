@@ -336,7 +336,7 @@
     <!-- Scan Buttons -->
     <string name="btn_pick_up">Marrje</string>
     <string name="btn_packed">Paketuar</string>
-    <string name="btn_in_delivery">Në dorëzim</string>
+
     <string name="btn_status_check">Kontrollo</string>
     <string name="btn_check">Kontrollo</string>
 
