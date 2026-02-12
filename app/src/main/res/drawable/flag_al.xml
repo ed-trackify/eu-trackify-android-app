@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="32dp"
+    android:viewportWidth="60"
+    android:viewportHeight="40">
+    <!-- Red background -->
+    <path android:fillColor="#E41E20" android:pathData="M0,0h60v40H0z" />
+    <!-- Black double-headed eagle (simplified) -->
+    <!-- Body -->
+    <path android:fillColor="#000000" android:pathData="M30,10 L26,14 L22,12 L20,16 L16,15 L18,20 L14,22 L18,24 L16,28 L20,26 L24,30 L28,26 L30,28 L32,26 L36,30 L40,26 L44,28 L42,24 L46,22 L42,20 L44,15 L40,16 L38,12 L34,14 Z" />
+    <!-- Left head -->
+    <path android:fillColor="#000000" android:pathData="M22,12 L18,8 L16,10 L14,8 L16,12 L20,14 Z" />
+    <!-- Right head -->
+    <path android:fillColor="#000000" android:pathData="M38,12 L42,8 L44,10 L46,8 L44,12 L40,14 Z" />
+</vector>

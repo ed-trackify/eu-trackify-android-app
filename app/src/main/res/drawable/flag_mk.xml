@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="32dp"
+    android:viewportWidth="60"
+    android:viewportHeight="40">
+    <!-- Red background -->
+    <path android:fillColor="#CE2028" android:pathData="M0,0h60v40H0z" />
+    <!-- Yellow rays from center -->
+    <path android:fillColor="#F9D616" android:pathData="M26,0h8v40H26z" />
+    <path android:fillColor="#F9D616" android:pathData="M0,16h60v8H0z" />
+    <path android:fillColor="#F9D616" android:pathData="M0,0l4,0 26,17V0h-0.01zM30,0v17L56,0h4z" />
+    <path android:fillColor="#F9D616" android:pathData="M0,40l4,0 26,-17V40h-0.01zM30,40v-17L56,40h4z" />
+    <!-- Center circle (yellow) -->
+    <path android:fillColor="#F9D616" android:pathData="M30,20m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+    <!-- Center circle (red inner) -->
+    <path android:fillColor="#CE2028" android:pathData="M30,20m-5.5,0a5.5,5.5 0,1 1,11 0a5.5,5.5 0,1 1,-11 0" />
+    <!-- Red border line on top/bottom -->
+    <path android:fillColor="#F9D616" android:pathData="M0,0h60v2H0z" />
+    <path android:fillColor="#F9D616" android:pathData="M0,38h60v2H0z" />
+</vector>

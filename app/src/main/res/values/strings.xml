@@ -300,6 +300,10 @@
     <string name="permission_settings_open">Open Settings</string>
     <string name="permission_settings_continue">Continue Anyway</string>
 
+    <!-- App Update -->
+    <string name="same_version_default_message">You already have the latest version</string>
+    <string name="update_download_failed_default">Unable to download update</string>
+
     <!-- Printer Messages -->
     <string name="printer_found">Found printer: %s</string>
     <string name="printer_not_found">No supported printer found. Looking for: PT-210, GOOJPRT, or MTP-II</string>

@@ -76,7 +76,10 @@ public class App extends FragmentActivity {
 
     View offlineIndicator;
     View ll_Topbar;
-    ImageView iv_Settings, iv_Refresh, iv_Route, iv_ConnectPrinter;
+    ImageView iv_Settings, iv_Refresh, iv_Route, iv_ConnectPrinter, iv_Notifications;
+
+    public boolean hasNewAppUpdate = false;
+    public AppUpdate latestAppUpdate = null;
 
     public ActivityResultLauncher<Intent> cameraLauncher;
 
@@ -172,6 +175,8 @@ public class App extends FragmentActivity {
         });
 
         iv_Refresh = (ImageView) findViewById(R.id.iv_Refresh);
+        iv_Notifications = (ImageView) findViewById(R.id.iv_Notifications);
+
         iv_Refresh.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -194,6 +199,56 @@ public class App extends FragmentActivity {
                     AppModel.ApplicationError(e, "App::RefreshButton - Fragment access error");
                 }
 
+                // Also check for app updates in the background
+                try {
+                    Communicator.CheckAppUpdate(new Communicator.IServerResponse() {
+                        @Override
+                        public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                            App.Object.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        if (success && objs != null && objs.length > 0 && objs[0] instanceof AppUpdate) {
+                                            AppUpdate obj = (AppUpdate) objs[0];
+                                            latestAppUpdate = obj;
+
+                                            int currentCode = eu.trackify.net.BuildConfig.VERSION_CODE;
+                                            int latestCode = currentCode;
+                                            try {
+                                                latestCode = Integer.parseInt(obj.latest_version);
+                                            } catch (Exception ignored) {
+                                            }
+
+                                            hasNewAppUpdate = latestCode > currentCode;
+
+                                            if (iv_Notifications != null) {
+                                                if (hasNewAppUpdate) {
+                                                    iv_Notifications.setVisibility(View.VISIBLE);
+                                                    android.view.animation.Animation pulse =
+                                                            android.view.animation.AnimationUtils.loadAnimation(
+                                                                    App.Object, R.anim.pulse_notification);
+                                                    iv_Notifications.startAnimation(pulse);
+                                                } else {
+                                                    iv_Notifications.clearAnimation();
+                                                    iv_Notifications.setVisibility(View.GONE);
+                                                }
+                                            }
+                                        } else {
+                                            if (!AppModel.IsNullOrEmpty(messageToShow)) {
+                                                AppModel.ApplicationError(null, "App::CheckAppUpdate - " + messageToShow);
+                                            }
+                                        }
+                                    } catch (Exception ex) {
+                                        AppModel.ApplicationError(ex, "App::CheckAppUpdate - Exception");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } catch (Exception ex) {
+                    AppModel.ApplicationError(ex, "App::RefreshButton - CheckAppUpdate");
+                }
+
                 // Stop animation after 2 seconds
                 iv_Refresh.postDelayed(new Runnable() {
                     @Override
@@ -205,6 +260,65 @@ public class App extends FragmentActivity {
                 }, 2000);
             }
         });
+
+        // Notifications button - downloads and installs app update when tapped
+        if (iv_Notifications != null) {
+            iv_Notifications.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (!hasNewAppUpdate || latestAppUpdate == null) {
+                            MessageCtrl.Toast(getString(R.string.same_version_default_message));
+                            return;
+                        }
+
+                        App.SetDownloading(true);
+                        final AppUpdate obj = latestAppUpdate;
+
+                        Communicator.DownloadFileUsingStream("App.apk", obj.download_url, new Communicator.IServerResponse() {
+                            @Override
+                            public void onCompleted(final boolean success, final String messageToShow, final Object... objs) {
+                                App.Object.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            if (success && objs != null && objs.length > 0 && objs[0] instanceof java.io.File) {
+                                                java.io.File update = (java.io.File) objs[0];
+                                                android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_VIEW);
+
+                                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                                    android.net.Uri apkUri = androidx.core.content.FileProvider.getUriForFile(
+                                                            App.Object,
+                                                            App.Object.getPackageName() + ".fileprovider",
+                                                            update
+                                                    );
+                                                    intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+                                                    intent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK | android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                                } else {
+                                                    intent.setDataAndType(android.net.Uri.fromFile(update), "application/vnd.android.package-archive");
+                                                    intent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                }
+
+                                                App.Object.startActivity(intent);
+                                            } else {
+                                                String errorMsg = messageToShow != null ? messageToShow : getString(R.string.update_download_failed_default);
+                                                MessageCtrl.Toast(errorMsg);
+                                            }
+                                        } catch (Exception ex) {
+                                            AppModel.ApplicationError(ex, "App::NotificationsButton - DownloadUpdate");
+                                        } finally {
+                                            App.SetDownloading(false);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } catch (Exception ex) {
+                        AppModel.ApplicationError(ex, "App::NotificationsButton - onClick");
+                    }
+                }
+            });
+        }
 
         iv_Route = (ImageView) findViewById(R.id.iv_Route);
         iv_Route.setOnClickListener(new OnClickListener() {
@@ -483,6 +597,8 @@ public class App extends FragmentActivity {
 
     public void Logout() {
         CurrentUser = null;
+        hasNewAppUpdate = false;
+        latestAppUpdate = null;
         AppModel.Object.SaveVariable(AppModel.USER_CACHE_KEY, "");
         AppModel.Object.SaveVariable(AppModel.USER_KEY, "");
         AppModel.Object.SaveVariable(AppModel.PASS_KEY, "");
@@ -663,6 +779,10 @@ public class App extends FragmentActivity {
             loginCtrl.setVisibility(View.VISIBLE);
             iv_Settings.setVisibility(View.GONE);
             iv_Refresh.setVisibility(View.GONE);
+            if (iv_Notifications != null) {
+                iv_Notifications.clearAnimation();
+                iv_Notifications.setVisibility(View.GONE);
+            }
             if (ll_Topbar != null) ll_Topbar.setVisibility(View.GONE);
             if (offlineIndicator != null) offlineIndicator.setVisibility(View.GONE);
         } else {
@@ -683,6 +803,14 @@ public class App extends FragmentActivity {
             if (ll_Topbar != null) ll_Topbar.setVisibility(View.VISIBLE);
             iv_Settings.setVisibility(View.VISIBLE);
             iv_Refresh.setVisibility(View.VISIBLE);
+            if (iv_Notifications != null) {
+                if (hasNewAppUpdate) {
+                    iv_Notifications.setVisibility(View.VISIBLE);
+                } else {
+                    iv_Notifications.clearAnimation();
+                    iv_Notifications.setVisibility(View.GONE);
+                }
+            }
             //iv_Route.setVisibility(View.VISIBLE);
 
             // SMS reply monitoring removed - can be added later if needed
@@ -703,6 +831,10 @@ public class App extends FragmentActivity {
                 loginCtrl.setVisibility(View.VISIBLE);
                 iv_Settings.setVisibility(View.GONE);
                 iv_Refresh.setVisibility(View.GONE);
+                if (iv_Notifications != null) {
+                    iv_Notifications.clearAnimation();
+                    iv_Notifications.setVisibility(View.GONE);
+                }
                 iv_Route.setVisibility(View.GONE);
             }
         }

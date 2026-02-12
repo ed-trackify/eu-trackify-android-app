@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="32dp"
+    android:viewportWidth="60"
+    android:viewportHeight="40">
+    <!-- Red stripe (top) -->
+    <path android:fillColor="#FF0000" android:pathData="M0,0h60v13.3H0z" />
+    <!-- White stripe (middle) -->
+    <path android:fillColor="#FFFFFF" android:pathData="M0,13.3h60v13.4H0z" />
+    <!-- Blue stripe (bottom) -->
+    <path android:fillColor="#171796" android:pathData="M0,26.7h60v13.3H0z" />
+    <!-- Shield outline (white) -->
+    <path android:fillColor="#FFFFFF" android:pathData="M22,8h16v18c0,4 -3.5,8 -8,10c-4.5,-2 -8,-6 -8,-10z" />
+    <!-- Shield red/white checkerboard -->
+    <path android:fillColor="#FF0000" android:pathData="M23,9h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M29,9h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M35,9h2.5v3.6H35z" />
+    <path android:fillColor="#FF0000" android:pathData="M26,12.6h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M32,12.6h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M23,16.2h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M29,16.2h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M35,16.2h2.5v3.6H35z" />
+    <path android:fillColor="#FF0000" android:pathData="M26,19.8h3v3.6h-3z" />
+    <path android:fillColor="#FF0000" android:pathData="M32,19.8h3v3.6h-3z" />
+</vector>

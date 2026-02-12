@@ -747,7 +747,7 @@ public class SettingsCtrl extends LinearLayout {
     }
 
     /**
-     * Update checkmarks to show selected language
+     * Update checkmarks and backgrounds to show selected language
      */
     private void updateLanguageCheckmarks(String languageCode, ImageView checkEnglish, ImageView checkMacedonian, ImageView checkAlbanian, ImageView checkCroatian) {
         if (checkEnglish == null || checkMacedonian == null || checkAlbanian == null || checkCroatian == null) {
@@ -758,6 +758,17 @@ public class SettingsCtrl extends LinearLayout {
         checkMacedonian.setVisibility(languageCode.equals("mk") ? View.VISIBLE : View.GONE);
         checkAlbanian.setVisibility(languageCode.equals("sq") ? View.VISIBLE : View.GONE);
         checkCroatian.setVisibility(languageCode.equals("hr") ? View.VISIBLE : View.GONE);
+
+        // Update backgrounds: selected gets highlighted border, others get default
+        LinearLayout langEnglish = findViewById(R.id.lang_english);
+        LinearLayout langMacedonian = findViewById(R.id.lang_macedonian);
+        LinearLayout langAlbanian = findViewById(R.id.lang_albanian);
+        LinearLayout langCroatian = findViewById(R.id.lang_croatian);
+
+        if (langEnglish != null) langEnglish.setBackgroundResource(languageCode.equals("en") ? R.drawable.lang_item_selected : R.drawable.lang_item_default);
+        if (langMacedonian != null) langMacedonian.setBackgroundResource(languageCode.equals("mk") ? R.drawable.lang_item_selected : R.drawable.lang_item_default);
+        if (langAlbanian != null) langAlbanian.setBackgroundResource(languageCode.equals("sq") ? R.drawable.lang_item_selected : R.drawable.lang_item_default);
+        if (langCroatian != null) langCroatian.setBackgroundResource(languageCode.equals("hr") ? R.drawable.lang_item_selected : R.drawable.lang_item_default);
     }
 
     /**

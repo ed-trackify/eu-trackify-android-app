@@ -7,185 +7,311 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/panel_blank_rounded"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:background="@color/White_Smoke"
+            android:paddingBottom="24dp">
 
-            <!-- Header Section -->
+            <!-- Header Bar -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_Logout"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/button_rounded_red"
-                    android:padding="10dp"
-                    android:src="@drawable/logout" />
-            </RelativeLayout>
-
-            <!-- User Info Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#F8F8F8"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_height="56dp"
+                android:background="@color/primary"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/settings_user_info_header"
+                    android:layout_centerVertical="true"
+                    android:text="@string/settings_title"
+                    android:textColor="@color/White"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_Logout"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_rounded_red"
+                    android:padding="8dp"
+                    android:src="@drawable/logout" />
+            </RelativeLayout>
+
+            <!-- Profile Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/settings_section_background"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp">
+
+                <RelativeLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginRight="16dp">
+
+                    <ImageView
+                        android:id="@+id/iv_ProfilePicture"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_person"
+                        android:tint="@color/text_secondary"
+                        android:padding="16dp"
+                        android:background="@drawable/button_rounded_outline"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/iv_CameraIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/camera"
+                        android:tint="@color/White"
+                        android:padding="5dp"
+                        android:background="@drawable/button_rounded_blue"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_Username"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@null"
+                        android:padding="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_driver_account"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp" />
+
+                    <Button
+                        android:id="@+id/btnChangePhoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:text="@string/settings_change_photo"
+                        android:textSize="11sp"
+                        android:textColor="@color/primary"
+                        android:background="@drawable/button_rounded_outline"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Language Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/settings_section_background"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_language_header"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"
                     android:layout_marginBottom="12dp" />
 
-                <!-- Profile Picture Section -->
+                <!-- Language grid: 2x2 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_ProfilePicture"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src="@drawable/ic_person"
-                            android:tint="@color/text_secondary"
-                            android:padding="20dp"
-                            android:background="@drawable/button_rounded_outline"
-                            android:scaleType="centerCrop" />
-
-                        <ImageView
-                            android:id="@+id/iv_CameraIcon"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/camera"
-                            android:tint="@color/White"
-                            android:padding="6dp"
-                            android:background="@drawable/button_rounded_blue"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true" />
-                    </RelativeLayout>
-
+                    <!-- English -->
                     <LinearLayout
+                        android:id="@+id/lang_english"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/lang_item_default"
+                        android:padding="12dp"
+                        android:layout_marginRight="4dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/flag_gb"
+                            android:scaleType="fitCenter" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/settings_profile_picture"
+                            android:text="@string/settings_language_english"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp" />
+
+                        <ImageView
+                            android:id="@+id/check_english"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:layout_marginTop="4dp"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <!-- Macedonian -->
+                    <LinearLayout
+                        android:id="@+id/lang_macedonian"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/lang_item_default"
+                        android:padding="12dp"
+                        android:layout_marginLeft="4dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/flag_mk"
+                            android:scaleType="fitCenter" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/settings_tap_change_photo"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="13sp" />
+                            android:text="@string/settings_language_macedonian"
+                            android:textColor="@color/text_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp" />
 
-                        <Button
-                            android:id="@+id/btnChangePhoto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="32dp"
-                            android:text="@string/settings_change_photo"
-                            android:textSize="12sp"
-                            android:textColor="@color/primary"
-                            android:background="@drawable/button_rounded_outline"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:layout_marginTop="8dp" />
+                        <ImageView
+                            android:id="@+id/check_macedonian"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Username Section -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_person"
-                        android:tint="@color/text_secondary"
-                        android:padding="8dp"
-                        android:background="@drawable/button_rounded_outline"
-                        android:layout_marginRight="12dp" />
-
+                    <!-- Albanian -->
                     <LinearLayout
+                        android:id="@+id/lang_albanian"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/lang_item_default"
+                        android:padding="12dp"
+                        android:layout_marginRight="4dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/flag_al"
+                            android:scaleType="fitCenter" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/settings_driver_account"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-
-                        <EditText
-                            android:id="@+id/et_Username"
-                            style="@style/EditTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="@drawable/edittext_graybg_gray2border_rounded"
-                            android:inputType="text"
-                            android:clickable="false"
-                            android:enabled="false"
+                            android:text="@string/settings_language_albanian"
                             android:textColor="@color/text_primary"
-                            android:textCursorDrawable="@null" />
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp" />
+
+                        <ImageView
+                            android:id="@+id/check_albanian"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <!-- Croatian -->
+                    <LinearLayout
+                        android:id="@+id/lang_croatian"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/lang_item_default"
+                        android:padding="12dp"
+                        android:layout_marginLeft="4dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/flag_hr"
+                            android:scaleType="fitCenter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_language_croatian"
+                            android:textColor="@color/text_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp" />
+
+                        <ImageView
+                            android:id="@+id/check_croatian"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -194,26 +320,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/settings_section_background"
                 android:orientation="vertical"
-                android:background="#F8F8F8"
                 android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/settings_sms_reply_header"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"
                     android:layout_marginBottom="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="8dp">
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="0dp"
@@ -221,13 +350,12 @@
                         android:layout_weight="1"
                         android:text="@string/settings_sms_monitor_label"
                         android:textColor="@color/text_primary"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
 
                     <Switch
                         android:id="@+id/switch_sms_reply_monitoring"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <TextView
@@ -235,18 +363,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/settings_sms_status_disabled"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_tertiary"
                     android:textSize="12sp"
-                    android:padding="8dp" />
+                    android:layout_marginTop="4dp" />
 
                 <Button
                     android:id="@+id/btn_test_sms_reply"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="36dp"
                     android:text="@string/settings_sms_test_button"
                     android:textSize="12sp"
-                    android:background="@drawable/button_rounded_outline"
-                    android:layout_marginTop="8dp" />
+                    android:textColor="@color/primary"
+                    android:background="@drawable/settings_action_item"
+                    android:layout_marginTop="12dp" />
             </LinearLayout>
 
             <!-- Printer Settings Section (Hidden for now) -->
@@ -254,9 +383,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#F8F8F8"
+                android:background="@drawable/settings_section_background"
                 android:padding="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
                 android:visibility="gone">
 
                 <TextView
@@ -264,16 +395,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_printer_header"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"
                     android:layout_marginBottom="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="4dp">
+                    android:gravity="center_vertical">
 
                     <ImageView
                         android:layout_width="32dp"
@@ -281,7 +413,7 @@
                         android:src="@drawable/printer_icon"
                         android:tint="@color/text_secondary"
                         android:padding="4dp"
-                        android:layout_marginRight="16dp" />
+                        android:layout_marginRight="12dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -294,15 +426,14 @@
                             android:layout_height="wrap_content"
                             android:text="@string/settings_printer_bluetooth"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/settings_printer_description"
                             android:textColor="@color/text_tertiary"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <Switch
@@ -313,285 +444,60 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Language Selection Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#F8F8F8"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_language_header"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- English -->
-                <LinearLayout
-                    android:id="@+id/lang_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="🇬🇧"
-                        android:textSize="28sp"
-                        android:gravity="center"
-                        android:layout_marginRight="12dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_english"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_english_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/check_english"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/checkbox_on_background"
-                        android:tint="@color/primary"
-                        android:visibility="visible" />
-                </LinearLayout>
-
-                <!-- Macedonian -->
-                <LinearLayout
-                    android:id="@+id/lang_macedonian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="🇲🇰"
-                        android:textSize="28sp"
-                        android:gravity="center"
-                        android:layout_marginRight="12dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_macedonian"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_macedonian_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/check_macedonian"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/checkbox_on_background"
-                        android:tint="@color/primary"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <!-- Albanian -->
-                <LinearLayout
-                    android:id="@+id/lang_albanian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="🇦🇱"
-                        android:textSize="28sp"
-                        android:gravity="center"
-                        android:layout_marginRight="12dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_albanian"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_albanian_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/check_albanian"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/checkbox_on_background"
-                        android:tint="@color/primary"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <!-- Croatian -->
-                <LinearLayout
-                    android:id="@+id/lang_croatian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="🇭🇷"
-                        android:textSize="28sp"
-                        android:gravity="center"
-                        android:layout_marginRight="12dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_croatian"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_language_croatian_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/check_croatian"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/checkbox_on_background"
-                        android:tint="@color/primary"
-                        android:visibility="gone" />
-                </LinearLayout>
-            </LinearLayout>
-
             <!-- Quick Actions Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/settings_section_background"
                 android:orientation="vertical"
-                android:layout_marginBottom="16dp">
+                android:padding="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/settings_quick_actions"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"
                     android:layout_marginBottom="12dp" />
 
-                <!-- Change Password Button -->
+                <!-- Change Password -->
                 <LinearLayout
                     android:id="@+id/btnChangePasswordContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
+                    android:background="@drawable/settings_action_item"
+                    android:padding="14dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_lock_lock"
                         android:tint="@color/primary"
-                        android:layout_marginRight="12dp" />
+                        android:layout_marginRight="14dp" />
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_change_password"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_change_password_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                        android:text="@string/settings_change_password"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_expand_more"
-                        android:tint="@color/text_tertiary" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right_gray" />
                 </LinearLayout>
 
                 <Button
@@ -600,97 +506,71 @@
                     android:layout_height="0dp"
                     android:visibility="gone" />
 
-                <!-- Manage Permissions Button -->
+                <!-- Manage Permissions -->
                 <LinearLayout
                     android:id="@+id/btnPermissionsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
+                    android:background="@drawable/settings_action_item"
+                    android:padding="14dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_manage"
                         android:tint="@color/primary"
-                        android:layout_marginRight="12dp" />
+                        android:layout_marginRight="14dp" />
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_manage_permissions"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_manage_permissions_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                        android:text="@string/settings_manage_permissions"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_expand_more"
-                        android:tint="@color/text_tertiary" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right_gray" />
                 </LinearLayout>
 
-                <!-- Check for Update Button -->
+                <!-- Check for Update -->
                 <LinearLayout
                     android:id="@+id/btnUpdateContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:background="@drawable/button_rounded_outline"
-                    android:padding="12dp">
+                    android:background="@drawable/settings_action_item"
+                    android:padding="14dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_upload"
                         android:tint="@color/primary"
-                        android:layout_marginRight="12dp" />
+                        android:layout_marginRight="14dp" />
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_check_updates"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings_check_updates_desc"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                        android:text="@string/settings_check_updates"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_expand_more"
-                        android:tint="@color/text_tertiary" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right_gray" />
                 </LinearLayout>
 
                 <Button
@@ -700,21 +580,21 @@
                     android:visibility="gone" />
             </LinearLayout>
 
-            <!-- App Version Info -->
+            <!-- App Version Footer -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp">
 
                 <ImageView
                     android:id="@+id/iv_EuFlag"
-                    android:layout_width="64dp"
-                    android:layout_height="43dp"
+                    android:layout_width="48dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_eu_flag"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:contentDescription="EU Flag" />
 
                 <TextView
@@ -722,7 +602,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_app_name"
                     android:textColor="@color/text_secondary"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_AppVersion"
@@ -730,17 +610,22 @@
                     android:layout_height="wrap_content"
                     android:text="Version 2.64"
                     android:textColor="@color/text_tertiary"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <!-- Close Button -->
             <Button
                 android:id="@+id/btnClose"
-                style="@style/ButtonStyle"
+                style="@style/ButtonStyleFlat"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/button_close_settings"
                 android:text="@string/settings_close"
-                android:textSize="16sp" />
+                android:textColor="@color/White"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
